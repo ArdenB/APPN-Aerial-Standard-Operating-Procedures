@@ -7,6 +7,7 @@
 > and promotes repeatability, transparency, and confidence in downstream data
 > analysis across APPN operations.
 
+> [!IMPORTANT]
 > **This protocol must be followed for all standard APPN CALViS UAV flights.**
 > Adherence to these procedures is essential to ensure operational safety, data
 > integrity, and comparability of datasets across deployments. For any flights
@@ -19,44 +20,46 @@
 
 ## Equipment Checklist
 
+> [!NOTE]
 > Ensure batteries for all equipment are fully charged before heading to the
 > field. Ensure charging cables are available for necessary equipment.
 
-- **Aircraft**
-  - Inspired Flight IF1200A
-  - Aircraft batteries and spares
-  - Landing gear
-  - Landing pad
-  - Spare parts
-  - Tools
-  - Logbook
-- **Radio Control Transmitter / Ground Control Station**
-- **Headwall CoAligned HP sensor payload**
-  - Headwall coaligned system
-  - GNSS antennae
-  - Dovetail to XT60 + XT60 to XT30 cables/adapter
-  - Dual ethernet cable and adaptor
-  - Exposure reference panel
-- **Ground reference kit**
-  - Reflectance calibration panels (11%, 30%, 56%, 82%)
-  - Calibration validation panels (20%, 45%)
-  - Ground control points and RTK GNSS system
-  - 2 × folding tables to elevate panels
-  - *If over 50 km from CORS base station*, a portable RTK base station
-    ([link to GRYFN gitbook](https://gryfn.gitbook.io/gryfn-operations/operations/base-station-availability))
-- **Accessories**
-  - Safety gear (signage and high-vis vests)
-  - Aeronautical radio
-  - Field laptop (with Headwall software installed) and spare batteries
-  - External storage media
-  - Water, food, esky, sunscreen, bug spray, first aid kit, etc.
-  - Spirit bubble, spirit level (or angle measurement) and measuring tape
-  - External power brick (for charging UAV RC)
+- [ ] **Aircraft**
+  - [ ] Inspired Flight IF1200A
+  - [ ] Aircraft batteries and spares
+  - [ ] Landing gear
+  - [ ] Landing pad
+  - [ ] Spare parts
+  - [ ] Tools
+  - [ ] Logbook
+- [ ] **Radio Control Transmitter / Ground Control Station**
+- [ ] **Headwall CoAligned HP sensor payload**
+  - [ ] Headwall coaligned system
+  - [ ] GNSS antennae
+  - [ ] Dovetail to XT60 + XT60 to XT30 cables/adapter
+  - [ ] Dual ethernet cable and adaptor
+  - [ ] Exposure reference panel
+- [ ] **Ground reference kit**
+  - [ ] Reflectance calibration panels (11%, 30%, 56%, 82%)
+  - [ ] Calibration validation panels (20%, 45%)
+  - [ ] Ground control points and RTK GNSS system
+  - [ ] 2 × folding tables to elevate panels
+  - [ ] *If over 50 km from CORS base station*, a portable RTK base station
+        ([link to GRYFN gitbook](https://gryfn.gitbook.io/gryfn-operations/operations/base-station-availability))
+- [ ] **Accessories**
+  - [ ] Safety gear (signage and high-vis vests)
+  - [ ] Aeronautical radio
+  - [ ] Field laptop (with Headwall software installed) and spare batteries
+  - [ ] External storage media
+  - [ ] Water, food, esky, sunscreen, bug spray, first aid kit, etc.
+  - [ ] Spirit bubble, spirit level (or angle measurement) and measuring tape
+  - [ ] External power brick (for charging UAV RC)
 
 ---
 
 ## Preflight Planning
 
+> [!WARNING]
 > Ensure that you apply for UAV flight approvals for locations and dates of
 > flights well in advance.
 
@@ -128,7 +131,8 @@
 5. Perform all on-ground safety checks for the UAV.
 
 6. Attach the CALViS sensor payload to the aircraft.
-   > **Warning:** The IF1200 dovetail has no hot-swap protection, so ensure
+   > **Warning:** 
+   > The IF1200 dovetail has no hot-swap protection, so ensure
    > the IF1200 is powered off when attaching or removing the sensor
    > ([more details](https://gryfn.gitbook.io/gryfn-hardware/headwall-co-aligned-hp/user-manual/integration)).
 
@@ -138,7 +142,7 @@
      clip on the safety wire.
    - Connect the power cable from aircraft to payload dovetail.
    - Connect the A1 GNSS antenna cable.
-   - **Remove the lens cap!**
+   - **Remove the lens cap!** ⚠️
    - Clean the lens with approved cleaner (e.g.,
      [Zeiss Lens Wipes](https://eyesolutions.com.au/products/zeiss-lens-wipes),
      recommended by Gryfn).
@@ -350,6 +354,12 @@
 7. The files required for GPT will be any with a matching UTC time to the
    VNIR or SWIR `imu_gps` file.
 
+### Data storage, processing & validation
+
+1. Downloaded data should be stored in the correct `T0_raw` folder of the [APPN Folder Structure](https://github.com/ArdenB/APPN_GenricFileStorage/wiki).
+2. The bundeled .graw should be saved in the same `T0_raw` folder
+3. The .gpro should be generated using the APPN GPT Pipeline (.json and wiki links TBD)
+4. Standard QA process should be performed following [this guide](../QAprocess/APPN_AerialDataQC_Rev1.0.md)
 ---
 
 ## Appendix

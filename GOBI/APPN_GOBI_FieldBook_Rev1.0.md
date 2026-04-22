@@ -22,36 +22,36 @@
 > Ensure batteries for all equipment are fully charged before heading to the
 > field. Ensure charging cables are available for necessary equipment.
 
-- **Aircraft**
-  - Aircraft batteries
-  - Landing gear
-  - Landing pad
-  - Spare parts
-  - Tools
-  - Logbook
-- **Radio Control Transmitter / Ground Control Station**
-- **GRYFN Gobi**
-  - Gobi system
-  - Power cables, chargers
-  - Ethernet cable
-  - SD card
-  - *Capture* polygon files
-- **Ground reference kit**
-  - Reflectance calibration panels (11%, 30%, 56%, 82%)
-  - Calibration validation panels (20%, 45%)
-  - Ground control points and RTK GNSS system
-  - 2 × folding tables to elevate panels
-  - *If over 50 km from CORS base station*, a portable RTK base station
-    ([link to GRYFN gitbook](https://gryfn.gitbook.io/gryfn-operations/operations/base-station-availability))
-- **Accessories**
-  - Safety gear (signage and high-vis vests)
-  - Aeronautical radio
-  - Field laptop and spare batteries
-  - External storage media
-  - Water, food, esky, sunscreen, bug spray, first aid kit, etc.
-  - Spirit bubble, spirit level (or angle measurement) and measuring tape
-  - Portable fan (for cooling GOBI during data offload)
-  - External power brick (for charging UAV RC)
+- [ ] **Aircraft**
+  - [ ] Aircraft batteries
+  - [ ] Landing gear
+  - [ ] Landing pad
+  - [ ] Spare parts
+  - [ ] Tools
+  - [ ] Logbook
+- [ ] **Radio Control Transmitter / Ground Control Station**
+- [ ] **GRYFN Gobi**
+  - [ ] Gobi system
+  - [ ] Power cables, chargers
+  - [ ] Ethernet cable
+  - [ ] SD card
+  - [ ] *Capture* polygon files
+- [ ] **Ground reference kit**
+  - [ ] Reflectance calibration panels (11%, 30%, 56%, 82%)
+  - [ ] Calibration validation panels (20%, 45%)
+  - [ ] Ground control points and RTK GNSS system
+  - [ ] 2 × folding tables to elevate panels
+  - [ ] *If over 50 km from CORS base station*, a portable RTK base station
+        ([link to GRYFN gitbook](https://gryfn.gitbook.io/gryfn-operations/operations/base-station-availability))
+- [ ] **Accessories**
+  - [ ] Safety gear (signage and high-vis vests)
+  - [ ] Aeronautical radio
+  - [ ] Field laptop and spare batteries
+  - [ ] External storage media
+  - [ ] Water, food, esky, sunscreen, bug spray, first aid kit, etc.
+  - [ ] Spirit bubble, spirit level (or angle measurement) and measuring tape
+  - [ ] Portable fan (for cooling GOBI during data offload)
+  - [ ] External power brick (for charging UAV RC)
 
 ---
 

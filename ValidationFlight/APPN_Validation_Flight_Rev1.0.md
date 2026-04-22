@@ -20,22 +20,22 @@
 
 ## Equipment Required
 
-- UAV, controller and batteries
-- GOBI or CALViS
-- 2 × GRYFN 4-panel set (11%, 30%, 56%, 82%)
+- [ ] UAV, controller and batteries
+- [ ] GOBI or CALViS
+- [ ] 2 × GRYFN 4-panel set (11%, 30%, 56%, 82%)
   - If two sets are not available, then 1 can be used.
-- 1 × GRYFN 2-panel validation set (20%, 45%)
-- 5 × Propeller Aeropoints or other ground control points (GCPs)
-- 1 × folding table
-- 1 × tape measure
-- Weather station
+- [ ] 1 × GRYFN 2-panel validation set (20%, 45%)
+- [ ] 5 × Propeller Aeropoints or other ground control points (GCPs)
+- [ ] 1 × folding table
+- [ ] 1 × tape measure
+- [ ] Weather station
   - Details TBD.
-- Downwelling radiation sensor
+- [ ] Downwelling radiation sensor
   - Details TBD.
-- Optional spectroradiometer (SVC, FieldSpec)
-- Spirit bubble
-- All other equipment listed in the GOBI or CALViS standard operating
-  procedures
+- [ ] Optional spectroradiometer (SVC, FieldSpec)
+- [ ] Spirit bubble
+- [ ] All other equipment listed in the GOBI or CALViS standard operating
+      procedures
 
 > The modified test flight may require additional equipment to test
 > specific information. See the detailed experiment list for more
