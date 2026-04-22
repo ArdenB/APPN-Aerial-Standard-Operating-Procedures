@@ -18,6 +18,9 @@ from __future__ import annotations
 import argparse
 import base64
 import hashlib
+import re
+import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -62,11 +65,44 @@ def make_image_handler(media_dir: Path, md_path: Path):
             filename = f"image_{digest}.{ext}"
             (media_dir / filename).write_bytes(data)
             rel = f"{media_dir.name}/{filename}"
+            # Browsers don't render EMF; convert to SVG if a converter is available.
+            if ext == "emf" and shutil.which("emf2svg-conv"):
+                svg_name = f"image_{digest}.svg"
+                svg_path = media_dir / svg_name
+                try:
+                    subprocess.run(
+                        ["emf2svg-conv", "-i", str(media_dir / filename),
+                         "-o", str(svg_path)],
+                        check=True, capture_output=True,
+                    )
+                    rel = f"{media_dir.name}/{svg_name}"
+                except subprocess.CalledProcessError as exc:
+                    print(f"  emf2svg-conv failed for {filename}: "
+                          f"{exc.stderr.decode(errors='replace').strip()}",
+                          file=sys.stderr)
             seen[digest] = rel
         alt = image.alt_text or ""
         return {"src": rel, "alt": alt}
 
     return mammoth.images.img_element(convert_image)
+
+
+# Punctuation that mammoth likes to backslash-escape but doesn't need to be.
+_UNESCAPE_RE = re.compile(r"\\([.()!:#/\-+=,;?'\"])")
+# Convert __bold__ runs to **bold** for broader Markdown compatibility.
+_BOLD_RE = re.compile(r"__([^_\n]+)__")
+# Collapse "*foo *__*bar*__* baz*" mash-ups into "*foo* **bar** *baz*".
+_BOLD_INSIDE_ITALIC_RE = re.compile(r"\*__\*([^*]+)\*__\*")
+
+
+def clean_markdown(text: str) -> str:
+    text = _BOLD_INSIDE_ITALIC_RE.sub(r"** \1 **", text)
+    text = _BOLD_RE.sub(r"**\1**", text)
+    text = _UNESCAPE_RE.sub(r"\1", text)
+    # Strip trailing whitespace on each line and collapse 3+ blank lines.
+    text = "\n".join(line.rstrip() for line in text.splitlines())
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip() + "\n"
 
 
 def convert_one(docx: Path, out_dir: Path) -> Path:
@@ -80,7 +116,7 @@ def convert_one(docx: Path, out_dir: Path) -> Path:
             convert_image=make_image_handler(media_dir, md_path),
         )
 
-    md_path.write_text(result.value, encoding="utf-8")
+    md_path.write_text(clean_markdown(result.value), encoding="utf-8")
 
     # Remove media dir if nothing was extracted
     if media_dir.exists() and not any(media_dir.iterdir()):
