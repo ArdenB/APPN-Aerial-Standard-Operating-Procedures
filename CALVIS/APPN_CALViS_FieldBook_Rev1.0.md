@@ -310,7 +310,7 @@
 
 | Sensor type   | File count                                                       | File size                                                            | Notes                                                                                                                          |
 | ------------- | ---------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| **GNSS-INS**  | 1 file per 3 minutes                                             | ~4–5 MB per file                                                     | First and last files may be smaller depending on start/stop time within the UTC minute.                                        |
+| **GNSS-INS**  | 1 file per minute                                             | ~1.5 MB per minute                                                     | First and last files may be smaller depending on start/stop time within the UTC minute.                                        |
 | **LiDAR**     | 1 file per minute                                                | ~113 MB per file                                                     | First & last file may be smaller depending on start/stop time. Files may be smaller if over a low-reflectivity object.         |
 | **VNIR**      | Mission time (s) ÷ Frame Period value ≈ number of data cubes     | Several GB of data even for short flights.                           | Check that `frameindex`, `imu_gps`, and `settings` files all exist.                                                            |
 | **SWIR**      | Mission time (s) ÷ Frame Period value ≈ number of data cubes     | Several GB of data even for short flights.                           | Check that `frameindex`, `imu_gps`, `pps`, and `settings` files all exist.                                                     |
@@ -344,9 +344,23 @@
 ### Data storage, processing & validation
 
 1. Downloaded data should be stored in the correct `T0_raw` folder of the [APPN Folder Structure](https://github.com/ArdenB/APPN_GenricFileStorage/wiki).
-2. The bundeled .graw should be saved in the same `T0_raw` folder
-3. The .gpro should be generated using the APPN GPT Pipeline (.json and wiki links TBD)
-4. Standard QA process should be performed following [this guide](../QAprocess/APPN_AerialDataQC_Rev1.0.md)
+**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/Run_{XX}/T0_raw`
+2. Data from the GCP points should be saved in the `T0_raw/Vault` folder (location may change)
+**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/Run_{XX}/T0_raw/Vault`
+3. Import infomation and issues should be recorded in the `FieldNotes.txt` file
+**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/FieldNotes.txt`
+4. Per Run infomation e.g. APEx test condtions should be stored in the `RunOverview.csv`
+**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/RunOverview.csv`
+
+   > [!IMPORTANT]
+   > When data from a failed run is being kept (e.g. debugging with GRYFN),
+   > the `RunFailed` boolean column of `RunOverview.csv` must be set to
+   > `True`.
+
+5. The bundled .graw should be saved in the same `T0_raw` folder.
+6. The .gpro should be generated using the APPN GPT Pipeline (.json and wiki links TBD) and stored in the adjacent `T1_proc` folder.
+**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/Run_{XX}/T1_proc`
+7. Standard QA process should be performed following [this guide](../QAprocess/APPN_AerialDataQC_Rev1.0.md).
 ---
 
 ## Appendix

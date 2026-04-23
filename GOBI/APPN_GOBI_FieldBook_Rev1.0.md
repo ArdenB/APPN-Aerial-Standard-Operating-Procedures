@@ -7,6 +7,7 @@
 > acquisitions, and promotes repeatability, transparency, and confidence in
 > downstream data analysis across APPN operations.
 
+> [!IMPORTANT]
 > **This protocol must be followed for all standard APPN GOBI UAV flights.**
 > Adherence to these procedures is essential to ensure operational safety,
 > data integrity, and comparability of datasets across deployments. For any
@@ -17,8 +18,9 @@
 
 ---
 
-## Equipment
+## Equipment Checklists
 
+> [!NOTE]
 > Ensure batteries for all equipment are fully charged before heading to the
 > field. Ensure charging cables are available for necessary equipment.
 
@@ -57,6 +59,11 @@
 
 ## Flight Planning – DJI M350
 
+
+> [!WARNING]
+> Ensure that you apply for UAV flight approvals for locations and dates of
+> flights well in advance.
+
 1. Using a GPS survey system (Emlid, Trimble…) or GIS software, create a
    polygon of the area of interest with a 5-metre margin around the area of
    interest.
@@ -86,7 +93,28 @@
 
 ## Flight Planning – Inspired Flight IF1200A
 
-1. *Need to add details here.*
+1. Using a GPS survey system (Emlid, Trimble…) or a GIS software, create a
+   polygon of the area of interest. Make sure your polygon includes the areas
+   where you will place your calibration panels and GCPs, with an additional
+   5 m buffer to avoid incomplete data.
+2. Save this polygon twice as a KML — once as a *survey* polygon and once as a
+   *capture* polygon.
+3. If using QGIS, export the polygon as a KML (in Geometry, select *include
+   z-dimension*, and ensure the CRS is set to WGS 84). Import the *capture*
+   KML into the [HPI Polygon Tool](http://50.170.92.179/) and export. This
+   polygon sets the activation of the hyperspectral sensor within Hyperspec3.
+4. Import the *survey* polygon into QGroundControl.
+5. Using both QGroundControl and the GRYFN flight calculator, determine the
+   speed, altitude, and frame period required to survey the area of interest.
+   - Do not go below 2 m/s or above 8 m/s for stability reasons (GRYFN).
+     Speeds greater than 8 m/s lead to excessive aircraft pitch and speeds
+     less than 2 m/s accentuate the impacts of wind on aircraft stability and
+     cause a visibly less smooth trajectory.
+   - Altitude and speed will be tested and recommended from APEx results.
+   - Ensure the frame period is at a minimum of 20% oversampling, the side
+     overlap is > 40% for the SWIR sensor, and the *turnaround distance* is
+     2× flight speed (> 3× at > 6 m/s).
+6. Ensure flight lines are in the direction of planting (GRYFN).
 
 ---
 
@@ -132,7 +160,7 @@
 
 ---
 
-## Sensor Configuration
+## Sensor Configuration (TO DO: ADD DETAILS FROM CALVIS)
 
 1. Place the exposure reference panel under the Nano HP lens; avoid casting
    shadows.
@@ -238,9 +266,23 @@
 ### Data storage, processing & validation
 
 1. Downloaded data should be stored in the correct `T0_raw` folder of the [APPN Folder Structure](https://github.com/ArdenB/APPN_GenricFileStorage/wiki).
-2. The bundeled .graw should be saved in the same `T0_raw` folder
-3. The .gpro should be generated using the APPN GPT Pipeline (.json and wiki links TBD)
-4. Standard QA process should be performed following [this guide](../QAprocess/APPN_AerialDataQC_Rev1.0.md)
+**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/Run_{XX}/T0_raw`
+2. Data from the GCP points should be saved in the `T0_raw/Vault` folder (location may change)
+**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/Run_{XX}/T0_raw/Vault`
+3. Import infomation and issues should be recorded in the `FieldNotes.txt` file
+**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/FieldNotes.txt`
+4. Per Run infomation e.g. APEx test condtions should be stored in the `RunOverview.csv`
+**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/RunOverview.csv`
+
+   > [!IMPORTANT]
+   > When data from a failed run is being kept (e.g. debugging with GRYFN),
+   > the `RunFailed` boolean column of `RunOverview.csv` must be set to
+   > `True`.
+
+5. The bundled .graw should be saved in the same `T0_raw` folder.
+6. The .gpro should be generated using the APPN GPT Pipeline (.json and wiki links TBD) and stored in the adjacent `T1_proc` folder.
+**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/Run_{XX}/T1_proc`
+7. Standard QA process should be performed following [this guide](../QAprocess/APPN_AerialDataQC_Rev1.0.md).
 
 ---
 
