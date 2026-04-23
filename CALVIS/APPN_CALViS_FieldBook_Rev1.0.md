@@ -168,12 +168,12 @@
 
 ## Sensor Configuration — Hyperspec III (VNIR + SWIR)
 
+**Setting Exposure**
+
 1. Place the GRYFN exposure reference panel (82%) under the lens.
    - Point the centerline of the drone at the sun (to reduce shadows).
    - Ensure no shadow is cast on the exposure reference panel.
-
 2. Connect the dual-ethernet cables to the VNIR and SWIR ports.
-
 3. Ensure a static IP is set using the steps in the
    [Appendix](#appendix) of this document.
 
@@ -186,18 +186,14 @@
    - Wait 2–3 minutes for the SWIR sensor to reach capture temperature.
      Hyperspec III won't connect until the SWIR is at temperature
      (listen for the click).
-
 5. Navigate to the VNIR sensor.
    - Open *Live View*.
-
 6. Set the **Frame Period** based on flight parameters using the
    [GRYFN Flight Calculator](https://gryfn.gitbook.io/gryfn-operations/operations/flight-planning/flight-planning-calculator)
    spreadsheet.
-
 7. Adjust the Frame Period for sufficient oversampling.
    - GRYFN recommends adjusting oversample to 20% for standard flights and
      conditions.
-
 8. Adjust **Exposure** until the spectral graph is ~95% saturated at peak
    (dependent on spectra of interest), while not exceeding the frame period
    value.
@@ -205,60 +201,51 @@
      achieving sufficient saturation to boost SNR, without adjusting frame
      period.
    - Low gain is unlikely to ever be possible with SWIR (GRYFN).
-
 9. Toggle Hyperspec III to the SWIR sensor.
-
 10. Repeat the frame period / exposure steps for the SWIR sensor.
 
-11. Open the **GPS** tab.
+**Setting Flight Plan**
 
+11. Open the **GPS** tab.
 12. Upload the HSI polygon KML file.
     - Take note of the current ground-level altitude.
-
 13. Open the **Capture** tab.
     - Ensure the number of active polygons shows the correct amount.
-
 14. Update the name of the data collection folder.
-
 15. Ensure the frame period and exposure have carried over properly from the
     Live Video tab sensors.
-
 16. Ensure the number of active polygons shows the correct amount.
 
+**Setting Dark Reference**
+
 17. Place the lens cap on the sensor.
-
 18. Toggle **Dark Reference**.
-
 19. Click **Start**.
     - You should hear two clicks, signaling that the dark reference is
       complete.
 
+**Setting Flight Parameters**
+
 20. After the dark reference is complete, open the **Advanced** tab next to
     polygons.
-
 21. Recall your ground-level altitude from the GPS tab.
-
 22. Set the minimum polygon altitude high enough above ground level to allow
     the alignment procedure.
     - 5–10 m above ground at minimum, preferably at least 20 m below flight
       altitude if possible.
-
 23. Set the maximum polygon altitude high enough above your flight altitude
     to give buffer in case of slight altitude offsets.
     - At least 10 m above flight altitude. Unless the pilot plans on flying
       above the polygon to return home after the mission, this can be set as
       high as you'd like.
-
 24. Press **Start**. Wait until the **Pause** icon appears.
 
+**Completing the Setup**
+
 25. Disconnect the ethernet cable from the VNIR and SWIR ports.
-
 26. Remove the exposure reference panel.
-
 27. **Remove the lens cap!**
-
 28. Connect the LiDAR ethernet cable to the VNIR port.
-
 29. Begin flight operations.
 
 ---
