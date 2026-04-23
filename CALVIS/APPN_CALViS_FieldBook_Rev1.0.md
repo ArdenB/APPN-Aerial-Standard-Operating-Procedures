@@ -24,6 +24,11 @@ analysis across APPN operations.
 > Ensure batteries for all equipment are fully charged before heading to the
 > field. Ensure charging cables are available for necessary equipment.
 
+> [!WARNING]
+> Cables and adaptors (particularly ethernet and USB) are known to fail in
+> the field on hot days. Bring spares of all critical cables and adaptors
+> wherever possible.
+
 - [ ] **Aircraft**
   - [ ] Inspired Flight IF1200A
   - [ ] Aircraft batteries and spares
@@ -38,14 +43,17 @@ analysis across APPN operations.
   - [ ] GNSS antennae
   - [ ] Dovetail to XT60 + XT60 to XT30 cables/adapter
   - [ ] Dual ethernet cable and adaptor
-  - [ ] Exposure reference panel
+  - [ ] Quality USB-A to USB-C cable for connecting a PC to the IF1200
+        (e.g. [LTT TrueSpec USB Type-A to C](https://global.lttstore.com/products/ltt-truespec-cable-usb-type-a-to-c)).
+        A USB-C to USB-C cable will **not** work.
+  - [ ] GRYFN Exposure reference panel
+  - [ ] Hyperspectral capture polygon exported from the
+        [HPI Polygon Tool](http://50.170.92.179/)
 - [ ] **Ground reference kit**
   - [ ] Reflectance calibration panels (11%, 30%, 56%, 82%)
   - [ ] Calibration validation panels (20%, 45%)
   - [ ] Ground control points and RTK GNSS system
   - [ ] 2 × folding tables to elevate panels
-  - [ ] *If over 50 km from CORS base station*, a portable RTK base station
-        ([link to GRYFN gitbook](https://gryfn.gitbook.io/gryfn-operations/operations/base-station-availability))
 - [ ] **Accessories**
   - [ ] Safety gear (signage and high-vis vests)
   - [ ] Aeronautical radio
@@ -54,6 +62,8 @@ analysis across APPN operations.
   - [ ] Water, food, esky, sunscreen, bug spray, first aid kit, etc.
   - [ ] Spirit bubble, spirit level (or angle measurement) and measuring tape
   - [ ] External power brick (for charging UAV RC)
+  - [ ] Anemometer (e.g. Kestrel — TODO: add link)
+
 
 ---
 
@@ -61,7 +71,8 @@ analysis across APPN operations.
 
 > [!IMPORTANT]
 > Ensure that you apply for UAV flight approvals for locations and dates of
-> flights well in advance.
+> flights well in advance. Further planning documentation can be found in the
+> [IF1200 manual](https://docs.inspiredflight.com/inspired-documentation/products/aircraft/if1200/if1200-manual).
 
 1. Using a GPS survey system (Emlid, Trimble…) or a GIS software, create a
    polygon of the area of interest. Make sure your polygon includes the areas
@@ -73,8 +84,49 @@ analysis across APPN operations.
    z-dimension*, and ensure the CRS is set to WGS 84). Import the *capture*
    KML into the [HPI Polygon Tool](http://50.170.92.179/) and export. This
    polygon sets the activation of the hyperspectral sensor within Hyperspec3.
-4. Import the *survey* polygon into QGroundControl.
-5. Using both QGroundControl and the GRYFN flight calculator, determine the
+4. Open QGroundControl (QGC)
+   ([download here](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html))
+   on a PC and connect a USB-A cable to the PC and USB-C into the USB-C port
+   at the top of the IF1200.
+
+   > [!IMPORTANT]
+   > A USB-C to USB-C cable will **not** work for this connection — you must
+   > use a USB-A to USB-C cable 
+
+   1. Set up a comm link in QGC by pressing the **Q** in the top left of QGC.
+   2. Navigate to *Application Settings* → *Comm Links*.
+   3. Click the **Add** button.
+   4. Name your comm link and change the settings as displayed below.
+
+      ![QGC comm link settings](APPN_CALViS_FieldBook_Rev1.0_media/image_e9ed2be4e34c.png)
+
+   5. Once this is complete, the IF1200 should now connect to a PC when QGC
+      is open, allowing you to upload flight missions over a wired
+      connection.
+5. Using the *survey* polygon previously created, use QGC to create a survey
+   of the area of interest.
+   1. Navigate to *Flight Plan* by pressing the **Q** at the top left of QGC.
+
+      ![QGC flight plan menu](APPN_CALViS_FieldBook_Rev1.0_media/image_cab0fe550221.png)
+
+   2. Select *Pattern* → *Survey* from the options on the LHS.
+
+      ![QGC pattern survey selection](APPN_CALViS_FieldBook_Rev1.0_media/image_6e4660fa0f8a.png)
+
+   3. Select *Load KML/SHP*. Navigate to and import the previously created
+      *survey* polygon.
+
+      ![QGC load KML/SHP](APPN_CALViS_FieldBook_Rev1.0_media/image_9e03ea164d26.png)
+
+   4. Ensure the angle is as close to 0° or 180° as possible, as a
+      North–South flight direction is preferred for hyperspectral data
+      capture.
+
+      ![QGC survey angle setting](APPN_CALViS_FieldBook_Rev1.0_media/image_d32c53625edd.png)
+
+      ![QGC survey angle aligned](APPN_CALViS_FieldBook_Rev1.0_media/image_19e4341ae663.png)
+
+6. Using both QGroundControl and the GRYFN flight calculator, determine the
    speed, altitude, and frame period required to survey the area of interest.
    - Do not go below 2 m/s or above 8 m/s for stability reasons (GRYFN).
      Speeds greater than 8 m/s lead to excessive aircraft pitch and speeds
@@ -84,20 +136,30 @@ analysis across APPN operations.
    - Ensure the frame period is at a minimum of 20% oversampling, the side
      overlap is > 40% for the SWIR sensor, and the *turnaround distance* is
      2× flight speed (> 3× at > 6 m/s).
-6. Ensure flight lines are in the direction of planting (GRYFN).
+7. Ensure flight lines are in the direction of planting (GRYFN).
+
+   > [!NOTE]
+   > GRYFN recommends aligning flight lines with the planting direction for
+   > "operational reasons", as this greatly reduces stitching artefacts
+   > between adjacent flight lines. Testing flight-line angle is a top
+   > priority for APEx, and this guidance may be revised before the start of
+   > the season.
+
+8. Once the flight plan is complete, upload it to the UAV using the wired
+   connection from PC to IF1200. Once the UAV is powered and connected to the
+   RC, the mission will appear on the RC. If the mission doesn't appear on
+   the RC, navigate to *Flight Planning* → *File* → *Vehicle* → *Download*.
 
 ---
 
 ## Onsite Preflight Operations
 
 1. Conduct airspace and weather checks. No cloud cover. Maximum wind speed
-   15 km/h. Try to ensure the sun is ±20° of solar noon, approximately
-   2 hours before or after noon (**however**, this will depend on time of year
-   and latitude — please check
-   [here](https://gml.noaa.gov/grad/solcalc/) if unsure).
-   - *Optional:* set up the Emlid RTK (install a peg for recurring flights),
-     let it run for at least 15 minutes, and start recording the RINEX file
-     before flying.
+   for quality hyperspectral capture is **6 m/s (≈ 22 km/h)**. Any wind
+   speed over **5 m/s (≈ 18 km/h)** should be recorded. Try to ensure the
+   sun is ±20° of solar noon, approximately 2 hours before or after noon
+   (**however**, this will depend on time of year and latitude — please
+   check [here](https://gml.noaa.gov/grad/solcalc/) if unsure).
 
 2. Turn on the aeronautical radio and set to local CTAF (find in
    [ERSA](https://www.airservicesaustralia.com/aip/aip.asp)).
@@ -166,11 +228,9 @@ analysis across APPN operations.
     - Check aircraft battery status.
     - Ensure Remote ID is enabled.
 
-11. Upload the flight plan to the aircraft.
-
 ---
 
-## Sensor Configuration — Hyperspec III (VNIR + SWIR)
+## CALViS Sensor Configuration
 
 > [!TIP]
 > **Setting Exposure**
@@ -216,6 +276,10 @@ analysis across APPN operations.
    > (GRYFN) Low gain is unlikely to ever be possible with SWIR. They are
    > in contact with Headwall to see if more granual gain settings are 
    > possible.  
+
+   > [!NOTE]
+   > **TO DO:** add a reference image and notes covering the recommended
+   > sensor angle during exposure setting.
 
 9. Toggle Hyperspec III to the SWIR sensor.
 10. Repeat the frame period / exposure steps for the SWIR sensor.
