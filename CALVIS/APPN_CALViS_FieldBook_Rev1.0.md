@@ -95,35 +95,35 @@ analysis across APPN operations.
 > A USB-C to USB-C cable will **not** work for the QGC ↔ IF1200 connection
 > — you must use a USB-A to USB-C cable.
 
-   1. Set up a comm link in QGC by pressing the **Q** in the top left of QGC.
-   2. Navigate to *Application Settings* → *Comm Links*.
-   3. Click the **Add** button.
-   4. Name your comm link and change the settings as displayed below.
+   - Set up a comm link in QGC by pressing the **Q** in the top left of QGC.
+   - Navigate to *Application Settings* → *Comm Links*.
+   - Click the **Add** button.
+   - Name your comm link and change the settings as displayed below.
 
       ![QGC comm link settings](APPN_CALViS_FieldBook_Rev1.0_media/image_e9ed2be4e34c.png)
 
-   5. Once this is complete, the IF1200 should now connect to a PC when QGC
-      is open, allowing you to upload flight missions over a wired
-      connection.
+   - Once this is complete, the IF1200 should now connect to a PC when QGC
+     is open, allowing you to upload flight missions over a wired
+     connection.
 
 5. Using the *survey* polygon previously created, use QGC to create a survey
    of the area of interest.
-   1. Navigate to *Flight Plan* by pressing the **Q** at the top left of QGC.
+   - Navigate to *Flight Plan* by pressing the **Q** at the top left of QGC.
 
       ![QGC flight plan menu](APPN_CALViS_FieldBook_Rev1.0_media/image_cab0fe550221.png)
 
-   2. Select *Pattern* → *Survey* from the options on the LHS.
+   - Select *Pattern* → *Survey* from the options on the LHS.
 
       ![QGC pattern survey selection](APPN_CALViS_FieldBook_Rev1.0_media/image_6e4660fa0f8a.png)
 
-   3. Select *Load KML/SHP*. Navigate to and import the previously created
-      *survey* polygon.
+   - Select *Load KML/SHP*. Navigate to and import the previously created
+     *survey* polygon.
 
       ![QGC load KML/SHP](APPN_CALViS_FieldBook_Rev1.0_media/image_9e03ea164d26.png)
 
-   4. Ensure the angle is as close to 0° or 180° as possible, as a
-      North–South flight direction is preferred for hyperspectral data
-      capture.
+   - Ensure the angle is as close to 0° or 180° as possible, as a
+     North–South flight direction is preferred for hyperspectral data
+     capture.
 
       ![QGC survey angle setting](APPN_CALViS_FieldBook_Rev1.0_media/image_d32c53625edd.png)
 
