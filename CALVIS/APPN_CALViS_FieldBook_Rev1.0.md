@@ -43,6 +43,8 @@ analysis across APPN operations.
   - [ ] GNSS antennae
   - [ ] Dovetail to XT60 + XT60 to XT30 cables/adapter
   - [ ] Dual ethernet cable and adaptor
+  - [ ] USB-C to USB-A adaptor (for laptops without a USB-A port, it can
+        be a combined ethernet usb dongle).
   - [ ] Quality USB-A to USB-C cable for connecting a PC to the IF1200
         (e.g. [LTT TrueSpec USB Type-A to C](https://global.lttstore.com/products/ltt-truespec-cable-usb-type-a-to-c)).
         A USB-C to USB-C cable will **not** work.
