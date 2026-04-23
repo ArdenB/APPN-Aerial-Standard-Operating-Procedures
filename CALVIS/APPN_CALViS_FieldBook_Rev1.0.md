@@ -89,9 +89,9 @@ analysis across APPN operations.
    on a PC and connect a USB-A cable to the PC and USB-C into the USB-C port
    at the top of the IF1200.
 
-   > [!IMPORTANT]
-   > A USB-C to USB-C cable will **not** work for this connection — you must
-   > use a USB-A to USB-C cable 
+> [!IMPORTANT]
+> A USB-C to USB-C cable will **not** work for the QGC ↔ IF1200 connection
+> — you must use a USB-A to USB-C cable.
 
    1. Set up a comm link in QGC by pressing the **Q** in the top left of QGC.
    2. Navigate to *Application Settings* → *Comm Links*.
@@ -103,6 +103,7 @@ analysis across APPN operations.
    5. Once this is complete, the IF1200 should now connect to a PC when QGC
       is open, allowing you to upload flight missions over a wired
       connection.
+
 5. Using the *survey* polygon previously created, use QGC to create a survey
    of the area of interest.
    1. Navigate to *Flight Plan* by pressing the **Q** at the top left of QGC.
@@ -138,12 +139,12 @@ analysis across APPN operations.
      2× flight speed (> 3× at > 6 m/s).
 7. Ensure flight lines are in the direction of planting (GRYFN).
 
-   > [!NOTE]
-   > GRYFN recommends aligning flight lines with the planting direction for
-   > "operational reasons", as this greatly reduces stitching artefacts
-   > between adjacent flight lines. Testing flight-line angle is a top
-   > priority for APEx, and this guidance may be revised before the start of
-   > the season.
+> [!NOTE]
+> GRYFN recommends aligning flight lines with the planting direction for
+> "operational reasons", as this greatly reduces stitching artefacts
+> between adjacent flight lines. Testing flight-line angle is a top
+> priority for APEx, and this guidance may be revised before the start of
+> the season.
 
 8. Once the flight plan is complete, upload it to the UAV using the wired
    connection from PC to IF1200. Once the UAV is powered and connected to the
@@ -189,18 +190,18 @@ analysis across APPN operations.
 
 4. Set up the landing pad and UAV in a safe RTH location.
 
-   > [!IMPORTANT]
-   > In dusty environments, an additional tarp must be used under the
-   > landing pad.
+> [!IMPORTANT]
+> In dusty environments, an additional tarp must be used under the
+> landing pad.
 
 5. Perform all on-ground safety checks for the UAV.
 
 6. Attach the CALViS sensor payload to the aircraft.
 
-   > [!CAUTION]
-   > The IF1200 dovetail has no hot-swap protection, so ensure
-   > the IF1200 is powered off when attaching or removing the sensor
-   > ([more details](https://gryfn.gitbook.io/gryfn-hardware/headwall-co-aligned-hp/user-manual/integration)).
+> [!CAUTION]
+> The IF1200 dovetail has no hot-swap protection, so ensure
+> the IF1200 is powered off when attaching or removing the sensor
+> ([more details](https://gryfn.gitbook.io/gryfn-hardware/headwall-co-aligned-hp/user-manual/integration)).
 
    - Connect the 8-inch antenna mast with the Trimble AV18 antenna to the A1
      position (front left).
@@ -242,10 +243,10 @@ analysis across APPN operations.
 3. Ensure a static IP is set using the steps in the
    [Appendix](#appendix) of this document.
 
-	> [!IMPORTANT]
-	> For version 1.0 of the protocol will use HyperspecIII for both
-	> VNIR and SWIR until issues with HS insight have been addressed
-	> with GRYFN. This will change in future versions
+> [!IMPORTANT]
+> For version 1.0 of the protocol we will use Hyperspec III for both
+> VNIR and SWIR until issues with HS Insight have been addressed
+> with GRYFN. This will change in future versions.
 
 4. Open Hyperspec III.
    - Wait 2–3 minutes for the SWIR sensor to reach capture temperature.
@@ -257,10 +258,10 @@ analysis across APPN operations.
    [GRYFN Flight Calculator](https://gryfn.gitbook.io/gryfn-operations/operations/flight-planning/flight-planning-calculator)
    spreadsheet.
 
-   > [!IMPORTANT]
-   > The GRYFN Flight Calculator is the only approved calculator. Other
-   > calculator (e.g. Headwall) will give incorrect values and result in 
-   > significant amouts of missing data
+> [!IMPORTANT]
+> The GRYFN Flight Calculator is the only approved calculator. Other
+> calculators (e.g. Headwall) will give incorrect values and result in
+> significant amounts of missing data.
 
 7. Adjust the Frame Period for sufficient oversampling.
    - GRYFN recommends adjusting oversample to 20% for standard flights and
@@ -272,14 +273,14 @@ analysis across APPN operations.
      achieving sufficient saturation to boost SNR, without adjusting frame
      period.
 
-   > [!NOTE]
-   > (GRYFN) Low gain is unlikely to ever be possible with SWIR. They are
-   > in contact with Headwall to see if more granual gain settings are 
-   > possible.  
+> [!NOTE]
+> (GRYFN) Low gain is unlikely to ever be possible with SWIR. They are
+> in contact with Headwall to see if more granular gain settings are
+> possible.
 
-   > [!NOTE]
-   > **TO DO:** add a reference image and notes covering the recommended
-   > sensor angle during exposure setting.
+> [!NOTE]
+> **TO DO:** add a reference image and notes covering the recommended
+> sensor angle during exposure setting.
 
 9. Toggle Hyperspec III to the SWIR sensor.
 10. Repeat the frame period / exposure steps for the SWIR sensor.
@@ -436,10 +437,10 @@ analysis across APPN operations.
 4. Per Run infomation e.g. APEx test condtions should be stored in the `RunOverview.csv`
 **Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/RunOverview.csv`
 
-   > [!IMPORTANT]
-   > When data from a failed run is being kept (e.g. debugging with GRYFN),
-   > the `RunFailed` boolean column of `RunOverview.csv` must be set to
-   > `True`.
+> [!IMPORTANT]
+> When data from a failed run is being kept (e.g. debugging with GRYFN),
+> the `RunFailed` boolean column of `RunOverview.csv` must be set to
+> `True`.
 
 5. The bundled .graw should be saved in the same `T0_raw` folder.
 6. The .gpro should be generated using the APPN GPT Pipeline (.json and wiki links TBD) and stored in the adjacent `T1_proc` folder.
