@@ -1,11 +1,11 @@
 # APPN – CALViS Fieldbook
 
-> This fieldbook provides a standardised operational guide for APPN CALViS UAV
-> deployments, supporting safe flight operations, consistent sensor
-> configuration, and high-integrity data capture. It is intended for trained
-> APPN staff conducting hyperspectral, LiDAR, and GNSS-INS data acquisitions,
-> and promotes repeatability, transparency, and confidence in downstream data
-> analysis across APPN operations.
+This fieldbook provides a standardised operational guide for APPN CALViS UAV
+deployments, supporting safe flight operations, consistent sensor
+configuration, and high-integrity data capture. It is intended for trained
+APPN staff conducting hyperspectral, LiDAR, and GNSS-INS data acquisitions,
+and promotes repeatability, transparency, and confidence in downstream data
+analysis across APPN operations.
 
 > [!IMPORTANT]
 > **This protocol must be followed for all standard APPN CALViS UAV flights.**
@@ -59,7 +59,7 @@
 
 ## Preflight Planning
 
-> [!WARNING]
+> [!IMPORTANT]
 > Ensure that you apply for UAV flight approvals for locations and dates of
 > flights well in advance.
 
@@ -105,7 +105,7 @@
 3. Set up reflectance targets for calibration and validation, using a spirit
    bubble to ensure they are all laid flat. Place 2 GCPs in the field to
    ensure geometric calibration. GCPs should be located next to calibration
-   panels, and should be in alternate flight lines.
+   panels, and should be in alternate flight lines. (TO DO: ADD STANDARD FLIGHT LAYOUT md)
 
    - Both the calibration and validation panels should be placed on level
      folding tables to avoid dirt, reduce angle, and reduce spectral
@@ -114,6 +114,9 @@
      available, especially for flights longer than 15 minutes.
    - When using 1 calibration panel, the panel should be placed in the centre
      of a flight line in the middle of the flight.
+
+   ![Calibration panel layout](APPN_CALViS_FieldBook_Rev1.0_media/image_a8646f9369b2.png)
+
    - When using two panels, they should be placed in the centre of flight
      lines 1/3 and 2/3 of the mission, noting that all missions would be less
      than 30 minutes long due to limitations of the IF1200.
@@ -122,16 +125,17 @@
      capture so that you fly over a calibration panel approximately every
      15 minutes.
 
-   ![Calibration panel layout](APPN_CALViS_FieldBook_Rev1.0_media/image_a8646f9369b2.png)
-
 4. Set up the landing pad and UAV in a safe RTH location.
-   - In dusty environments, an additional tarp should be used under the
-     landing pad.
+
+   > [!IMPORTANT]
+   > In dusty environments, an additional tarp must be used under the
+   > landing pad.
 
 5. Perform all on-ground safety checks for the UAV.
 
 6. Attach the CALViS sensor payload to the aircraft.
-   > **Warning:** 
+
+   > [!CAUTION]
    > The IF1200 dovetail has no hot-swap protection, so ensure
    > the IF1200 is powered off when attaching or removing the sensor
    > ([more details](https://gryfn.gitbook.io/gryfn-hardware/headwall-co-aligned-hp/user-manual/integration)).
@@ -168,7 +172,8 @@
 
 ## Sensor Configuration — Hyperspec III (VNIR + SWIR)
 
-**Setting Exposure**
+> [!TIP]
+> **Setting Exposure**
 
 1. Place the GRYFN exposure reference panel (82%) under the lens.
    - Point the centerline of the drone at the sun (to reduce shadows).
@@ -177,10 +182,10 @@
 3. Ensure a static IP is set using the steps in the
    [Appendix](#appendix) of this document.
 
-   | Sensor | Software       |
-   | ------ | -------------- |
-   | VNIR   | HS Insight     |
-   | SWIR   | Hyperspec III  |
+	> [!IMPORTANT]
+	> For version 1.0 of the protocol will use HyperspecIII for both
+	> VNIR and SWIR until issues with HS insight have been addressed
+	> with GRYFN. This will change in future versions
 
 4. Open Hyperspec III.
    - Wait 2–3 minutes for the SWIR sensor to reach capture temperature.
@@ -191,6 +196,12 @@
 6. Set the **Frame Period** based on flight parameters using the
    [GRYFN Flight Calculator](https://gryfn.gitbook.io/gryfn-operations/operations/flight-planning/flight-planning-calculator)
    spreadsheet.
+
+   > [!IMPORTANT]
+   > The GRYFN Flight Calculator is the only approved calculator. Other
+   > calculator (e.g. Headwall) will give incorrect values and result in 
+   > significant amouts of missing data
+
 7. Adjust the Frame Period for sufficient oversampling.
    - GRYFN recommends adjusting oversample to 20% for standard flights and
      conditions.
@@ -200,11 +211,17 @@
    - When adjusting exposure, use the lowest gain mode possible while still
      achieving sufficient saturation to boost SNR, without adjusting frame
      period.
-   - Low gain is unlikely to ever be possible with SWIR (GRYFN).
+
+   > [!NOTE]
+   > (GRYFN) Low gain is unlikely to ever be possible with SWIR. They are
+   > in contact with Headwall to see if more granual gain settings are 
+   > possible.  
+
 9. Toggle Hyperspec III to the SWIR sensor.
 10. Repeat the frame period / exposure steps for the SWIR sensor.
 
-**Setting Flight Plan**
+> [!TIP]
+> **Setting Flight Plan**
 
 11. Open the **GPS** tab.
 12. Upload the HSI polygon KML file.
@@ -216,7 +233,8 @@
     Live Video tab sensors.
 16. Ensure the number of active polygons shows the correct amount.
 
-**Setting Dark Reference**
+> [!TIP]
+> **Setting Dark Reference**
 
 17. Place the lens cap on the sensor.
 18. Toggle **Dark Reference**.
@@ -224,7 +242,8 @@
     - You should hear two clicks, signaling that the dark reference is
       complete.
 
-**Setting Flight Parameters**
+> [!TIP]
+> **Setting Flight Parameters**
 
 20. After the dark reference is complete, open the **Advanced** tab next to
     polygons.
@@ -240,7 +259,8 @@
       high as you'd like.
 24. Press **Start**. Wait until the **Pause** icon appears.
 
-**Completing the Setup**
+> [!TIP]
+> **Completing the Setup**
 
 25. Disconnect the ethernet cable from the VNIR and SWIR ports.
 26. Remove the exposure reference panel.
@@ -361,6 +381,7 @@
 6. The .gpro should be generated using the APPN GPT Pipeline (.json and wiki links TBD) and stored in the adjacent `T1_proc` folder.
 **Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/Run_{XX}/T1_proc`
 7. Standard QA process should be performed following [this guide](../QAprocess/APPN_AerialDataQC_Rev1.0.md).
+
 ---
 
 ## Appendix

@@ -1,11 +1,11 @@
 # APPN – GOBI M350 Fieldbook
 
-> This fieldbook provides a standardised operational guide for APPN GOBI UAV
-> deployments on the DJI M350, supporting safe flight operations, consistent
-> sensor configuration, and high-integrity data capture. It is intended for
-> trained APPN staff conducting hyperspectral, LiDAR, RGB, and GNSS-INS data
-> acquisitions, and promotes repeatability, transparency, and confidence in
-> downstream data analysis across APPN operations.
+This fieldbook provides a standardised operational guide for APPN GOBI UAV
+deployments on the DJI M350, supporting safe flight operations, consistent
+sensor configuration, and high-integrity data capture. It is intended for
+trained APPN staff conducting hyperspectral, LiDAR, RGB, and GNSS-INS data
+acquisitions, and promotes repeatability, transparency, and confidence in
+downstream data analysis across APPN operations.
 
 > [!IMPORTANT]
 > **This protocol must be followed for all standard APPN GOBI UAV flights.**
@@ -88,8 +88,7 @@
 7. Using both the flight planning app (DJI Pilot 2 or QGroundControl) and
    the GRYFN flight calculator, determine the speed, altitude, and frame
    period required to survey the area of interest.
-8. Ensure the frame period is > 20% oversampled and the side overlap is
-   > 30%.
+8. Ensure the frame period is > 20% oversampled and the side overlap is > 30%.
 
 ## Flight Planning – Inspired Flight IF1200A
 
@@ -130,7 +129,7 @@
    2 sets of GRYFN reflectance panels should be used if available, at
    alternate ends of the capture, with the validation panel located
    centrally. Make sure you have GCPs installed (and coordinates recorded
-   using Emlid) in the field for geometric calibration.
+   using Emlid) in the field for geometric calibration. (TO DO: ADD STANDARD FLIGHT LAYOUT md)
 4. Set up a safe UAV RTH location, RTH altitude, and other geo-fencing
    settings on the respective drone.
 5. Attach payload (Gobi or CALViS) to the aircraft:
