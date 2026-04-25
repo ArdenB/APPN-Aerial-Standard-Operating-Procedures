@@ -37,6 +37,11 @@ pages:
     title: "GOBI Fieldbook"
     category: Sensors
 
+  - source: Protocols/FlightDesign/StandardFlight/Standard_Flight.md
+    wiki_page: Standard-Flight
+    title: "Standard Flight Procedure"
+    category: FlightDesign
+
   - source: Protocols/FlightDesign/ValidationFlight/Validation_Flight.md
     wiki_page: Validation-Flight
     title: "Validation Flight"
