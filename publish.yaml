@@ -1,0 +1,58 @@
+# publish.yaml — manifest for Scripts/publish_to_wiki.py
+#
+# Bump `revision` (and `revision_date` if you want to override today) when
+# cutting a new locked version, then run:
+#   python Scripts/publish_to_wiki.py            # update wiki working copy
+#   python Scripts/publish_to_wiki.py --pdf      # also render PDFs to releases/Rev<rev>/
+#
+# The wiki repository is expected to be checked out next to this repo at
+# ../APPN-Aerial-Standard-Operating-Procedures.wiki (override with --wiki-path).
+
+revision: "1.0"
+# revision_date: "2026-04-25"   # uncomment to pin; defaults to today (UTC)
+
+repo_url: "https://github.com/ArdenB/APPN-Aerial-Standard-Operating-Procedures"
+default_branch: "main"
+
+categories:
+  - id: Sensors
+    title: "Sensor Fieldbooks"
+  - id: FlightDesign
+    title: "Flight Design"
+  - id: QA
+    title: "Quality Assurance"
+  - id: PlotProtocols
+    title: "Plot Protocols"
+  - id: DataManagement
+    title: "Data Management"
+
+pages:
+  - source: Protocols/Sensors/CALVIS/CALViS_FieldBook.md
+    wiki_page: CALViS-Fieldbook
+    title: "CALViS Fieldbook"
+    category: Sensors
+
+  - source: Protocols/Sensors/GOBI/GOBI_FieldBook.md
+    wiki_page: GOBI-Fieldbook
+    title: "GOBI Fieldbook"
+    category: Sensors
+
+  - source: Protocols/FlightDesign/ValidationFlight/Validation_Flight.md
+    wiki_page: Validation-Flight
+    title: "Validation Flight"
+    category: FlightDesign
+
+  - source: Protocols/QA/QAprocess/AerialDataQC.md
+    wiki_page: QA-Process
+    title: "QA Process"
+    category: QA
+
+  - source: Protocols/PlotProtocols/PlotDelimitation/Plot_Delimitation.md
+    wiki_page: Plot-Delimitation
+    title: "Plot Delimitation"
+    category: PlotProtocols
+
+  - source: Protocols/DataManagement/DataFolderStructure/DataFolderStructure.md
+    wiki_page: Data-Folder-Structure
+    title: "Data Folder Structure"
+    category: DataManagement

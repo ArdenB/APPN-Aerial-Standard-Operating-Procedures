@@ -1,0 +1,77 @@
+% header.tex — pandoc --include-in-header for APPN SOP PDFs.
+%
+% Defines coloured admonition boxes used by Scripts/pandoc/gfm-alerts.lua to
+% render GitHub-flavored markdown alerts (`> [!NOTE]`, `> [!WARNING]`, ...)
+% as styled tcolorbox environments instead of plain blockquotes.
+
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\scriptsize}
+\AtBeginEnvironment{tabular}{\scriptsize}
+\sloppy
+
+% Wrap long lines in fenced code blocks (pandoc emits Verbatim/Highlighting
+% environments via fancyvrb). fvextra extends fancyvrb with breaklines.
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{%
+  commandchars=\\\{\},%
+  breaklines,%
+  breakanywhere,%
+  breaksymbolleft={},%
+  breaksymbolright={},%
+  fontsize=\small,%
+}
+\fvset{breaklines=true,breakanywhere=true,fontsize=\small}
+
+% Also wrap long inline \texttt / \verb spans (long URLs, paths, etc.)
+\usepackage{xurl}
+\renewcommand{\UrlBreaks}{\do\/\do\-\do\_\do\.\do\=\do\&\do\?\do\#\do\:\do\{\do\}\do\[\do\]\do\(\do\)}
+
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+
+% Colours roughly mirror the GitHub alert palette (light theme).
+\definecolor{appnNoteRule}      {HTML}{0969DA}
+\definecolor{appnNoteBg}        {HTML}{DDF4FF}
+\definecolor{appnTipRule}       {HTML}{1A7F37}
+\definecolor{appnTipBg}         {HTML}{DAFBE1}
+\definecolor{appnImportantRule} {HTML}{8250DF}
+\definecolor{appnImportantBg}   {HTML}{FBEFFF}
+\definecolor{appnWarningRule}   {HTML}{9A6700}
+\definecolor{appnWarningBg}     {HTML}{FFF8C5}
+\definecolor{appnCautionRule}   {HTML}{CF222E}
+\definecolor{appnCautionBg}     {HTML}{FFEBE9}
+
+\newtcolorbox{appnalertbase}[2]{%
+  enhanced, breakable,
+  colback=#1, colframe=#2,
+  boxrule=0pt, leftrule=3pt,
+  arc=2pt, outer arc=2pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  boxsep=0pt, parbox=false,
+  before skip=8pt, after skip=8pt,
+}
+
+\newenvironment{appnalertnote}{%
+  \begin{appnalertbase}{appnNoteBg}{appnNoteRule}%
+  {\color{appnNoteRule}\bfseries Note}\par\smallskip%
+}{\end{appnalertbase}}
+
+\newenvironment{appnalerttip}{%
+  \begin{appnalertbase}{appnTipBg}{appnTipRule}%
+  {\color{appnTipRule}\bfseries Tip}\par\smallskip%
+}{\end{appnalertbase}}
+
+\newenvironment{appnalertimportant}{%
+  \begin{appnalertbase}{appnImportantBg}{appnImportantRule}%
+  {\color{appnImportantRule}\bfseries Important}\par\smallskip%
+}{\end{appnalertbase}}
+
+\newenvironment{appnalertwarning}{%
+  \begin{appnalertbase}{appnWarningBg}{appnWarningRule}%
+  {\color{appnWarningRule}\bfseries Warning}\par\smallskip%
+}{\end{appnalertbase}}
+
+\newenvironment{appnalertcaution}{%
+  \begin{appnalertbase}{appnCautionBg}{appnCautionRule}%
+  {\color{appnCautionRule}\bfseries Caution}\par\smallskip%
+}{\end{appnalertbase}}

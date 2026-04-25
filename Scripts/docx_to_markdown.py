@@ -34,6 +34,29 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent
 DEFAULT_INPUT = REPO_ROOT / "OriginalDocuments"
 
+# Routing for the SOP source-of-truth tree. Keys are the leading portion of the
+# .docx stem (case-insensitive); values are (destination dir relative to repo
+# root, output basename without extension). New SOPs can be added here.
+SOP_ROUTES: dict[str, tuple[str, str]] = {
+    "appn_calvis_fieldbook":      ("Protocols/Sensors/CALVIS",                    "CALViS_FieldBook"),
+    "appn_gobi_fieldbook":        ("Protocols/Sensors/GOBI",                      "GOBI_FieldBook"),
+    "appn_aerialdataqc":          ("Protocols/QA/QAprocess",                      "AerialDataQC"),
+    "appn_validation_flight":     ("Protocols/FlightDesign/ValidationFlight",     "Validation_Flight"),
+    "appn_plot_delimitation":     ("Protocols/PlotProtocols/PlotDelimitation",    "Plot_Delimitation"),
+}
+
+
+def route_for(docx: Path) -> tuple[Path, str] | None:
+    """Return (output_dir, output_stem) for a known SOP docx, or None."""
+    key = docx.stem.lower()
+    # Match the longest known prefix so e.g. 'APPN_GOBI_FieldBook_Rev1.0' maps
+    # via the 'appn_gobi_fieldbook' key.
+    for prefix in sorted(SOP_ROUTES, key=len, reverse=True):
+        if key.startswith(prefix):
+            out_dir, out_stem = SOP_ROUTES[prefix]
+            return REPO_ROOT / out_dir, out_stem
+    return None
+
 
 def collect_docx(paths: list[Path]) -> list[Path]:
     found: list[Path] = []
@@ -105,10 +128,11 @@ def clean_markdown(text: str) -> str:
     return text.strip() + "\n"
 
 
-def convert_one(docx: Path, out_dir: Path) -> Path:
+def convert_one(docx: Path, out_dir: Path, out_stem: str | None = None) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
-    md_path = out_dir / (docx.stem + ".md")
-    media_dir = out_dir / (docx.stem + "_media")
+    stem = out_stem or docx.stem
+    md_path = out_dir / f"{stem}.md"
+    media_dir = out_dir / f"{stem}_media"
 
     with docx.open("rb") as f:
         result = mammoth.convert_to_markdown(
@@ -151,9 +175,17 @@ def main() -> int:
         return 1
 
     for docx in docs:
-        out_dir = args.output if args.output else docx.parent
-        print(f"Converting {docx} -> {out_dir}/{docx.stem}.md")
-        convert_one(docx, out_dir)
+        if args.output:
+            out_dir, out_stem = args.output, None
+        else:
+            routed = route_for(docx)
+            if routed:
+                out_dir, out_stem = routed
+            else:
+                out_dir, out_stem = docx.parent, None
+        target_name = (out_stem or docx.stem) + ".md"
+        print(f"Converting {docx} -> {out_dir}/{target_name}")
+        convert_one(docx, out_dir, out_stem)
 
     return 0
 
