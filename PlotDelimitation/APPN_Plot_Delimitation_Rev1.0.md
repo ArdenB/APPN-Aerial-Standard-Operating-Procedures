@@ -149,6 +149,12 @@ Used to locate a plot within the trial layout:
 - `range` — range (column) index in the trial design.
 - `row` — row index in the trial design.
 - `block` / `replicate` — replication block identifier.
+- `is_buffer_plot` — Boolean flag (`True`/`False`) marking *buffer plots*
+  (filler / border plots sown around the trial edge to absorb edge
+  effects). These polygons are still delimited so they can be visualised
+  and excluded from analysis, but they carry no experimental treatment.
+  Not to be confused with the inward analysis **buffer** applied to
+  every plot polygon (see [Recommended Buffer](#recommended-buffer)).
 
 (`plot_id` is listed above as part of the minimum set, since it is the
 join key.)
