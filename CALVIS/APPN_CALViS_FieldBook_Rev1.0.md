@@ -430,24 +430,92 @@ analysis across APPN operations.
 
 ### Data storage, processing & validation
 
-1. Downloaded data should be stored in the correct `T0_raw` folder of the [APPN Folder Structure](https://github.com/ArdenB/APPN_GenricFileStorage/wiki).
-**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/Run_{XX}/T0_raw`
-2. Data from the GCP points should be saved in the `T0_raw/Vault` folder (location may change)
-**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/Run_{XX}/T0_raw/Vault`
-3. Import infomation and issues should be recorded in the `FieldNotes.txt` file
-**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/FieldNotes.txt`
-4. Per Run infomation e.g. APEx test condtions should be stored in the `RunOverview.csv`
-**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/RunOverview.csv`
+All paths below follow the
+[APPN folder structure](https://github.com/ArdenB/APPN_GenricFileStorage/wiki/Folder-Structure).
+Formal paths use the wiki's placeholder syntax; an example follows each.
 
-> [!IMPORTANT]
-> When data from a failed run is being kept (e.g. debugging with GRYFN),
-> the `RunFailed` boolean column of `RunOverview.csv` must be set to
-> `True`.
+1. Downloaded data should be stored in the correct `T0_raw` folder.
 
-5. The bundled .graw should be saved in the same `T0_raw` folder.
-6. The .gpro should be generated using the APPN GPT Pipeline (.json and wiki links TBD) and stored in the adjacent `T1_proc` folder.
-**Location:** `./{NodeName}/{Project}/{Site}/{Sensor}/{YYYYMMDD}/Run_{XX}/T1_proc`
-7. Standard QA process should be performed following [this guide](../QAprocess/APPN_AerialDataQC_Rev1.0.md).
+   Formal path:
+
+   ```
+   ./{Node}/{YYYY_ProjectDesc[_I|E][_Researcher][_org]}/{YYYYSiteName[_F|C]}/{SensorPlatform}/{YYYYMMDD}/run_XX/T0_raw/
+   ```
+
+   Example:
+
+   ```
+   ./USYD_Narrabri/2025_SIFCal/2025IAWatson_F/CALVIS/20250825/run_00/T0_raw/
+   ```
+
+2. Data from the GCP points should be saved in the `T0_raw/Vault` folder
+   (location may change).
+
+   Formal path:
+
+   ```
+   ./{Node}/{YYYY_ProjectDesc[_I|E][_Researcher][_org]}/{YYYYSiteName[_F|C]}/{SensorPlatform}/{YYYYMMDD}/run_XX/T0_raw/Vault/
+   ```
+
+   Example:
+
+   ```
+   ./USYD_Narrabri/2025_SIFCal/2025IAWatson_F/CALVIS/20250825/run_00/T0_raw/Vault/
+   ```
+
+3. Important information and issues should be recorded in the
+   `FieldNotes.txt` file.
+
+   Formal path:
+
+   ```
+   ./{Node}/{YYYY_ProjectDesc[_I|E][_Researcher][_org]}/{YYYYSiteName[_F|C]}/{SensorPlatform}/{YYYYMMDD}/FieldNotes.txt
+   ```
+
+   Example:
+
+   ```
+   ./USYD_Narrabri/2025_SIFCal/2025IAWatson_F/CALVIS/20250825/FieldNotes.txt
+   ```
+
+4. Per-run information (e.g. APEx test conditions) should be stored in
+   `RunOverview.csv`.
+
+   Formal path:
+
+   ```
+   ./{Node}/{YYYY_ProjectDesc[_I|E][_Researcher][_org]}/{YYYYSiteName[_F|C]}/{SensorPlatform}/{YYYYMMDD}/RunOverview.csv
+   ```
+
+   Example:
+
+   ```
+   ./USYD_Narrabri/2025_SIFCal/2025IAWatson_F/CALVIS/20250825/RunOverview.csv
+   ```
+
+   > [!IMPORTANT]
+   > When data from a failed run is being kept (e.g. debugging with GRYFN),
+   > the `RunFailed` boolean column of `RunOverview.csv` must be set to
+   > `True`.
+
+5. The bundled `.graw` should be saved in the same `T0_raw` folder.
+6. The `.gpro` should be generated using the APPN GPT Pipeline (`.json` and
+   wiki links TBD) and stored in the adjacent `T1_proc` folder.
+
+   Formal path:
+
+   ```
+   ./{Node}/{YYYY_ProjectDesc[_I|E][_Researcher][_org]}/{YYYYSiteName[_F|C]}/{SensorPlatform}/{YYYYMMDD}/run_XX/T1_proc/
+   ```
+
+   Example:
+
+   ```
+   ./USYD_Narrabri/2025_SIFCal/2025IAWatson_F/CALVIS/20250825/run_00/T1_proc/
+   ```
+
+7. Standard QA process should be performed following
+   [this guide](../QAprocess/APPN_AerialDataQC_Rev1.0.md).
 
 ---
 

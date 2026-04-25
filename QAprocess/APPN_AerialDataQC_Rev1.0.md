@@ -42,10 +42,19 @@ panels for validation.
 ### File Storage
 
 Any files created in the quality control steps are to be stored in a newly
-created `QC_data` folder inside `T1_proc`. An example full path:
+created `QC_data` folder inside `T1_proc`, following the
+[APPN folder structure](https://github.com/ArdenB/APPN_GenricFileStorage/wiki/Folder-Structure).
+
+Formal path:
 
 ```
-./USYD_Narrabri/2025_SIFCal/2025IAWatson/CALVIS/20250825/run_00/T1_proc/QC_data
+./{Node}/{YYYY_ProjectDesc[_I|E][_Researcher][_org]}/{YYYYSiteName[_F|C]}/{SensorPlatform}/{YYYYMMDD}/run_XX/T1_proc/QC_data/
+```
+
+Example:
+
+```
+./USYD_Narrabri/2025_SIFCal/2025IAWatson_F/CALVIS/20250825/run_00/T1_proc/QC_data/
 ```
 
 These shapefiles are meant to be created after the GPRO has been completed.
