@@ -1,0 +1,19 @@
+% checklist-header.tex — extra header included on top of header.tex when
+% rendering standalone checklist PDFs. Tightens the pandoc/article title
+% block so the title, subtitle, date and the first H1 ("Equipment
+% Checklist") all fit on a single page.
+
+\usepackage{titling}
+% Pull the title block up toward the top margin.
+\setlength{\droptitle}{-2.5cm}
+% Squeeze vertical spacing inside the \maketitle block.
+\pretitle{\begin{center}\LARGE\bfseries}
+\posttitle{\par\end{center}\vskip 0.3em}
+\preauthor{\begin{center}\normalsize}
+\postauthor{\par\end{center}\vskip 0.2em}
+\predate{\begin{center}\small}
+\postdate{\par\end{center}}
+% Reduce the gap between \maketitle and the first section heading.
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0.4ex plus 0.2ex minus 0.2ex}{0.6ex plus 0.2ex}
+\titlespacing*{\subsection}{0pt}{0.3ex plus 0.2ex minus 0.2ex}{0.4ex plus 0.2ex}

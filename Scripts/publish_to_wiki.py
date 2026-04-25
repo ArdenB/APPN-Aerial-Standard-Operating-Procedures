@@ -54,6 +54,9 @@ DEFAULT_WIKI_PATH = REPO_ROOT.parent / f"{REPO_ROOT.name}.wiki"
 PANDOC_ASSETS_DIR = SCRIPT_DIR / "pandoc"
 GFM_ALERTS_FILTER = PANDOC_ASSETS_DIR / "gfm-alerts.lua"
 LATEX_HEADER = PANDOC_ASSETS_DIR / "header.tex"
+# Extra header included only for standalone checklist PDFs to tighten the
+# title block so the heading fits on the first page.
+LATEX_CHECKLIST_HEADER = PANDOC_ASSETS_DIR / "checklist-header.tex"
 
 # Matches Markdown image references whose target points into a *_media/ folder
 # adjacent to the source file. We only rewrite those — external URLs and other
@@ -248,12 +251,65 @@ def write_navigation(manifest: dict[str, Any], wiki_root: Path, date: str,
 PDF_ENGINES = ("tectonic", "xelatex", "lualatex", "pdflatex",
                "weasyprint", "wkhtmltopdf", "prince")
 
+# H2 sections whose title matches this regex are also exported as standalone
+# checklist PDFs (printable). Case-insensitive.
+_CHECKLIST_HEADING_RE = re.compile(r"^##\s+(.*checklists?)\s*$",
+                                   re.IGNORECASE | re.MULTILINE)
+
 
 def detect_pdf_engine() -> str | None:
     for engine in PDF_ENGINES:
         if shutil.which(engine):
             return engine
     return None
+
+
+def _slugify(text: str) -> str:
+    slug = re.sub(r"[^A-Za-z0-9]+", "-", text).strip("-")
+    return slug or "section"
+
+
+def extract_checklist_sections(markdown: str) -> list[tuple[str, str]]:
+    """Return a list of (heading_text, section_markdown) pairs for every
+    ``## *Checklist*`` H2 in the document. ``section_markdown`` includes the
+    H2 line itself and stops at the next H2 (or end of file).
+    """
+    matches = list(_CHECKLIST_HEADING_RE.finditer(markdown))
+    if not matches:
+        return []
+
+    sections: list[tuple[str, str]] = []
+    for i, m in enumerate(matches):
+        start = m.start()
+        # Find the next H2 (any H2, not just checklist ones) to bound the section.
+        next_h2 = re.search(r"^##\s", markdown[m.end():], re.MULTILINE)
+        end = m.end() + next_h2.start() if next_h2 else len(markdown)
+        sections.append((m.group(1).strip(), markdown[start:end].rstrip() + "\n"))
+    return sections
+
+
+def _pandoc_pdf_cmd(source_arg: str | Path, pdf_path: Path,
+                    resource_path: Path, engine: str, title: str,
+                    subtitle: str, *, compact_title: bool = False) -> list[str]:
+    cmd = [
+        "pandoc", str(source_arg),
+        "-o", str(pdf_path),
+        "--resource-path", str(resource_path),
+        "--from=gfm+yaml_metadata_block",
+        f"--pdf-engine={engine}",
+        "-M", f"title={title}",
+        "-M", f"subtitle={subtitle}",
+    ]
+    if GFM_ALERTS_FILTER.is_file():
+        cmd += ["--lua-filter", str(GFM_ALERTS_FILTER)]
+    # LaTeX engines accept geometry; HTML-based engines ignore it.
+    if engine in {"xelatex", "lualatex", "pdflatex", "tectonic"}:
+        cmd += ["-V", "geometry:margin=2cm"]
+        if LATEX_HEADER.is_file():
+            cmd += ["--include-in-header", str(LATEX_HEADER)]
+        if compact_title and LATEX_CHECKLIST_HEADER.is_file():
+            cmd += ["--include-in-header", str(LATEX_CHECKLIST_HEADER)]
+    return cmd
 
 
 def render_pdfs(manifest: dict[str, Any], dry_run: bool,
@@ -278,6 +334,7 @@ def render_pdfs(manifest: dict[str, Any], dry_run: bool,
 
     revision = manifest["revision"]
     out_dir = REPO_ROOT / "releases" / f"Rev{revision}"
+    checklists_dir = out_dir / "checklists"
     print(f"PDF output: {out_dir.relative_to(REPO_ROOT)}/  (engine: {engine})")
     if not dry_run:
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -287,31 +344,49 @@ def render_pdfs(manifest: dict[str, Any], dry_run: bool,
         source = REPO_ROOT / page["source"]
         pdf_path = out_dir / f"{page['wiki_page']}.pdf"
         print(f"  pdf:  {page['source']}  ->  {pdf_path.relative_to(REPO_ROOT)}")
-        if dry_run:
-            continue
-        # Render from the *repo* source (not the wiki copy) so image paths
-        # resolve naturally via --resource-path.
-        cmd = [
-            "pandoc", str(source),
-            "-o", str(pdf_path),
-            "--resource-path", str(source.parent),
-            "--from=gfm+yaml_metadata_block",
-            f"--pdf-engine={engine}",
-            "-M", f"title={page['title']}",
-            "-M", f"subtitle=APPN Aerial SOP — Locked revision {revision}",
-        ]
-        if GFM_ALERTS_FILTER.is_file():
-            cmd += ["--lua-filter", str(GFM_ALERTS_FILTER)]
-        # LaTeX engines accept geometry; HTML-based engines ignore it.
-        if engine in {"xelatex", "lualatex", "pdflatex", "tectonic"}:
-            cmd += ["-V", "geometry:margin=2cm"]
-            if LATEX_HEADER.is_file():
-                cmd += ["--include-in-header", str(LATEX_HEADER)]
-        try:
-            subprocess.run(cmd, check=True)
-        except subprocess.CalledProcessError as exc:
-            failures += 1
-            print(f"    pandoc failed (exit {exc.returncode})", file=sys.stderr)
+        if not dry_run:
+            cmd = _pandoc_pdf_cmd(
+                source, pdf_path, source.parent, engine,
+                title=page["title"],
+                subtitle=f"APPN Aerial SOP — Locked revision {revision}",
+            )
+            try:
+                subprocess.run(cmd, check=True)
+            except subprocess.CalledProcessError as exc:
+                failures += 1
+                print(f"    pandoc failed (exit {exc.returncode})",
+                      file=sys.stderr)
+
+        # Split out any "Equipment Checklist"-style sections into standalone
+        # printable PDFs alongside the main one.
+        sections = extract_checklist_sections(
+            source.read_text(encoding="utf-8"))
+        for heading, body in sections:
+            slug = _slugify(heading)
+            checklist_pdf = checklists_dir / f"{page['wiki_page']}-{slug}.pdf"
+            print(f"  pdf:  {page['source']} [{heading}]  ->  "
+                  f"{checklist_pdf.relative_to(REPO_ROOT)}")
+            if dry_run:
+                continue
+            checklists_dir.mkdir(parents=True, exist_ok=True)
+            # Demote the H2 to H1 so the standalone document has a sensible
+            # top-level title.
+            body_md = re.sub(r"^##\s+", "# ", body, count=1, flags=re.MULTILINE)
+            # Pipe via stdin so we don't have to write a temp file. Pandoc
+            # still resolves relative image paths via --resource-path.
+            cmd = _pandoc_pdf_cmd(
+                "-", checklist_pdf, source.parent, engine,
+                title=f"{page['title']} — {heading}",
+                subtitle=f"APPN Aerial SOP — Locked revision {revision}",
+                compact_title=True,
+            )
+            try:
+                subprocess.run(cmd, check=True, input=body_md,
+                               text=True)
+            except subprocess.CalledProcessError as exc:
+                failures += 1
+                print(f"    pandoc failed (exit {exc.returncode})",
+                      file=sys.stderr)
     return 1 if failures else 0
 
 
