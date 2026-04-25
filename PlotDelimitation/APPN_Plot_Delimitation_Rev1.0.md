@@ -58,9 +58,10 @@ plot extent, regardless of which method is used to generate the shapefile.
 To keep results comparable across nodes, APPN trials should apply a
 consistent inward buffer to every plot polygon. The default rule is:
 
-> **APPN default buffer:** 0.3 m from each plot end (along the drill
-> direction) and 0.2 m from each plot side (across the drill direction),
-> **or** 15% of the corresponding plot dimension — whichever is larger.
+> [!NOTE]
+> **APPN default buffer:** 0.3 m from each plot end and 0.2 m from each 
+> plot side (across the drill direction), **or** 15% of the corresponding 
+> plot dimension — whichever is larger.
 
 The buffer used must be recorded in the tool-specific configuration saved
 alongside the shapefile (e.g. the FIELDimageR JSON) so the layout can be
