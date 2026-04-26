@@ -12,7 +12,7 @@
 > [CALViS Fieldbook](../../Sensors/CALVIS/CALViS_FieldBook.md) and the
 > [GOBI Fieldbook](../../Sensors/GOBI/GOBI_FieldBook.md).
 >
-> For periodic calibration / comparability flights, see the
+> For periodic calibration / APEx test flights, see the
 > [Validation Flight Procedure](../ValidationFlight/Validation_Flight.md).
 
 ---
