@@ -12,22 +12,36 @@ publish script when a new revision is cut.
 
 ```
 Protocols/
+├── Home/
+│   └── Home_Intro.md                 Static intro injected into the wiki Home page
 ├── Sensors/
+│   ├── PlatformsOverview/            High-level description of APPN platforms
 │   ├── CALVIS/                       Headwall CoAligned HP + LiDAR + GNSS-INS (IF1200)
-│   └── GOBI/                         GOBI sensor platform
+│   ├── GOBI/                         GOBI sensor platform (M350 / IF1200)
+│   ├── M3M/                          DJI M3M multispectral platform (stub)
+│   └── HIRES/                        HiRes Phase One RGB platform (stub)
 ├── FlightDesign/
+│   ├── StandardFlight/               Standard flight procedure
 │   └── ValidationFlight/             Validation flight procedure
 ├── QA/
-│   └── QAprocess/                    Aerial data QC procedure
+│   ├── QAprocess/                    Aerial data QC procedure (operator workflow)
+│   └── QCandReporting/               User-facing QC philosophy & reporting guidance
 ├── PlotProtocols/
 │   └── PlotDelimitation/             Plot delimitation shapefile spec + methods
-└── DataManagement/
-    └── DataFolderStructure/          Standard storage layout for raw/processed data
+├── DataManagement/
+│   └── DataFolderStructure/          Standard storage layout for raw/processed data
+├── Pipelines/
+│   ├── ProcessingPipelines/          GRYFN standard processing pipeline outputs
+│   └── StandardDataProducts/         Tabular summary of standard data products
+└── GroundPlatforms/
+    └── PhenotypingAndEnvironmental/  Ground-based phenotyping & env. instruments
 
 OriginalDocuments/                    Source .docx files (input to docx_to_markdown.py)
+└── FieldProtocolsAndPipelinesWiki/   Verbatim archive of imported wiki originals
 Scripts/
 ├── docx_to_markdown.py               Convert .docx -> .md (+ media) into Protocols/
-└── publish_to_wiki.py                Publish locked revision to the wiki + optional PDFs
+├── publish_to_wiki.py                Publish locked revision to the wiki + optional PDFs
+└── wiki_assets/                      Static _Footer copied to the wiki
 publish.yaml                          Manifest: revision number + page mapping
 releases/Rev<X.Y>/                    PDF snapshots, written by `publish_to_wiki.py --pdf`
 ```

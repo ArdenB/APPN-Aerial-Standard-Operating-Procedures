@@ -1,5 +1,9 @@
 # APPN – GOBI M350 Fieldbook
 
+For a high-level description of the GOBI sensor package and how it sits
+alongside the other APPN platforms, see the
+[Platforms Overview](../PlatformsOverview/Platforms_Overview.md).
+
 This fieldbook provides a standardised operational guide for APPN GOBI UAV
 deployments on the DJI M350, supporting safe flight operations, consistent
 sensor configuration, and high-integrity data capture. It is intended for

@@ -25,8 +25,17 @@ categories:
     title: "Plot Protocols"
   - id: DataManagement
     title: "Data Management"
+  - id: Pipelines
+    title: "Processing & Data Products"
+  - id: GroundPlatforms
+    title: "Ground-Based Platforms"
 
 pages:
+  - source: Protocols/Sensors/PlatformsOverview/Platforms_Overview.md
+    wiki_page: Platforms-Overview
+    title: "Platforms Overview"
+    category: Sensors
+
   - source: Protocols/Sensors/CALVIS/CALViS_FieldBook.md
     wiki_page: CALViS-Fieldbook
     title: "CALViS Fieldbook"
@@ -35,6 +44,16 @@ pages:
   - source: Protocols/Sensors/GOBI/GOBI_FieldBook.md
     wiki_page: GOBI-Fieldbook
     title: "GOBI Fieldbook"
+    category: Sensors
+
+  - source: Protocols/Sensors/M3M/M3M_FieldBook.md
+    wiki_page: M3M-Fieldbook
+    title: "M3M Fieldbook"
+    category: Sensors
+
+  - source: Protocols/Sensors/HIRES/HIRES_FieldBook.md
+    wiki_page: HiRes-Fieldbook
+    title: "HiRes Fieldbook"
     category: Sensors
 
   - source: Protocols/FlightDesign/StandardFlight/Standard_Flight.md
@@ -52,6 +71,11 @@ pages:
     title: "QA Process"
     category: QA
 
+  - source: Protocols/QA/QCandReporting/QC_and_Reporting.md
+    wiki_page: QC-and-Reporting
+    title: "QC and Reporting"
+    category: QA
+
   - source: Protocols/PlotProtocols/PlotDelimitation/Plot_Delimitation.md
     wiki_page: Plot-Delimitation
     title: "Plot Delimitation"
@@ -61,3 +85,18 @@ pages:
     wiki_page: Data-Folder-Structure
     title: "Data Folder Structure"
     category: DataManagement
+
+  - source: Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md
+    wiki_page: Processing-Pipelines
+    title: "Processing Pipelines"
+    category: Pipelines
+
+  - source: Protocols/Pipelines/StandardDataProducts/Standard_Data_Products.md
+    wiki_page: Standard-Data-Products
+    title: "Standard Data Products"
+    category: Pipelines
+
+  - source: Protocols/GroundPlatforms/PhenotypingAndEnvironmental/Ground_Phenotyping_and_Environmental.md
+    wiki_page: Ground-Phenotyping-and-Environmental
+    title: "Ground-Based Phenotyping and Environmental Platforms"
+    category: GroundPlatforms
