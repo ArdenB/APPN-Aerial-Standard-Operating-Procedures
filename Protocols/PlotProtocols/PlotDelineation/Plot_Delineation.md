@@ -483,15 +483,197 @@ final shapefile to the trial's `Plot_Layout` directory per the
 
 ---
 
-## Method 2: *(DPIRD METHOD — TODO)*
+## Method 2: DPIRD Field Mapping Tool
 
-> [!IMPORTANT]
-> **TODO:** Document the DPIRD plot-delineation method.
+The DPIRD Field Mapping Tool is a desktop application for digitising and
+managing agricultural field trial plot boundaries over drone orthomosaic
+imagery. Built with [Streamlit](https://streamlit.io/) and Python
+geospatial libraries, it runs locally in your web browser with no cloud
+dependency.
+
+Developed at the
+[Department of Primary Industries and Regional Development (DPIRD)](https://www.dpird.wa.gov.au/),
+Western Australia, as part of the
+[Australian Plant Phenomics Network (APPN)](https://www.plantphenomics.org.au/).
+
+### Features
+
+- **Generate Grid** — Create regular plot grids over drone orthomosaics
+  by drawing a trial boundary and specifying banks, rows, buffer, and
+  plot dimensions. 
+- **Edit Grid** — Interactive browser-based polygon editor with drag,
+  vertex editing, multi-select, copy/paste, measurements, undo, and
+  keyboard shortcuts.
+- **Convert File** — Convert between Shapefile, GeoJSON, GeoPackage,
+  and KML formats with optional CRS reprojection (GDA2020, GDA94,
+  WGS 84, or custom EPSG).
+- **Cropping Tool** — Crop rasters (orthophotos, DSMs, GeoTIFFs) to
+  individual plot polygon boundaries, producing one file per plot.
+
+All data is processed locally. No internet connection is required after
+installation.
+
+**Detailed installation instruction and documentation is provided in the [DPIRD Field Mapping Tool Documentation](https://github.com/appndpird/DPIRDFieldMappingTool/blob/main/DPIRD_Field_Mapping_Tool_Documentation.pdf) within the GitHub repository. Basic guidelines are provided below.**
+
+### Software Installation
+
+Go to the GitHub repository
+[appndpird/DPIRDFieldMappingTool](https://github.com/appndpird/DPIRDFieldMappingTool)
+and download the repository (click **Code → Download ZIP**, or
+`git clone`). The repository contains two platform-specific
+distributions — choose the one that matches your operating system.
+
+#### Requirements
+
+| | Windows | Linux / macOS |
+|---|---|---|
+| **OS** | Windows 10+ (64-bit) | Ubuntu 20.04+, Fedora, macOS 11+ |
+| **Python** | Bundled via Miniconda | User-installed Anaconda/Miniconda |
+| **Disk space** | ~2 GB | ~2 GB |
+| **Internet** | First-time setup only | First-time setup only |
+
+#### Windows
+
+1. Extract `DPIRD_Field_Mapping_Tool_windows_v1.6.0`.
+2. Place
+   [`Miniconda3-latest-Windows-x86_64.exe`](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe)
+   in the folder.
+3. Double-click `Install_DPIRD_Tool.bat` and press `Y`.
+4. Double-click `Run_DPIRD_Tool.bat` to launch.
+
+#### Linux / macOS
+
+1. Extract `DPIRD_Field_Mapping_Tool_linux_v1.6.0`.
+2. Ensure [Anaconda or Miniconda](https://docs.anaconda.com/miniconda/)
+   is installed.
+3. Run:
+
+   ```bash
+   chmod +x install_dpird_tool.sh run_dpird_tool.sh
+   ./install_dpird_tool.sh
+   ./run_dpird_tool.sh
+   ```
+
+The tool opens in your browser at
+[http://localhost:8501](http://localhost:8501).
+
+### Generating the Plot Shapefile
+
+1. Open the tool and navigate to the **Generate Grid** tab.
+
+2. Enter your project folder path (the folder containing the
+   orthomosaic `.tif` file). Click **Browse** or paste the path
+   directly.
+
+3. Select the orthomosaic file from the dropdown. Optionally select a
+   CSV file to attach additional plot metadata.
+
+4. Set the grid parameters:
+
+   | Parameter | Description |
+   |---|---|
+   | **Banks** | Number of banks (columns) in the X direction. |
+   | **Rows** | Number of rows in the Y direction within each bank. |
+   | **Buffer (m)** | Gap between adjacent plots in metres. |
+   | **Plot Size (W,H)** | Width and height of each plot in metres, comma-separated (e.g. `4,1`). |
+
+5. Draw a boundary polygon on the map by clicking the four corners of
+   the trial area in this order:
+
+   **Top-left (B1R1) → Top-right (BXR1) → Bottom-right (BXRY) →
+   Bottom-left (B1RY)**
+
+   The first point defines the origin of the grid (plot B1R1). The
+   orientation of the boundary polygon determines the rotation of the
+   generated grid.
+
+6. Click **Generate Grid**. Review the generated grid on the map and in
+   the data table.
+
+7. Fine-tune if needed — changing any grid parameter after generation
+   automatically regenerates the grid using the same boundary.
+
+8. Click **Save Initial Grid** to save as a shapefile.
+
+#### Plot ID Convention
+
+Plots are assigned IDs automatically:
+
+| Field | Formula | Examples |
+|---|---|---|
+| `Plot_ID` | Bank × 1000 + Row | B1R1 = 1001, B2R3 = 2003 |
+| `B/R` | Bank-Row label | B1R1, B2R3, B12R6 |
+| `Bank` | Bank number | 1, 2, 3, … |
+| `Row` | Row number | 1, 2, 3, … |
+
+### Editing the Plot Shapefile
+
+After generating (or loading an existing grid via the **Edit Grid**
+tab), click **Edit Grid** to open the interactive browser-based polygon
+editor in a new tab. The editor provides:
+
+| Tool | Shortcut | Description |
+|---|---|---|
+| Navigate | `Esc` | Pan and zoom. Click a polygon to select it. |
+| Drag Plots | `D` | Drag polygons to reposition. Ctrl/Cmd+Click to multi-select. |
+| Edit Vertices | `V` | Drag individual corner vertices to reshape polygons. |
+| Delete | `X` | Click a polygon to remove it. |
+| Draw New | `N` | Click to place vertices; double-click to close. |
+| Measurements | `M` | Toggle edge length labels (metres) on all polygons. |
+| Copy / Paste | `Ctrl+C` / `Ctrl+V` | Duplicate selected polygons. |
+| Undo | `Ctrl+Z` | Revert the last action (up to 50 steps). |
+| Select All | `Ctrl+A` | Select all polygons. |
 
 > [!NOTE]
-> Additional plot delineation methods will be documented here as they
-> are adopted by APPN.
+> On macOS, use **Cmd** instead of **Ctrl** for all keyboard shortcuts.
 
+Click **Save Shapefile** in the editor to write the edited grid to disk,
+or **Export GeoJSON** to download a GeoJSON file.
+
+### Converting Vector Data File Formats
+
+Use the **Convert File** tab to convert the output shapefile to GeoJSON or reproject to a different CRS:
+
+1. Load the shapefile via **Browse Input File**.
+2. Set the output format to **GeoJSON**.
+3. Select the target CRS (typically the CRS of the source orthomosaic,
+   e.g. GDA2020 / MGA Zone 50).
+4. Click **Convert & Save**.
+
+### Cropping Rasters to Plots
+
+Use the **Cropping Tool** tab to crop the orthomosaic (or DSM) to
+individual plot boundaries:
+
+1. Load the plot shapefile and the raster file.
+2. Choose a save folder and base filename.
+3. Click **Crop and Save**.
+
+For a grid with multiple polygons, one raster is saved per plot (e.g.
+`cropped_1001.tif`, `cropped_2003.tif`). The tool automatically
+reprojects the vector to match the raster's CRS if they differ.
+
+### Output
+
+The shapefile produced by the DPIRD Field Mapping Tool contains plots
+identified by `Plot_ID` (Bank × 1000 + Row), `B/R`, `Bank`, and `Row`.
+To produce an APPN-compliant plot shapefile:
+
+1. **Rename** `Plot_ID` to `plot_id` (or add a `plot_id` column mapped
+   from `Plot_ID`) to match the
+   [Required attributes](#required-attributes) specification.
+2. **Add** an `fid` column if not already present (sequential polygon
+   identifier).
+3. **Convert** to GeoJSON using the Convert File tab if the primary
+   deliverable should be `.geojson`.
+4. Attach trial metadata as described in
+   [Joining Trial Information](#joining-trial-information-_todo-feild-ewg-discussion),
+   then save the final file to the trial's `Plot_Layout` directory per
+   the [APPN Plot Shapefile Standard](#appn-plot-shapefile-standard).
+
+### Further Documentation
+
+Detailed installation instruction and documentation: [DPIRD Field Mapping Tool Documentation](https://github.com/appndpird/DPIRDFieldMappingTool/blob/main/DPIRD_Field_Mapping_Tool_Documentation.pdf).
 
 ---
 
