@@ -27,6 +27,78 @@ analysis across APPN trials.
 
 ---
 
+> [!IMPORTANT]
+> **Document status — work in progress.**
+> This protocol is a draft and requires further revision before it can
+> be considered final.
+>
+> **Outstanding TODOs — items requiring APPN Field EWG agreement:**
+>
+> **Recommended buffer** (see [Recommended Buffer](#recommended-buffer))
+> - [ ] Ratify the **default inward buffer rule** (currently placeholder:
+>       0.3 m end / 0.2 m side, or 15 % of the corresponding plot
+>       dimension, whichever is larger).
+> - [ ] Confirm the **worked-example buffer values** in the buffer table.
+> - [ ] Confirm the **criteria for increasing or decreasing the buffer**
+>       (GSD, canopy type, alley width, RTK / GCP availability).
+> - [ ] Agree on how **deviations from the default buffer** must be
+>       recorded with the trial's plot layout files.
+>
+> **Required shapefile attributes** (see [Required attributes](#required-attributes))
+> - [ ] Ratify the **minimum mandatory attribute set** (currently `fid`
+>       and `plot_id` only).
+> - [ ] Decide which **plot-identification columns** are mandatory
+>       (`range`, `row`, `block` / `replicate`, `is_buffer_plot`).
+> - [ ] Decide which **biological / treatment columns** are mandatory
+>       (`crop`, `species`, `genotype` / `entry`, `treatment`).
+> - [ ] Decide which **provenance columns** are mandatory (`method`,
+>       `buffer_end_m`, `buffer_side_m`, `source_ortho`, `created`).
+> - [ ] Confirm the rule that `fid` and `plot_id` must always be kept
+>       as **separate columns**, and that `plot_id` (not `fid`) is the
+>       trial-metadata join key.
+>
+> **File naming convention** (see [File naming convention](#file-naming-convention-_todo-feild-ewg-discussion))
+> - [ ] Replace the placeholder `{YYYYSiteName}_{role}[_v{NN}].{ext}`
+>       scheme with a Field-EWG-approved naming convention
+>       ("THESE NAMES SUCK" — Tam, Connor, Richard to help redesign).
+> - [ ] Ratify the **role tag list** (`plots`, `plots_raw`,
+>       `exclude_biomass`, `exclude_sampling`, `exclude_damage`, `gcp`)
+>       or replace with the agreed-upon set.
+> - [ ] Confirm whether revision suffixes (`_v01`, `_v02`, …) are
+>       mandatory or optional, and the rule for bumping the revision.
+>
+> **Joining trial information** (see [Joining Trial Information](#joining-trial-information-_todo-feild-ewg-discussion))
+> - [ ] Define the **trial-information spreadsheet specification** —
+>       mandatory vs optional columns (`plot_id`, `range`, `row`,
+>       `block` / `replicate`, `crop`, `species`, `genotype`,
+>       `treatment`, etc.).
+> - [ ] Agree on the **preferred spreadsheet file format** (`.csv` vs
+>       `.xlsx`) and its naming convention.
+> - [ ] Agree on **where the trial spreadsheet lives** in the APPN
+>       folder structure (likely under `Documentation/`).
+> - [ ] Decide whether the join is performed **once at trial setup or
+>       re-applied each time** the shapefile is regenerated.
+> - [ ] Decide whether the joined output **overwrites the source
+>       shapefile** or is saved as a separate `*_joined` file.
+> - [ ] Confirm `plot_id` as the **mandatory join key** (and that
+>       `fid` must not be used as the join key).
+>
+> **Methods** (see [Methods](#methods))
+> - [ ] Document the **GRYFN plot tool** workflow as Method 3 and
+>       confirm whether any additional methods should be supported.
+> - [ ] Confirm which method is the **recommended default** for APPN
+>       trials, if any.
+>
+> **General**
+> - [ ] Confirm whether **GeoJSON** is the mandated primary format and
+>       **Shapefile** is only "also accepted", or whether both remain
+>       fully supported indefinitely.
+> - [ ] Confirm the **CRS rule** (CRS of the source orthomosaic;
+>       typically the correct GDA2020 zone) and whether reprojection
+>       to a common CRS is ever required.
+
+---
+
 ## Document Structure
 
 This protocol is organised so you can read it top-to-bottom for the full
