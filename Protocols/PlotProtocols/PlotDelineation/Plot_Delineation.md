@@ -1,14 +1,14 @@
 # APPN – Plot Delineation
 
 > [!WARNING]
-> **Draft document — large sections require discussion with the APPN
-> Field EWG.** Several parts of this protocol (including the recommended
-> buffer values, the mandatory file attribute set, and the trial
-> information join specification) are placeholders intended to show the
-> structure and intent of the standard. They must be reviewed and
-> ratified by the Field EWG before being treated as the APPN standard.
-> Sections requiring EWG input are flagged inline with `IMPORTANT` 
-> callouts and *(TODO: Field EWG Discussion)* in headings.
+> **Draft document — most major decisions ratified, some follow-ups
+> still pending with the APPN Field EWG.** The Field EWG
+> plot-delineation meeting ratified the file format (GeoJSON), the
+> minimum required attribute set, the storage location, and the
+> general approach to buffers. Outstanding follow-ups (the final
+> buffer rule, optional-column handling, the file naming convention,
+> and the trial-information spreadsheet specification) are listed in
+> the [Outstanding TODOs](#document-status--work-in-progress) below.
 
 This protocol defines the APPN standard for plot delineation shapefiles —
 their structure, attributes, and storage location within the APPN folder
@@ -30,72 +30,77 @@ analysis across APPN trials.
 > [!IMPORTANT]
 > **Document status — work in progress.**
 > This protocol is a draft and requires further revision before it can
-> be considered final.
+> be considered final. The points below capture the state of each
+> section after the **APPN Field EWG plot-delineation meeting**.
 >
-> **Outstanding TODOs — items requiring APPN Field EWG agreement:**
+> **✅ Resolved at the Field EWG meeting:**
+>
+> - **File format — GeoJSON ratified as the primary format** (Arden,
+>   Bipul agreed). Shapefile remains accepted only as a legacy /
+>   companion format.
+> - **Storage location — current `Documentation/Plot_Layout/` path is
+>   confirmed**, no changes required (see
+>   [Storage location](#storage-location)).
+> - **Buffer table approach is endorsed** (Lleyton): values in the
+>   table represent **minimum** buffers; Arden to replace the
+>   placeholder examples with realistic plot sizes (6 × 2, 10 × 3,
+>   6 × 1.5 — DPIRD, 4 × 1.5 — UOA OzBarley) and note that plot
+>   widths can vary substantially (Ingrid).
+> - **Minimum required attribute set agreed:** `fid`, `plot_id`,
+>   `row`, `range`, `is_buffer`, `block` (where available), `crop`.
+> - **`species` removed** from the required attribute set.
+> - **Sensor identifier belongs in the file name** (Ingrid) —
+>   different sensors can produce different geometries (UOA: RGB vs
+>   LiDAR vs VNIR all differ). Use `VNIR_RGB` as the sensor tag for
+>   both CALViS and GOBI products.
+>
+> **⚠️ Still outstanding — Field EWG follow-ups:**
 >
 > **Recommended buffer** (see [Recommended Buffer](#recommended-buffer))
-> - [ ] Ratify the **default inward buffer rule** (currently placeholder:
->       0.3 m end / 0.2 m side, or 15 % of the corresponding plot
->       dimension, whichever is larger).
-> - [ ] Confirm the **worked-example buffer values** in the buffer table.
-> - [ ] Confirm the **criteria for increasing or decreasing the buffer**
->       (GSD, canopy type, alley width, RTK / GCP availability).
-> - [ ] Agree on how **deviations from the default buffer** must be
->       recorded with the trial's plot layout files.
+> - [ ] Decide whether the buffer should be a **percentage** or a
+>       **"ditch a row"** rule — may end up being species-specific.
+>       Goal is simply to stop edge effects.
+> - [ ] Arden to write up the revised buffer guidance (real-life plot
+>       examples, minimum-vs-target framing, species-specific notes).
 >
-> **Required shapefile attributes** (see [Required attributes](#required-attributes))
-> - [ ] Ratify the **minimum mandatory attribute set** (currently `fid`
->       and `plot_id` only).
-> - [ ] Decide which **plot-identification columns** are mandatory
->       (`range`, `row`, `block` / `replicate`, `is_buffer_plot`).
-> - [ ] Decide which **biological / treatment columns** are mandatory
->       (`crop`, `species`, `genotype` / `entry`, `treatment`).
-> - [ ] Decide which **provenance columns** are mandatory (`method`,
->       `buffer_end_m`, `buffer_side_m`, `source_ortho`, `created`).
-> - [ ] Confirm the rule that `fid` and `plot_id` must always be kept
->       as **separate columns**, and that `plot_id` (not `fid`) is the
->       trial-metadata join key.
+> **Required attributes** (see [Required attributes](#required-attributes))
+> - [ ] Decide how to handle **optional columns** — carry as empty /
+>       placeholder columns, or omit entirely when no data is
+>       available.
+> - [ ] Both delineation tools have metadata-capture approaches —
+>       confirm which approach (or harmonised superset) is the APPN
+>       standard.
 >
-> **File naming convention** (see [File naming convention](#file-naming-convention-_todo-feild-ewg-discussion))
-> - [ ] Replace the placeholder `{YYYYSiteName}_{role}[_v{NN}].{ext}`
->       scheme with a Field-EWG-approved naming convention
->       ("THESE NAMES SUCK" — Tam, Connor, Richard to help redesign).
-> - [ ] Ratify the **role tag list** (`plots`, `plots_raw`,
->       `exclude_biomass`, `exclude_sampling`, `exclude_damage`, `gcp`)
->       or replace with the agreed-upon set.
-> - [ ] Confirm whether revision suffixes (`_v01`, `_v02`, …) are
->       mandatory or optional, and the rule for bumping the revision.
+> **File naming convention** (see [File naming convention](#file-naming-convention))
+> - [ ] Arden to report back with a proposed naming convention that
+>       includes:
+>   - The **sensor identifier** (e.g. `VNIR_RGB`, `LiDAR`, `RGB`).
+>   - Clear handling of **special cases** (e.g. all-of-plot biomass
+>       collection at UOA).
+>   - Per-sensor variants only when the geometries actually differ.
+> - [ ] Set a hard rule: if shapefile differences **within a single
+>       sensor** exceed ~**5 cm**, do **not** hack around them with
+>       extra files — escalate and address the root cause.
 >
-> **Joining trial information** (see [Joining Trial Information](#joining-trial-information-_todo-feild-ewg-discussion))
+> **Joining trial information** (see [Joining Trial Information](#joining-trial-information))
 > - [ ] Define the **trial-information spreadsheet specification** —
->       mandatory vs optional columns (`plot_id`, `range`, `row`,
->       `block` / `replicate`, `crop`, `species`, `genotype`,
->       `treatment`, etc.).
-> - [ ] Agree on the **preferred spreadsheet file format** (`.csv` vs
->       `.xlsx`) and its naming convention.
-> - [ ] Agree on **where the trial spreadsheet lives** in the APPN
->       folder structure (likely under `Documentation/`).
-> - [ ] Decide whether the join is performed **once at trial setup or
->       re-applied each time** the shapefile is regenerated.
-> - [ ] Decide whether the joined output **overwrites the source
->       shapefile** or is saved as a separate `*_joined` file.
-> - [ ] Confirm `plot_id` as the **mandatory join key** (and that
->       `fid` must not be used as the join key).
+>       mandatory columns, format (`.csv` vs `.xlsx`), naming, and
+>       storage location.
+> - [ ] Decide whether the join is performed **once at trial setup**
+>       or **re-applied each time** the shapefile is regenerated, and
+>       whether the joined output overwrites or is saved as a separate
+>       file.
+> - [ ] Encourage researchers / clients to **provide better plot
+>       information** up front (trial design + plot dimensions).
 >
 > **Methods** (see [Methods](#methods))
-> - [ ] Document the **GRYFN plot tool** workflow as Method 3 and
->       confirm whether any additional methods should be supported.
-> - [ ] Confirm which method is the **recommended default** for APPN
->       trials, if any.
->
-> **General**
-> - [ ] Confirm whether **GeoJSON** is the mandated primary format and
->       **Shapefile** is only "also accepted", or whether both remain
->       fully supported indefinitely.
-> - [ ] Confirm the **CRS rule** (CRS of the source orthomosaic;
->       typically the correct GDA2020 zone) and whether reprojection
->       to a common CRS is ever required.
+> - [ ] **Mickey to write the GPT plot-creation tool** (becomes
+>       Method 3, replacing the previous "GRYFN plot tool" placeholder).
+> - [ ] **FIELDimageR meeting with Bipul and Mickey** — still TBC;
+>       outcomes to be folded back into
+>       [Method 1](#method-1-fieldimager-qgis).
+> - [ ] For the **Omega** platform, capture **vegetation width** in
+>       trial metadata so it can be used to set track width.
 
 ---
 
@@ -103,33 +108,35 @@ analysis across APPN trials.
 
 This protocol is organised so you can read it top-to-bottom for the full
 APPN plot delineation standard, or jump straight to the section you need.
-Sections still pending APPN Field EWG ratification are flagged with
-*(TODO: Field EWG Discussion)* in their headings.
+Decisions made at the **APPN Field EWG plot-delineation meeting** are
+reflected inline; outstanding follow-ups are flagged in the
+[Outstanding TODOs](#document-status--work-in-progress) at the top.
 
 - [APPN Plot Delineation](#appn-plot-delineation) — rationale and the
   competing sources of error a standard delineation approach must manage.
-  - [Recommended Buffer](#recommended-buffer) — default inward buffer
-    values, worked examples, and when to deviate. *(TODO: Field EWG Discussion)*
+  - [Recommended Buffer](#recommended-buffer) — minimum inward buffer
+    values, real-world worked examples, and when to deviate.
 - [APPN Plot Shapefile Standard](#appn-plot-shapefile-standard) — the
   mandatory file format, attributes, storage location, and naming
   convention every plot layout file must follow.
-  - [File format](#file-format) — GeoJSON (preferred) and shapefile
-    (also accepted), CRS, and geometry rules.
-  - [Required attributes](#required-attributes) — `fid`, `plot_id`, and
-    candidate columns under EWG discussion. *(TODO: Field EWG Discussion)*
-  - [Storage location](#storage-location) — where the layout file lives
-    in the APPN folder structure.
-  - [File naming convention](#file-naming-convention-_todo-feild-ewg-discussion)
-    *(TODO: Field EWG Discussion)* — proposed `{YYYYSiteName}_{role}_v{NN}`
-    scheme and role tags.
-- [Joining Trial Information](#joining-trial-information-_todo-feild-ewg-discussion)
-  *(TODO: Field EWG Discussion)* — how trial metadata is attached to the
-  plot geometry via `plot_id`.
+  - [File format](#file-format) — **GeoJSON ratified as the primary
+    format**; shapefile retained as legacy / companion only.
+  - [Required attributes](#required-attributes) — the ratified minimum
+    set (`fid`, `plot_id`, `row`, `range`, `is_buffer`, `block` where
+    available, `crop`) plus optional columns.
+  - [Storage location](#storage-location) — confirmed as
+    `Documentation/Plot_Layout/`.
+  - [File naming convention](#file-naming-convention) — sensor tag in
+    the file name (e.g. `VNIR_RGB`); revision being finalised by Arden.
+- [Joining Trial Information](#joining-trial-information) — how trial
+  metadata is attached to the plot geometry via `plot_id`. Spreadsheet
+  spec still pending EWG.
 - [Methods](#methods) — supported procedures for generating an
   APPN-compliant plot layout file.
   - [Method 1: FIELDimageR (QGIS)](#method-1-fieldimager-qgis)
-  - [Method 2: *(DPIRD METHOD — TODO)*](#method-2-dpird-method--todo)
-  - [Method 3: *(GRYFN plot tool — TODO)*](#method-3-gryfn-plot-tool--todo)
+  - [Method 2: DPIRD Field Mapping Tool](#method-2-dpird-field-mapping-tool)
+  - [Method 3: GPT plot creation tool](#method-3-gpt-plot-creation-tool)
+    — to be written by Mickey.
 
 ---
 
@@ -154,33 +161,51 @@ plot extent, regardless of which method is used to generate the shapefile.
 ### Recommended Buffer
 
 > [!IMPORTANT]
-> The buffer values, worked examples, and guidance in this section are
-> **placeholders** derived from a quick literature scan. They are included
-> to demonstrate the intended formatting and layout of this section and
-> **must not be treated as the APPN standard** until reviewed and approved
-> by the APPN Field EWG. The agreed-upon values will replace the numbers
-> shown here.
+> The Field EWG endorsed the **table-based buffer approach** (Lleyton).
+> The values in the table are **minimum buffers** — trials should
+> apply at least these buffers, and may apply more if site / canopy
+> conditions warrant. Arden is updating the table with realistic plot
+> sizes (6 × 2, 10 × 3, 6 × 1.5 — DPIRD, 4 × 1.5 — UOA OzBarley) to
+> replace the original placeholders.
+>
+> **Still open:** whether the rule should be expressed as a
+> **percentage of plot dimension** or as a **"ditch a row"** rule
+> (likely species-specific). The agreed objective is simply to
+> eliminate edge effects — see the
+> [Outstanding TODOs](#document-status--work-in-progress) at the top.
 
-To keep results comparable across nodes, APPN trials should apply a
-consistent inward buffer to every plot polygon. The default rule is:
+To keep results comparable across nodes, APPN trials should apply at
+least the inward buffer specified in the table below to every plot
+polygon. The current working rule is:
 
 > [!NOTE]
-> **APPN default buffer:** 0.3 m from each plot end and 0.2 m from each 
-> plot side (across the drill direction), **or** 15% of the corresponding 
-> plot dimension — whichever is larger.
+> **APPN minimum buffer (working rule):** 0.3 m from each plot end and
+> 0.2 m from each plot side (across the drill direction), **or** 15 %
+> of the corresponding plot dimension — whichever is larger. Final
+> rule (% vs ditch-a-row) is still under EWG discussion.
 
 The buffer used must be recorded in the tool-specific configuration saved
 alongside the shapefile (e.g. the FIELDimageR JSON) so the layout can be
 reproduced.
 
-#### Worked examples
+#### Worked examples (real-world APPN plot sizes)
 
-| Plot size (L × W)              | Buffer (end / side) | Analysis area (L × W)   | % of plot |
-| ------------------------------ | ------------------- | ----------------------- | --------- |
-| 6 m × 2 m (cereal yield plot)  | 0.5 m / 0.25 m      | 5.0 m × 1.5 m           | ~63%      |
-| 4 m × 1.5 m (small breeding)   | 0.3 m / 0.2 m       | 3.4 m × 1.1 m           | ~62%      |
-| 2 m × 1 m (micro-plot)         | 0.2 m / 0.15 m      | 1.6 m × 0.7 m           | ~56%      |
-| 10 m × 3 m (agronomy strip)    | 1.0 m / 0.5 m       | 8.0 m × 2.0 m           | ~53%      |
+| Plot size (L × W)                       | Min. buffer (end / side) | Analysis area (L × W) | % of plot |
+| --------------------------------------- | ------------------------ | --------------------- | --------- |
+| 6 m × 2 m   (common cereal yield plot)  | 0.5 m / 0.25 m           | 5.0 m × 1.5 m         | ~63 %     |
+| 6 m × 1.5 m (DPIRD standard)            | 0.5 m / 0.2 m            | 5.0 m × 1.1 m         | ~61 %     |
+| 4 m × 1.5 m (UOA OzBarley)              | 0.3 m / 0.2 m            | 3.4 m × 1.1 m         | ~62 %     |
+| 10 m × 3 m (common agronomy strip)      | 1.0 m / 0.5 m            | 8.0 m × 2.0 m         | ~53 %     |
+
+> [!NOTE]
+> Plot widths can vary substantially between trials (Ingrid — UOA),
+> so the table is **illustrative**, not exhaustive. Apply the working
+> rule above to any plot size not listed.
+
+> [!NOTE]
+> **Sorghum and other widely-spaced crops** can require a different
+> buffer logic — flagged for the species-specific decision still
+> pending with the EWG.
 
 #### When to increase the buffer
 
@@ -209,16 +234,22 @@ downstream pipelines can ingest them without trial-specific configuration.
 
 ### File format
 
+> [!IMPORTANT]
+> **Field EWG decision:** **GeoJSON is the ratified primary format**
+> for all new APPN plot layout files (Arden, Bipul agreed). Shapefile
+> is retained only as a legacy / companion format.
+
 - **Primary format:** **GeoJSON** (`.geojson`) — a single, plain-text,
   self-contained file. See
   [File Format — GeoJSON vs Shapefile](../../QA/QAprocess/AerialDataQC.md#file-format--geojson-vs-shapefile)
   in the Aerial Data QC protocol for the full rationale (single-file
   packaging, version-control friendliness, no field-name length or file
   size caps, open web-native standard).
-- **Also accepted:** ESRI Shapefile (`.shp` plus its sidecar files
-  `.shx`, `.dbf`, `.prj`, `.cpg`). All sidecar files must be kept
-  together with the `.shp`. Shapefiles already in use do **not** need to
-  be re-created; new files should be saved as `.geojson`.
+- **Legacy / companion format:** ESRI Shapefile (`.shp` plus its
+  sidecar files `.shx`, `.dbf`, `.prj`, `.cpg`). All sidecar files
+  must be kept together with the `.shp`. Existing shapefiles do **not**
+  need to be re-created, but **all new APPN files must be saved as
+  `.geojson`**.
 - **CRS:** the CRS of the source orthomosaic (typically the correct zone
   of GDA2020). For GeoJSON, keep the file in the projected CRS of the
   orthomosaic rather than reprojecting to WGS84 (see the linked rationale
@@ -226,69 +257,67 @@ downstream pipelines can ingest them without trial-specific configuration.
 - **Geometry:** one polygon per plot. Polygons should be rectangular and
   aligned to the trial layout, sized to the plot dimensions minus the
   inward buffer applied to mitigate edge effects.
-- **Optional companion copy:** a second copy of the same layer in the
-  other supported format may be saved alongside the primary file using
-  the **same base file name** (e.g. `MyTrial_plots.geojson` →
-  `MyTrial_plots.shp`). This is useful for tools that only consume one
-  format, but is not required.
-
+- **Optional companion copy:** a second copy of the same layer in
+  shapefile form may be saved alongside the primary GeoJSON using the
+  **same base file name** (e.g. `MyTrial_plots.geojson` →
+  `MyTrial_plots.shp`). This is useful for tools that only consume
+  shapefiles, but is not required.
 ### Required attributes
 
 > [!IMPORTANT]
-> The exact set of **mandatory** attribute columns is still **to be agreed
-> by the APPN Field EWG**. The lists below are placeholders showing the
-> intended structure and the kinds of columns under consideration; they
-> must not be treated as the final standard until ratified.
+> **Field EWG decision:** the **mandatory attribute set is now
+> ratified** — see the table below. `species` has been **removed**.
+> Treatment of optional columns (placeholder columns vs omit when
+> empty) is still under discussion.
 
-Each plot polygon should carry, at minimum:
+Every APPN plot polygon **must** carry the following attributes:
 
-- `fid` — unique polygon identifier assigned by the delineation tool
-  (e.g. FIELDimageR's sequential `fid`). It identifies the *geometry*
-  only and may not match the trial's plot numbering.
-- `plot_id` — plot number from the trial design / sowing plan. This is
-  the **join key** used to attach trial metadata to the geometry (see
-  [Joining Trial Information](#joining-trial-information)).
+| Column          | Required?                       | Description |
+| --------------- | ------------------------------- | ----------- |
+| `fid`           | Mandatory                       | Unique polygon identifier assigned by the delineation tool. Identifies the *geometry* only and may not match the trial's plot numbering. |
+| `plot_id`       | Mandatory                       | Plot number from the trial design / sowing plan. **Join key** for trial metadata (see [Joining Trial Information](#joining-trial-information)). |
+| `row`           | Mandatory                       | Row index in the trial design. |
+| `range`         | Mandatory                       | Range (column) index in the trial design. |
+| `is_buffer`     | Mandatory                       | Boolean (`True`/`False`) flag marking *buffer plots* (filler / border plots that absorb edge effects and carry no experimental treatment). Not to be confused with the inward analysis **buffer** applied to every plot polygon (see [Recommended Buffer](#recommended-buffer)). |
+| `block`         | Mandatory **where available**   | Replication block / replicate identifier from the trial design. Include whenever the trial design defines blocks. |
+| `crop`          | Mandatory                       | Crop type (e.g. *Wheat*). |
 
 > [!NOTE]
-> `fid` and `plot_id` must be kept as **separate columns**. `fid` is the
-> tool's internal polygon ID; `plot_id` is the agronomic plot number from
-> the trial design. Conflating the two breaks reproducibility when the
-> shapefile is regenerated and `fid` values shift.
+> `fid` and `plot_id` must be kept as **separate columns**. `fid` is
+> the tool's internal polygon ID; `plot_id` is the agronomic plot
+> number from the trial design. Conflating the two breaks
+> reproducibility when the shapefile is regenerated and `fid` values
+> shift. **`plot_id` (not `fid`) is the join key for trial metadata.**
 
-#### Candidate mandatory plot-identification columns (_TODO: Feild EWG Discussion)
+#### Optional attributes
 
-Used to locate a plot within the trial layout:
+The following columns are **optional**. The Field EWG has not yet
+decided whether they should be carried as **placeholder columns**
+(present but empty when no data is available) or **omitted entirely**
+in that case — see the [Outstanding TODOs](#document-status--work-in-progress)
+at the top.
 
-- `range` — range (column) index in the trial design.
-- `row` — row index in the trial design.
-- `block` / `replicate` — replication block identifier.
-- `is_buffer_plot` — Boolean flag (`True`/`False`) marking *buffer plots*
-  (filler / border plots sown around the trial edge to absorb edge
-  effects). These polygons are still delimited so they can be visualised
-  and excluded from analysis, but they carry no experimental treatment.
-  Not to be confused with the inward analysis **buffer** applied to
-  every plot polygon (see [Recommended Buffer](#recommended-buffer)).
+Biological / treatment:
 
-(`plot_id` is listed above as part of the minimum set, since it is the
-join key.)
-
-#### Candidate mandatory biological / treatment columns (_TODO: Feild EWG Discussion)
-
-Used to describe what is in the plot:
-
-- `crop` — crop type (e.g. *Wheat*).
-- `species` — crop species (e.g. *Triticum aestivum*).
 - `genotype` / `entry` — variety, line, or accession code.
 - `treatment` — agronomic or experimental treatment applied to the plot.
 
-#### Candidate provenance columns (_TODO: Feild EWG Discussion)
+> [!NOTE]
+> `species` has been **removed** from the APPN attribute set
+> (Field EWG decision). Use `crop` instead.
 
-Used to trace how the polygon was produced:
+Provenance (used to trace how the polygon was produced):
 
-- `method` — delineation method (e.g. `FIELDimageR`).
+- `method` — delineation method (e.g. `FIELDimageR`, `DPIRD`, `GPT`).
 - `buffer_end_m`, `buffer_side_m` — buffer values applied (in metres).
-- `source_ortho` — filename or ID of the orthomosaic the polygon was fit to.
-- `created` — ISO date the shapefile was generated.
+- `source_ortho` — filename or ID of the orthomosaic the polygon was
+  fit to.
+- `created` — ISO date the file was generated.
+
+> [!NOTE]
+> Both Method 1 (FIELDimageR) and Method 2 (DPIRD Field Mapping Tool)
+> have their own metadata-capture conventions. The EWG noted that
+> harmonising these into a single standard is still outstanding.
 
 > [!NOTE]
 > The columns required to **join trial information** from the trial
@@ -297,8 +326,11 @@ Used to trace how the polygon was produced:
 > [Joining Trial Information](#joining-trial-information) can be
 > performed reliably. `fid` should not be used as the join key — it is
 > tool-assigned and may change when the shapefile is regenerated. 
-
 ### Storage location
+
+> [!IMPORTANT]
+> **Field EWG decision:** the current `Documentation/Plot_Layout/`
+> location is confirmed — no changes required.
 
 Save the plot layout file (GeoJSON, or shapefile with all its sidecar
 files) in the site-level `Documentation/Plot_Layout/` directory under the
@@ -324,45 +356,57 @@ Also save the tool-specific configuration used to generate the layout
 file (e.g. the FIELDimageR JSON settings) alongside it so the layout can
 be reproduced.
 
-### File naming convention (_TODO: Feild EWG Discussion)
+### File naming convention
 
 > [!IMPORTANT]
-> The file naming convention below is a **placeholder** and is **subject
-> to APPN Field EWG discussion and approval**. It is provided to show the
-> intended structure (site identifier + role suffix + revision) and the
-> kinds of role suffixes that may be needed; the final scheme will
-> replace what is shown here. 
-
-> [!IMPORTANT]
-> THESE NAMES SUCK. 
-> TO DO: GET TAM, CONNOR AND RICHARD TO HELP REDSIGN THIS COMPLETLY
-
+> **Field EWG meeting outcome:** the convention below is being
+> revised by Arden following the meeting and is **not yet ratified**.
+> Key decisions captured at the meeting:
+>
+> - The **sensor identifier belongs in the file name** (Ingrid). Use
+>   `VNIR_RGB` as the sensor tag for **both CALViS and GOBI** products.
+>   Other expected tags: `RGB` (HiRes), `LiDAR`, etc.
+> - Sensor-specific shapefile variants are only justified when the
+>   different sensors **actually produce different geometries**
+>   (UOA reports RGB vs LiDAR vs VNIR can all differ).
+> - **Hard rule:** if shapefile differences **within a single sensor**
+>   exceed ~**5 cm**, do **not** create extra files to work around
+>   them — escalate and address the root cause.
+> - The convention must clearly handle **special cases** — e.g.
+>   all-of-plot biomass collection at UOA — with role tags or
+>   exclusion layers.
+>
+> Arden to report back with the revised convention.
 
 A site's `Plot_Layout/` directory may contain more than one plot
-shapefile — for example, the main analysis layout plus one or more
-exclusion layers covering areas affected by destructive field
-interventions (biomass cuts, manual sampling quadrats, damaged plots,
-etc.). A consistent naming convention keeps these distinguishable.
+shapefile — for example, the main analysis layout, sensor-specific
+variants where geometries genuinely differ, and exclusion layers
+covering areas affected by destructive field interventions (biomass
+cuts, manual sampling quadrats, damaged plots, etc.). A consistent
+naming convention keeps these distinguishable.
 
-Proposed format:
+Working format (subject to revision per the EWG decisions above):
 
 ```
-{YYYYSiteName}_{role}[_v{NN}].{ext}
+{YYYYSiteName}_{role}[_{sensor}][_v{NN}].{ext}
 ```
 
 | Field | Notes |
 | --- | --- |
 | `{YYYYSiteName}` | Site identifier (year + site name), matching the parent folder name with the `_F` suffix dropped. Plot layouts only apply to field sites. |
 | `{role}` | Short role tag describing what the layer represents (see below). |
+| `{sensor}` | **Optional sensor tag**, included when sensor-specific geometries are needed (e.g. `VNIR_RGB`, `RGB`, `LiDAR`). Use `VNIR_RGB` for both CALViS and GOBI. Only add a sensor-specific file when the geometry genuinely differs — see the 5 cm rule above. |
 | `_v{NN}` | Optional zero-padded revision (`_v01`, `_v02`, …). Bump on any change to geometry or attributes. |
-| `{ext}` | `geojson` (preferred). `shp` (with sidecars) is also accepted; an optional companion copy in the other format may be saved alongside. |
+| `{ext}` | `geojson` (mandated primary). `shp` (with sidecars) is also accepted as a legacy / companion file. |
 
-Proposed role tags:
+Working role tags:
 
 - `plots` — the primary analysis layout (one polygon per plot, buffer
   applied per the [APPN Plot Shapefile Standard](#appn-plot-shapefile-standard)).
 - `plots_raw` — unbuffered or pre-buffer plot footprints, if retained.
 - `exclude_biomass` — areas removed for biomass cuts.
+- `exclude_biomass_full` — plots **entirely** removed for biomass
+  collection (e.g. UOA all-of-plot biomass workflow).
 - `exclude_sampling` — areas removed for other destructive sampling
   (manual quadrats, soil cores, etc.).
 - `exclude_damage` — plots or sub-areas excluded due to damage,
@@ -374,10 +418,13 @@ Examples (within
 `USYD_Narrabri/2025_SIFOzBarley/2025IAWatson_F/Documentation/Plot_Layout/`):
 
 ```
-2025IAWatson_plots_v01.geojson       (preferred primary file)
-2025IAWatson_plots_v01.shp           (+ .shx .dbf .prj .cpg — optional companion)
-2025IAWatson_plots_v01.json          (FIELDimageR settings)
+2025IAWatson_plots_v01.geojson                 (primary file — GeoJSON)
+2025IAWatson_plots_VNIR_RGB_v01.geojson        (CALViS / GOBI variant, only if geometry differs)
+2025IAWatson_plots_LiDAR_v01.geojson           (LiDAR variant, only if geometry differs)
+2025IAWatson_plots_v01.shp                     (+ .shx .dbf .prj .cpg — optional companion)
+2025IAWatson_plots_v01.json                    (FIELDimageR settings)
 2025IAWatson_exclude_biomass_v01.geojson
+2025IAWatson_exclude_biomass_full_v01.geojson  (all-of-plot biomass collection)
 ```
 
 > [!NOTE]
@@ -387,29 +434,32 @@ Examples (within
 
 ---
 
-## Joining Trial Information (_TODO: Feild EWG Discussion)
+## Joining Trial Information
 
 > [!IMPORTANT]
-> **TODO / TBD — pending APPN Field EWG approval.**
-> The trial information spreadsheet specification (mandatory columns,
-> file format, naming convention, and storage location) and the
-> end-to-end procedure for joining it onto the plot shapefile are still
-> to be defined. The placeholder workflow below illustrates the intended
-> approach using `plot_id` as the join key, but is **not** the ratified
-> APPN standard.
+> **Field EWG status:** the trial-information spreadsheet specification
+> (mandatory columns, file format, naming convention, storage location)
+> and the end-to-end procedure for joining it onto the plot shapefile
+> are still **to be defined**. The placeholder workflow below uses
+> `plot_id` as the join key (which is ratified) but the spreadsheet
+> spec itself is **not yet the APPN standard**.
 >
-> Open questions for the EWG include:
+> Encourage researchers and clients to **provide better plot
+> information up front** (trial design + plot dimensions) so the
+> spreadsheet can be assembled reliably.
 >
-> - Required vs. optional columns in the trial spreadsheet (e.g. `plot_id`,
->   `range`, `row`, `block`/`replicate`, `crop`, `species`, `genotype`,
->   `treatment`).
+> Open EWG questions:
+>
+> - Required vs. optional columns in the trial spreadsheet (e.g.
+>   `plot_id`, `row`, `range`, `block` / `replicate`, `crop`,
+>   `genotype`, `treatment`).
 > - Preferred file format (`.csv` vs `.xlsx`) and naming convention.
 > - Where the trial spreadsheet lives in the APPN folder structure
 >   (likely under `Documentation/`).
-> - Whether the join should be performed once at trial setup, or
->   re-applied each time the shapefile is regenerated.
-> - Whether the joined output should overwrite the source shapefile or
->   be saved as a separate `*_joined.shp`.
+> - Whether the join is performed once at trial setup, or re-applied
+>   each time the shapefile is regenerated.
+> - Whether the joined output overwrites the source file or is saved
+>   as a separate `*_joined` file.
 
 Most delineation tools produce a shapefile whose plots are identified
 by a tool-assigned `fid` plus the design's `plot_id`. Trial metadata is
@@ -435,7 +485,12 @@ the resulting shapefile must satisfy the
 [APPN Plot Shapefile Standard](#appn-plot-shapefile-standard) above.
 
 - [Method 1: FIELDimageR (QGIS)](#method-1-fieldimager-qgis)
-- *(Additional methods to be added.)* (_TODO: Feild EWG Discussion)
+  — follow-up meeting with **Bipul and Mickey** is still TBC; outcomes
+  to be folded back into this section.
+- [Method 2: DPIRD Field Mapping Tool](#method-2-dpird-field-mapping-tool)
+- [Method 3: GPT plot creation tool](#method-3-gpt-plot-creation-tool)
+  — **to be written by Mickey** (replaces the previous "GRYFN plot
+  tool" placeholder).
 
 ---
 
@@ -739,9 +794,9 @@ To produce an APPN-compliant plot shapefile:
 3. **Convert** to GeoJSON using the Convert File tab if the primary
    deliverable should be `.geojson`.
 4. Attach trial metadata as described in
-   [Joining Trial Information](#joining-trial-information-_todo-feild-ewg-discussion),
-   then save the final file to the trial's `Plot_Layout` directory per
-   the [APPN Plot Shapefile Standard](#appn-plot-shapefile-standard).
+[Joining Trial Information](#joining-trial-information), then save the
+final file to the trial's `Plot_Layout` directory per the
+[APPN Plot Shapefile Standard](#appn-plot-shapefile-standard).
 
 ### Further Documentation
 
@@ -749,11 +804,13 @@ Detailed installation instruction and documentation: [DPIRD Field Mapping Tool D
 
 ---
 
-## Method 3: *(GRYFN plot tool — TODO)*
+## Method 3: GPT plot creation tool
 
 > [!IMPORTANT]
-> **TODO:** Document the GRYFN plot tool workflow for generating
-> APPN-compliant plot layout files.
+> **TODO — Mickey to write.** This section will document the
+> GRYFN Processing Tool (GPT) plot-creation workflow as the third
+> supported APPN method. Replaces the previous placeholder
+> *"GRYFN plot tool — TODO"*.
 
 > [!NOTE]
 > Additional plot delineation methods will be documented here as they
