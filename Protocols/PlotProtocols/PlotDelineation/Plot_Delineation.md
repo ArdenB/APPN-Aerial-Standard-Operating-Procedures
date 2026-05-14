@@ -47,8 +47,8 @@ analysis across APPN trials.
 >   6 × 1.5 — DPIRD, 4 × 1.5 — UOA OzBarley) and note that plot
 >   widths can vary substantially (Ingrid).
 > - **Minimum required attribute set agreed:** `fid`, `plot_id`,
->   `row`, `range`, `is_buffer`, `block` (where available), `crop`.
-> - **`species` removed** from the required attribute set.
+>   `row`, `range`, `crop`. `is_buffer` and `block` are **optional**
+>   (carried when the trial design defines them).
 > - **Sensor identifier belongs in the file name** (Ingrid) —
 >   different sensors can produce different geometries (UOA: RGB vs
 >   LiDAR vs VNIR all differ). Use `VNIR_RGB` as the sensor tag for
@@ -122,8 +122,8 @@ reflected inline; outstanding follow-ups are flagged in the
   - [File format](#file-format) — **GeoJSON ratified as the primary
     format**; shapefile retained as legacy / companion only.
   - [Required attributes](#required-attributes) — the ratified minimum
-    set (`fid`, `plot_id`, `row`, `range`, `is_buffer`, `block` where
-    available, `crop`) plus optional columns.
+    set (`fid`, `plot_id`, `row`, `range`, `crop`) plus optional
+    columns (`is_buffer`, `block`, etc.).
   - [Storage location](#storage-location) — confirmed as
     `Documentation/Plot_Layout/`.
   - [File naming convention](#file-naming-convention) — sensor tag in
@@ -262,6 +262,7 @@ downstream pipelines can ingest them without trial-specific configuration.
   **same base file name** (e.g. `MyTrial_plots.geojson` →
   `MyTrial_plots.shp`). This is useful for tools that only consume
   shapefiles, but is not required.
+
 ### Required attributes
 
 > [!IMPORTANT]
@@ -278,8 +279,6 @@ Every APPN plot polygon **must** carry the following attributes:
 | `plot_id`       | Mandatory                       | Plot number from the trial design / sowing plan. **Join key** for trial metadata (see [Joining Trial Information](#joining-trial-information)). |
 | `row`           | Mandatory                       | Row index in the trial design. |
 | `range`         | Mandatory                       | Range (column) index in the trial design. |
-| `is_buffer`     | Mandatory                       | Boolean (`True`/`False`) flag marking *buffer plots* (filler / border plots that absorb edge effects and carry no experimental treatment). Not to be confused with the inward analysis **buffer** applied to every plot polygon (see [Recommended Buffer](#recommended-buffer)). |
-| `block`         | Mandatory **where available**   | Replication block / replicate identifier from the trial design. Include whenever the trial design defines blocks. |
 | `crop`          | Mandatory                       | Crop type (e.g. *Wheat*). |
 
 > [!NOTE]
@@ -291,20 +290,26 @@ Every APPN plot polygon **must** carry the following attributes:
 
 #### Optional attributes
 
-The following columns are **optional**. The Field EWG has not yet
-decided whether they should be carried as **placeholder columns**
-(present but empty when no data is available) or **omitted entirely**
-in that case — see the [Outstanding TODOs](#document-status--work-in-progress)
-at the top.
+The following columns are **optional**. If the data is no availble
+they should be **omitted entirely**. 
+
+Trial design:
+
+- `is_buffer` — Boolean (`True`/`False`) flag marking *buffer plots*
+  (filler / border plots that absorb edge effects and carry no
+  experimental treatment). Not to be confused with the inward analysis
+  **buffer** applied to every plot polygon (see
+  [Recommended Buffer](#recommended-buffer)).
+- `block` — replication block / replicate identifier from the trial
+  design. Include whenever the trial design defines blocks.
 
 Biological / treatment:
 
-- `genotype` / `entry` — variety, line, or accession code.
+- `genotype` / `entry` — variety, line, or accession code. If this
+  information is proprietary, an anonymised code may be used instead.
 - `treatment` — agronomic or experimental treatment applied to the plot.
 
-> [!NOTE]
-> `species` has been **removed** from the APPN attribute set
-> (Field EWG decision). Use `crop` instead.
+
 
 Provenance (used to trace how the polygon was produced):
 
@@ -316,8 +321,9 @@ Provenance (used to trace how the polygon was produced):
 
 > [!NOTE]
 > Both Method 1 (FIELDimageR) and Method 2 (DPIRD Field Mapping Tool)
-> have their own metadata-capture conventions. The EWG noted that
-> harmonising these into a single standard is still outstanding.
+> have their own metadata-capture conventions. Harmonising these into 
+> a single standard is still outstanding. Metadata should be saved
+> alongside the current file.
 
 > [!NOTE]
 > The columns required to **join trial information** from the trial
@@ -326,11 +332,8 @@ Provenance (used to trace how the polygon was produced):
 > [Joining Trial Information](#joining-trial-information) can be
 > performed reliably. `fid` should not be used as the join key — it is
 > tool-assigned and may change when the shapefile is regenerated. 
-### Storage location
 
-> [!IMPORTANT]
-> **Field EWG decision:** the current `Documentation/Plot_Layout/`
-> location is confirmed — no changes required.
+### Storage location
 
 Save the plot layout file (GeoJSON, or shapefile with all its sidecar
 files) in the site-level `Documentation/Plot_Layout/` directory under the
