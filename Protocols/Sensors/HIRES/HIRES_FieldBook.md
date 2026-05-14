@@ -33,7 +33,8 @@ across APPN field nodes.
 4. [APPN Hi-Res Mission Standard Types](#appn-hi-res-mission-standard-types) —
    Table 1 standard mission bundles.
 5. [Camera Capture Settings](#camera-capture-settings) — aperture, shutter,
-   ISO, focus, and white balance.
+   ISO, focus, and white balance, including
+   [setting exposure with the live histogram](#setting-exposure-with-the-live-histogram).
 6. [Onsite Preflight Operations](#onsite-preflight-operations) — weather
    and airspace checks, GCP layout, payload mount, and aircraft setup.
 7. [Flight Operations](#flight-operations) — takeoff, autonomous mission,
@@ -222,12 +223,17 @@ specific speed you select.
 > **[NC6]** I am proposing this becomes the master reference for flight
 > settings.
 
-| Standard Mission Type | Scenario                                                                                       | Altitude   | Speed     | Shutter   | Aperture | Overlap |
-| :-------------------- | :--------------------------------------------------------------------------------------------- | :--------- | :-------- | :-------- | :------- | :------ |
-| **Type 1**            | Plant counting / small structures (flowers, heads, early lesions, emergence counting)          | 12–20 m    | 2–3 m/s   | ≥ 1/4700  | f/8      | 80/80   |
-| **Type 2**            | Plot phenotyping (canopy traits, vigour)                                                       | 30–50 m    | 4–5 m/s   | ≥ 1/4700  | f/8      | 80/80   |
-| **Type 3**            | Canopy coverage / plot averages                                                                | 50–70 m    | 5–7 m/s   | ≥ 1/4700  | f/8      | 80/80   |
-| **Type 4**            | Large-area flat terrain ortho (efficiency mode)                                                | 80–120 m   | 8–10 m/s  | ≥ 1/5200  | f/8      | 80/80   |
+| Standard Mission Type | Scenario                                                                                       | Altitude   | Speed       | Shutter   | Aperture | Overlap |
+| :-------------------- | :--------------------------------------------------------------------------------------------- | :--------- | :---------- | :-------- | :------- | :------ |
+| **Type 1**            | Plant counting / small structures (flowers, heads, early lesions, emergence counting)          | 12–20 m    | 0.9–1.6 m/s | ≥ 1/4000  | f/8      | 80/80   |
+| **Type 2**            | Plot phenotyping (canopy traits, vigour)                                                       | 30–50 m    | 2.4–4.1 m/s | ≥ 1/4000  | f/8      | 80/80   |
+| **Type 3**            | Canopy coverage / plot averages                                                                | 50–70 m    | 4.1–5.7 m/s | ≥ 1/4000  | f/8      | 80/80   |
+| **Type 4**            | Large-area flat terrain ortho (efficiency mode)                                                | 80–120 m   | 6.5–9.8 m/s | ≥ 1/4000  | f/8      | 80/80   |
+
+> [!NOTE]
+> Faster ground speeds may be used at specific altitudes provided the
+> shutter speed remains within the limits of
+> [Table 4 — Shutter Speed Lookup](#shutter-speed-lookup).
 
 > [!NOTE]
 > **[NC7]** My sense for Type 1 is to standardise to 12 m only — not a
@@ -241,11 +247,16 @@ Press the camera image icon in DJI Pilot 2 and configure the camera
 appropriate to your APPN Hi-Res Mission Standard Type. For full per-parameter
 guidance, see [Sensor Configuration Reference (Table 2)](#sensor-configuration-reference).
 
-1. **Aperture** — set to a fixed value of **f/8**.
-2. **Shutter speed** — set per [Table 1](#appn-hi-res-mission-standard-types)
-   and validate against [Table 4](#shutter-speed-lookup). As a general rule,
-   never use a shutter speed slower than **1/2000 s** (this will result in
-   motion blur).
+1. **Aperture** — set to a fixed value of **f/8** across all operating
+   scenarios. The fixed aperture provides a moderate depth of field while
+   keeping shutter speed fast enough to prevent motion blur in constant
+   light conditions.
+2. **Shutter speed** — set a **minimum shutter speed of 1/4000 s** across
+   all operating scenarios per
+   [Table 1](#appn-hi-res-mission-standard-types), and validate against
+   [Table 4](#shutter-speed-lookup). DJI Pilot 2 mission planning will
+   always set a conservative shutter speed that does not allow image
+   motion blur.
 3. **Focus** — set to **infinity**.
 
    > [!NOTE]
@@ -265,9 +276,17 @@ guidance, see [Sensor Configuration Reference (Table 2)](#sensor-configuration-r
    > height rather than the ground. With tall crops, depth of field can
    > be enough to render your target slightly out of focus.
 
-4. **ISO range** — Min: **200** / Max: **3200**. ISO is the only exposure
-   value that should adjust automatically during the mission, depending on
-   light conditions.
+4. **ISO range** — Min: **200** / Max: **3200**. **ISO is the only
+   variable parameter** used to achieve the correct exposure and a
+   balanced histogram. The minimum ISO available on the camera is
+   **ISO 200**, and the maximum recommended ISO is **ISO 3200** to avoid
+   introducing excessive image noise. As a general reference, under
+   clear-sky conditions around solar noon the expected ISO value may be
+   around **ISO 1250**, although this will vary with actual lighting
+   conditions, cloud cover, crop reflectance, altitude, and mission
+   timing. See
+   [Setting exposure with the live histogram](#setting-exposure-with-the-live-histogram)
+   below for the on-site procedure.
 5. Display the **live histogram** and confirm there is no sustained clipping
    in the highlights or shadows. Do **not** use any **EV compensation
    (+/-)** — allow ISO to adjust automatically within the configured range.
@@ -285,6 +304,44 @@ guidance, see [Sensor Configuration Reference (Table 2)](#sensor-configuration-r
 > [!NOTE]
 > For more information on flight settings and what they do, refer to
 > [Sensor Configuration Reference (Table 2)](#sensor-configuration-reference).
+
+### Setting exposure with the live histogram
+
+In constant light conditions, the most consistent image capture comes from
+setting a fast shutter speed (to prevent motion blur) and a fixed aperture
+(f/8) that gives a moderate depth of field, and using **ISO as the only
+variable** to balance exposure.
+
+To check and set the correct exposure before starting the mission:
+
+1. Set a minimum shutter speed of **1/4000 s** and an aperture of **f/8**
+   in the DJI Pilot 2 camera settings.
+2. Fly the aircraft to the area of interest at the proposed mission
+   altitude.
+3. Point the camera at nadir (straight down) over the target crop or
+   survey area.
+4. Review the live histogram (bottom-left of the controller screen).
+5. Adjust the ISO using the exposure control **(+ / -)** buttons on the
+   right-hand side of the controller screen.
+6. Continue adjusting until the histogram shows a suitable exposure
+   without clipping at either end.
+
+![Example correctly exposed live histogram on the DJI Pilot 2 controller](HIRES_FieldBook_media/image_histogram_example.jpeg)
+
+A correctly exposed histogram may appear as a single smooth peak, or as
+a series of peaks and valleys. Both are normal, depending on the scene.
+The key point is to monitor the left and right edges of the histogram
+and avoid clipping — particularly on the right side, where overexposed
+highlights result in lost image detail.
+
+![Example histogram from a real operational scenario, captured under clear-sky conditions around solar noon](HIRES_FieldBook_media/image_histogram_real_settings.png)
+
+![+ and – buttons on the controller used to adjust ISO to achieve the correct histogram exposure](HIRES_FieldBook_media/image_iso_exposure_buttons.png)
+
+The **+** and **–** buttons are used to adjust exposure values. In this
+protocol, those buttons are used to increase or decrease the **ISO**
+value to achieve the correct histogram exposure (shutter speed and
+aperture remain fixed).
 
 ---
 
@@ -454,11 +511,11 @@ substituting any other lens or camera body invalidates the GSD column in
 
 | Parameter                     | Recommended setting                                                                                | Operational note                                                                                                                                                                              |
 | :---------------------------- | :------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Exposure Mode**             | Manual (fixed aperture + fixed shutter + auto ISO)                                                 | Lock shutter (1/2000 or faster — see [Table 4](#shutter-speed-lookup)), set aperture to f/8, let ISO adjust. Protects motion-blur ceiling first, radiometric quality second.                  |
+| **Exposure Mode**             | Manual (fixed aperture + fixed shutter + auto ISO)                                                 | Lock shutter (1/4000 or faster — see [Table 4](#shutter-speed-lookup)), set aperture to f/8, let ISO adjust. Protects motion-blur ceiling first, radiometric quality second.                  |
 | **EV Compensation**           | 0 baseline — adjust to +1 in low-light / emergence conditions                                      | +1 EV pushes the histogram right for more tonal information. Verify with live histogram.                                                                                                      |
 | **ISO**                       | Base 200 (sensor native) — max 3200                                                                | iXM-GS120 native ISO range is 200–6400 (RGB). Noise becomes visibly detectable above ISO 3200.                                                                                                |
 | **Aperture**                  | f/8 min (sweet spot) — f/11 max                                                                    | Sharpness peaks ~f/8 across the frame; edge softness appears wide of f/5.6 and diffraction softens past f/11.                                                                                 |
-| **Shutter Speed**             | Set per [Table 4](#shutter-speed-lookup) — from 1/2000 to 1/16,000                                 | Motion blur rule: shutter × speed ≤ GSD × 0.5 (half-pixel tolerance).                                                                                                                         |
+| **Shutter Speed**             | Set per [Table 4](#shutter-speed-lookup) — minimum 1/4000, up to 1/16,000                          | Motion blur rule: shutter × speed ≤ GSD × 0.5 (half-pixel tolerance).                                                                                                                         |
 | **Focus Mode**                | Manual focus locked to infinity (> 3 m) **or** AF (single acquisition at mission start)            | A calibrated fixed-focus 80 mm (infinity-only) achieves ±2 px RMSE vs. higher residuals on an uncalibrated AF. For research-critical work, consider requesting the fixed 80 mm.               |
 | **Focus Bracketing**          | OFF                                                                                                | Bracketing multiplies frame count and breaks consistent GSD assumptions for ortho processing.                                                                                                 |
 | **White Balance**             | Fixed to Daylight (5500 K)                                                                         | Fixed WB ensures radiometric consistency for post-processing.                                                                                                                                 |
