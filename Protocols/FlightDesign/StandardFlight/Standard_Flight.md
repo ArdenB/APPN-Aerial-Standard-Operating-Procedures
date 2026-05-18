@@ -42,15 +42,16 @@
 > - [ ] **Photo** — Validation panel table with the elevated GCP and
 >       the paired ground GCP in the adjacent flight line
 >       (see [Validation Panel Setup](#validation-panel-setup)).
-> - [ ] **Diagram** — Dual ELM panel flight: panel placement at 1/3
+>       Finish when new panels arrive.  
+> - [x] **Diagram** — Dual ELM panel flight: panel placement at 1/3
 >       and 2/3, flight-line orientation, edge-of-polygon buffer, and
 >       5-GCP layout
 >       (see [Dual ELM panel flight](#dual-elm-panel-flight)).
-> - [ ] **Diagram** — Single ELM panel flight: panel placement near
+> - [x] **Diagram** — Single ELM panel flight: panel placement near
 >       centre, validation panel position, flight-line orientation,
 >       edge buffer, and 5-GCP layout
 >       (see [Single ELM panel flight](#single-elm-panel-flight)).
-> - [ ] **Diagram** — Multi-Flight Capture: sub-flight polygons with
+> - [x] **Diagram** — Multi-Flight Capture: sub-flight polygons with
 >       overlap zone, shared ELM panel set + 2 tie GCPs in the overlap,
 >       dual-panel layout per sub-flight, validation panel placement,
 >       and expanded GCP distribution
@@ -60,7 +61,7 @@
 >       GCPs visible) for use as a reference ideal.
 >
 > **Cross-links to add**
-> - [ ] Recommended folding table (e.g. Bunnings product link) in
+> - [x] Recommended folding table (e.g. Bunnings product link) in
 >       [Panel Setup](#panel-setup).
 > - [ ] Processing pipeline page covering dual-panel ingestion in GPT,
 >       referenced from the
@@ -184,8 +185,14 @@ intended flight direction, elevated above the soil surface, and positioned
 clear of vegetation, infrastructure, and the take-off / landing zone.*
 
 **Place panels on a folding table.** All radiometric panels deployed in
-the field should be placed on a folding table (e.g.
-[TODO: add link to recommended Bunnings table]). Mounting the panels on
+the field should be placed on a folding table. A standard fixed-height
+blow-mould trestle table (e.g. the
+[Lifetime 6ft Standard Blow Mould Trestle Table](https://www.bunnings.com.au/lifetime-6ft-standard-blow-mould-trestle-table_p3192212)
+from Bunnings) is suitable for most deployments; where a height-adjustable
+table is preferred (e.g. to better match canopy height or work around uneven
+ground), the
+[Versalite 180 Multi-Height Table](https://questoutdoors.com.au/collections/multi-height-table/products/versalite-180-multi-height-table)
+from Quest Outdoors is a more expensive alternative. Mounting the panels on
 a table is important because:
 
 - **Levelling.** Panels must be level for accurate reflectance
@@ -312,16 +319,14 @@ the long axis of the survey area**.
 
 ### Flight design
 
-> [!NOTE]
-> 🖼️ **Image needed (diagram):** Top-down annotated diagram of the
-> survey polygon showing:
->
-> - Panel placement at the 1/3 and 2/3 positions along the long axis.
-> - Flight-line orientation relative to the panels (direction arrows).
-> - Recommended ~10% buffer between panels and the edge of the capture
->   polygon.
-> - 5-GCP placement (one per flight line in a diagonal pattern), with
->   labels.
+![Top-down diagram of a dual ELM panel flight: survey polygon with two 4-panel reflectance sets placed at the 1/3 and 2/3 positions along the long axis, validation panel set near the centre, flight lines aligned with the long axis, ~10% edge-of-polygon buffer, and a 5-GCP layout (two centre validation GCPs, two corner GCPs, one off-axis GCP)](Standard_Flight_media/dual_elm_panel_flight_diagram.png)
+
+*Figure: Dual ELM panel flight layout. Two reflectance panel sets are
+deployed at approximately the 1/3 and 2/3 positions along the long axis
+of the survey area, with the validation panel set and its paired GCPs
+near the centre. The 5-GCP layout covers centre, corner, and off-axis
+positions, and all panels and GCPs sit inside the ~10% effective
+capture area inset from the polygon edge.*
 
 
 ### Ground Equipment Required
@@ -372,16 +377,13 @@ over once.
 
 ### Flight design
 
-> [!NOTE]
-> 🖼️ **Image needed (diagram):** Top-down annotated diagram of the
-> survey polygon showing:
->
-> - Single ELM panel set placement near centre of the survey area.
-> - Validation panel placement in the middle of the survey area.
-> - Flight-line orientation relative to the panels.
-> - Recommended ~10% buffer between panels and the edge of the capture
->   polygon.
-> - 5-GCP placement (5-GCP layout described above), with labels.
+![Top-down diagram of a single ELM panel flight: survey polygon with one 4-panel reflectance set placed near the centre, validation panel set adjacent in the middle of the survey area, flight lines aligned with the long axis, ~10% edge-of-polygon buffer, and a 5-GCP layout (two centre validation GCPs, two corner GCPs, one off-axis GCP)](Standard_Flight_media/single_elm_panel_flight_diagram.png)
+
+*Figure: Single ELM panel flight layout. One 4-panel reflectance set is
+deployed near the centre of the survey area, alongside the validation
+panel set and its paired GCPs. The 5-GCP layout covers centre, corner,
+and off-axis positions, and all panels and GCPs sit inside the ~10%
+effective capture area inset from the polygon edge.*
 
 ### Ground Equipment Required
 
@@ -449,18 +451,15 @@ geometrically consistent product.
 
 ### Flight design
 
-> [!NOTE]
-> 🖼️ **Image needed (diagram):** Top-down annotated diagram showing:
->
-> - Two (or more) sub-flight polygons with a deliberate overlap zone
->   at their shared boundary.
-> - The **shared ELM panel set and 2 × tie GCPs** located inside the
->   overlap zone (highlighted), overflown by both sub-flights.
-> - Dual ELM panel placement within each sub-flight (the shared set
->   serves as one of the two panel positions for each sub-flight).
-> - Validation panel placement within one of the sub-flights, per the
->   [Validation Panel Setup](#validation-panel-setup) above.
-> - Expanded GCP distribution across the full survey area.
+![Top-down diagram of a multi-flight capture: two sub-flight polygons with a deliberate overlap zone along their shared boundary, a shared 4-panel ELM reflectance set and two tie GCPs placed inside the overlap zone (highlighted) and overflown by both sub-flights, dual-panel placement within each sub-flight (with the shared set serving as one panel position for each), validation panel placement within one sub-flight, and expanded GCP distribution across the full survey area](Standard_Flight_media/multi_flight_capture_diagram.png)
+
+*Figure: Multi-Flight Capture layout. The survey area is split into two
+sub-flights with a deliberate overlap zone at their shared boundary. A
+shared ELM panel set and two tie GCPs sit inside the overlap (and are
+left in place between sub-flights), giving both sub-flights a common
+radiometric and geometric anchor. Each sub-flight otherwise follows the
+dual-panel layout, with the validation panel set in one sub-flight and
+an expanded GCP distribution across the full area.*
 
 ### Ground Equipment Required
 
