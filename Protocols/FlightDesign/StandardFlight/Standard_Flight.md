@@ -403,6 +403,14 @@ effective capture area inset from the polygon edge.*
 
 ## Multi-Flight Capture
 
+> [!IMPORTANT]
+> While the GRYFN Processing Tool (GPT) is capable of merging multiple
+> sub-flights during processing, this workflow has frequently produced
+> issues with the ELM calibration. The **current recommendation is to
+> process each sub-flight individually** and only merge the resulting
+> products downstream. GRYFN is aware of the issue, and this guidance
+> may be revised in a future update to GPT.
+
 ### Overview
 
 This configuration covers survey areas that are **too large to be
@@ -448,6 +456,8 @@ geometrically consistent product.
   [Dual ELM panel flight](#dual-elm-panel-flight) layout, with its own
   panels at ~1/3 and 2/3 along its long axis (one of which will be
   the shared overlap panel set).
+
+
 
 ### Flight design
 
