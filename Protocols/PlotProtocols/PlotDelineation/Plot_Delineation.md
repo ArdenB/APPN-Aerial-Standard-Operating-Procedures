@@ -73,6 +73,24 @@ reflected inline; outstanding follow-ups are flagged in the
 
 ---
 
+> [!IMPORTANT]
+> **Summary — the one mandatory plot file.**
+> Every APPN field site **must** have a single main plot file:
+>
+> - **Filename:** `{YYYYSiteName}_plots.geojson`
+> - **Location:** `{Node}/{YYYY_ProjectDesc[_I|E][_Researcher][_org]}/{YYYYSiteName[_F|C]}/Documentation/Plot_Layout/`
+> - **Example:** `USYD_Narrabri/2025_SIFOzBarley/2025IAWatson_F/Documentation/Plot_Layout/2025IAWatson_plots.geojson`
+>
+> This file is the entry point every downstream pipeline depends on.
+> It **must** carry the mandatory standard attributes described in
+> [Required attributes](#required-attributes). All other files
+> (`plots_*` variants, `sampling_*`, `gcp`) are optional. See
+> [Storage location](#storage-location) and
+> [File naming convention](#file-naming-convention) for details.
+
+---
+
+
 ## APPN Plot Delineation
 
 A standard APPN plot delineation approach ensures that comparable trials can
