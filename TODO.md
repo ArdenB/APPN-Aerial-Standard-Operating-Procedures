@@ -1,10 +1,21 @@
 # APPN Aerial SOP — Outstanding Work
 
 This document tracks outstanding work across the protocol `.md` files in this
-repository. Items are grouped per source document. Each entry links to the
-relevant line in the source file. A separate **Pending Field EWG approval**
-section at the end summarises everything that explicitly requires APPN Field
-EWG ratification before it can be treated as the APPN standard.
+repository. Items are grouped per source document. A separate
+**Pending Field EWG approval** section at the end summarises everything that
+explicitly requires APPN Field EWG ratification before it can be treated as
+the APPN standard.
+
+**Ordering — priority is by document status** (per
+[Protocols/STATUS.md](Protocols/STATUS.md)):
+
+1. **Priority — Approved documents (finish first).** These have already
+   passed Field EWG approval; outstanding items here are the last barriers
+   to **Adopted** status and must be cleared first.
+2. **Not yet approved.** Drafts, EWG-feedback, and stub documents that
+   still need to progress through the earlier status gates.
+3. **Pending Field EWG approval.** Cross-cutting list of items explicitly
+   flagged in source documents as needing EWG sign-off.
 
 Document status across the SOP is tracked in
 [Protocols/STATUS.md](Protocols/STATUS.md) (auto-generated from
@@ -16,70 +27,38 @@ top-level `README.md` and `Scripts/README.md`.
 
 ---
 
-## Plot Delineation — [Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md)
+# Priority — Approved documents (finish first)
 
-Document-wide status: **Draft**. Major decisions ratified at the APPN Field
-EWG plot-delineation meeting (GeoJSON file format, storage location,
-minimum attribute set `fid`/`plot_id`/`row`/`range`/`crop`, sensor
-identifier in filename). Follow-ups captured at
-[lines 30–105](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L30-L105).
+The documents in this section have already reached **Approved** status in
+[Protocols/STATUS.md](Protocols/STATUS.md). Clearing the outstanding items
+below is what is needed to advance them to **Adopted**, so they should be
+prioritised over the not-yet-approved work that follows.
 
-**Recommended buffer** ([line 58](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L58))
+---
 
-- [ ] Decide whether the buffer should be a **percentage** or a
-  **"ditch a row"** rule (likely species-specific).
-- [ ] Arden to write up the revised buffer guidance (real-world plot
-  examples, minimum-vs-target framing, species-specific notes), replacing
-  the placeholder examples with realistic plot sizes (6 × 2, 10 × 3,
-  6 × 1.5 — DPIRD, 4 × 1.5 — UOA OzBarley).
+## CALViS Fieldbook — [Protocols/Sensors/CALVIS/CALViS_FieldBook.md](Protocols/Sensors/CALVIS/CALViS_FieldBook.md)
 
-**Required attributes** ([line 64](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L64))
+Document-wide status: **Approved** (pending Adopted).
 
-- [ ] Decide how to handle **optional columns** — carry as empty /
-  placeholder columns, or omit entirely when no data is available.
-- [ ] Confirm which metadata-capture approach (or harmonised superset)
-  across the two delineation tools is the APPN standard.
+_No outstanding TODOs._
 
-**File naming convention** ([line 71](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L71))
+## GOBI M350 Fieldbook — [Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md](Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md)
 
-- [ ] Arden to propose a naming convention that includes the sensor
-  identifier (`VNIR_RGB`, `LiDAR`, `RGB`), clear handling of special
-  cases (e.g. all-of-plot biomass collection at UOA), and per-sensor
-  variants only when the geometries actually differ.
-- [ ] Set the hard rule: if shapefile differences **within a single
-  sensor** exceed ~**5 cm**, escalate and fix the root cause rather
-  than producing extra files.
+Document-wide status: **Approved** (pending Adopted).
 
-**Joining trial information** ([line 84](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L84))
+_No outstanding TODOs._
 
-- [ ] Define the **trial-information spreadsheet specification** —
-  mandatory columns, format (`.csv` vs `.xlsx`), naming, and storage
-  location.
-- [ ] Decide whether the join is performed **once at trial setup** or
-  **re-applied** each time the shapefile is regenerated, and whether the
-  joined output overwrites or is saved as a separate file.
-- [ ] Encourage researchers / clients to provide better plot information
-  up front (trial design + plot dimensions).
+## GOBI IF1200 Fieldbook — [Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md](Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md)
 
-**Methods** ([line 96](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L96))
+Document-wide status: **Approved** (pending Adopted).
 
-- [ ] **Mickey to write the GPT plot-creation tool** section (becomes
-  Method 3, replacing the previous "GRYFN plot tool" placeholder) —
-  see also [line 813](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L813).
-- [ ] **FIELDimageR meeting with Bipul and Mickey** — outcomes to be
-  folded back into
-  [Method 1](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L495).
-- [ ] For the **Omega** platform, capture **vegetation width** in trial
-  metadata so it can be used to set track width.
-- [ ] Improve the FIELDimageR corner-coordinate fitting workflow
-  (currently iterative)
-  ([line 590](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L590)).
+_No outstanding TODOs._
 
 ---
 
 ## Standard Flight — [Protocols/FlightDesign/StandardFlight/Standard_Flight.md](Protocols/FlightDesign/StandardFlight/Standard_Flight.md)
 
-Document-wide status: **Draft** with outstanding TODOs at
+Document-wide status: **Approved** (pending Adopted). Outstanding TODOs at
 [lines 25–95](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#L25-L95).
 
 **Content review**
@@ -135,8 +114,8 @@ Document-wide status: **Draft** with outstanding TODOs at
 
 ## Validation Flight — [Protocols/FlightDesign/ValidationFlight/Validation_Flight.md](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md)
 
-Document-wide status: **Draft — currently being restructured**
-(see CAUTION banner at
+Document-wide status: **Approved** (pending Adopted) — but currently
+being restructured (see CAUTION banner at
 [lines 30–37](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L30-L37)).
 TODO list at
 [lines 40–95](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L40-L95).
@@ -205,26 +184,111 @@ TODO list at
 
 ---
 
-## CALViS Fieldbook — [Protocols/Sensors/CALVIS/CALViS_FieldBook.md](Protocols/Sensors/CALVIS/CALViS_FieldBook.md)
+## Aerial Data QC — [Protocols/QA/QAprocess/AerialDataQC.md](Protocols/QA/QAprocess/AerialDataQC.md)
 
-- [ ] Add a link / model recommendation for the anemometer (e.g. Kestrel)
-  ([line 105](Protocols/Sensors/CALVIS/CALViS_FieldBook.md#L105)).
-- [ ] Resolve SWIR low-gain question with Headwall (more granular gain
-  settings) and update the related note.
-- [ ] Add wiki links for the GPT pipeline / `T1_proc` outputs
-  ([line 564](Protocols/Sensors/CALVIS/CALViS_FieldBook.md#L564)).
+Document-wide status: **Approved** (pending Adopted).
 
-## GOBI IF1200 Fieldbook — [Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md](Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md)
+- [ ] Document the GCP-conversion process for each supported GCP type
+  (Aeropoint, Trimble, …)
+  ([line 188](Protocols/QA/QAprocess/AerialDataQC.md#L188)).
+- [ ] Write the **Accuracy reporting** section
+  ([line 324](Protocols/QA/QAprocess/AerialDataQC.md#L324)).
+- [ ] Richard to check and update the **Create the Vector Layer** section
+  ([line 377](Protocols/QA/QAprocess/AerialDataQC.md#L377)).
+- [ ] Expand the QC procedure beyond the Cali Week 2026 lead-up so it
+  becomes the standing standard for future flights.
+- [ ] Extend QC coverage beyond hyperspectral drones.
+- [ ] Update the naming-conventions table when panels other than GRYFN
+  are sourced.
+- [ ] Complete the **Positional QC** and **LiDAR QC** sections.
 
-- [ ] Add a link / model recommendation for the anemometer (e.g. Kestrel)
-  ([line 96](Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md#L96)).
-- [ ] Add wiki links for the GPT pipeline / `T1_proc` outputs
-  ([line 439](Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md#L439)).
+---
 
-## GOBI M350 Fieldbook — [Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md](Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md)
+## Processing Pipelines — [Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md)
 
-- [ ] Add wiki links for the GPT pipeline / `T1_proc` outputs
-  ([line 432](Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md#L432)).
+Document-wide status: **Approved** (pending Adopted).
+
+- [ ] CALViS walkthrough technical review by Richard Harwood
+  ([line 36](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md#L36)).
+- [ ] Add the **GOBI standard processing walkthrough** (currently outputs
+  only; placeholder at
+  [line 265](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md#L265)).
+- [ ] Automate handling of GNSS `.TO4` files in the raw-data formatting
+  step
+  ([line 128](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md#L128)).
+
+---
+
+# Not yet approved
+
+The documents below have not yet reached **Approved** status in
+[Protocols/STATUS.md](Protocols/STATUS.md). They still need to be
+progressed through drafting, EWG feedback, and modification before they
+can join the Approved group above.
+
+---
+
+## Plot Delineation — [Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md)
+
+Document-wide status: **Drafted** — not yet in EWG feedback. Major
+decisions ratified at the APPN Field EWG plot-delineation meeting
+(GeoJSON file format, storage location, minimum attribute set
+`fid`/`plot_id`/`row`/`range`/`crop`, sensor identifier in filename).
+Follow-ups captured at
+[lines 30–105](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L30-L105).
+
+**Recommended buffer** ([line 58](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L58))
+
+- [ ] Decide whether the buffer should be a **percentage** or a
+  **"ditch a row"** rule (likely species-specific).
+- [ ] Arden to write up the revised buffer guidance (real-world plot
+  examples, minimum-vs-target framing, species-specific notes), replacing
+  the placeholder examples with realistic plot sizes (6 × 2, 10 × 3,
+  6 × 1.5 — DPIRD, 4 × 1.5 — UOA OzBarley).
+
+**Required attributes** ([line 64](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L64))
+
+- [ ] Decide how to handle **optional columns** — carry as empty /
+  placeholder columns, or omit entirely when no data is available.
+- [ ] Confirm which metadata-capture approach (or harmonised superset)
+  across the two delineation tools is the APPN standard.
+
+**File naming convention** ([line 71](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L71))
+
+- [ ] Arden to propose a naming convention that includes the sensor
+  identifier (`VNIR_RGB`, `LiDAR`, `RGB`), clear handling of special
+  cases (e.g. all-of-plot biomass collection at UOA), and per-sensor
+  variants only when the geometries actually differ.
+- [ ] Set the hard rule: if shapefile differences **within a single
+  sensor** exceed ~**5 cm**, escalate and fix the root cause rather
+  than producing extra files.
+
+**Joining trial information** ([line 84](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L84))
+
+- [ ] Define the **trial-information spreadsheet specification** —
+  mandatory columns, format (`.csv` vs `.xlsx`), naming, and storage
+  location.
+- [ ] Decide whether the join is performed **once at trial setup** or
+  **re-applied** each time the shapefile is regenerated, and whether the
+  joined output overwrites or is saved as a separate file.
+- [ ] Encourage researchers / clients to provide better plot information
+  up front (trial design + plot dimensions).
+
+**Methods** ([line 96](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L96))
+
+- [ ] **Mickey to write the GPT plot-creation tool** section (becomes
+  Method 3, replacing the previous "GRYFN plot tool" placeholder) —
+  see also [line 813](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L813).
+- [ ] **FIELDimageR meeting with Bipul and Mickey** — outcomes to be
+  folded back into
+  [Method 1](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L495).
+- [ ] For the **Omega** platform, capture **vegetation width** in trial
+  metadata so it can be used to set track width.
+- [ ] Improve the FIELDimageR corner-coordinate fitting workflow
+  (currently iterative)
+  ([line 590](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L590)).
+
+---
 
 ## HiRes Fieldbook — [Protocols/Sensors/HIRES/HIRES_FieldBook.md](Protocols/Sensors/HIRES/HIRES_FieldBook.md)
 
@@ -274,22 +338,6 @@ Document-wide status: **Stub** — content placeholder only.
 
 ---
 
-## Aerial Data QC — [Protocols/QA/QAprocess/AerialDataQC.md](Protocols/QA/QAprocess/AerialDataQC.md)
-
-- [ ] Document the GCP-conversion process for each supported GCP type
-  (Aeropoint, Trimble, …)
-  ([line 188](Protocols/QA/QAprocess/AerialDataQC.md#L188)).
-- [ ] Write the **Accuracy reporting** section
-  ([line 324](Protocols/QA/QAprocess/AerialDataQC.md#L324)).
-- [ ] Richard to check and update the **Create the Vector Layer** section
-  ([line 377](Protocols/QA/QAprocess/AerialDataQC.md#L377)).
-- [ ] Expand the QC procedure beyond the Cali Week 2026 lead-up so it
-  becomes the standing standard for future flights.
-- [ ] Extend QC coverage beyond hyperspectral drones.
-- [ ] Update the naming-conventions table when panels other than GRYFN
-  are sourced.
-- [ ] Complete the **Positional QC** and **LiDAR QC** sections.
-
 ## Spectral Panel Cleaning and Calibration — [Protocols/QA/SpectralPanel/Spectral_Panel_Cleaning_and_Calibration.md](Protocols/QA/SpectralPanel/Spectral_Panel_Cleaning_and_Calibration.md)
 
 Document-wide status: **Stub** — content placeholder only.
@@ -300,17 +348,6 @@ Document-wide status: **Stub** — content placeholder only.
   traceability records; field QA checks and rejection criteria.
 
 ---
-
-## Processing Pipelines — [Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md)
-
-- [ ] CALViS walkthrough technical review by Richard Harwood
-  ([line 36](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md#L36)).
-- [ ] Add the **GOBI standard processing walkthrough** (currently outputs
-  only; placeholder at
-  [line 265](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md#L265)).
-- [ ] Automate handling of GNSS `.TO4` files in the raw-data formatting
-  step
-  ([line 128](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md#L128)).
 
 ## HiRes Processing Pipeline — [Protocols/Pipelines/HiResPipeline/HiRes_Processing_Pipeline.md](Protocols/Pipelines/HiResPipeline/HiRes_Processing_Pipeline.md)
 

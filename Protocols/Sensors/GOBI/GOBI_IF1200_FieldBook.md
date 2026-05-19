@@ -93,7 +93,7 @@ operations.
   - [ ] Spirit bubble, spirit level (or angle measurement) and measuring tape
   - [ ] Portable fan (for cooling GOBI during data offload)
   - [ ] External power brick (for charging UAV RC)
-  - [ ] Anemometer (e.g. Kestrel — _TODO: add link_)
+  - [ ] Anemometer (e.g. [Kestrel 2000 Wind Meter](https://kestrelmeters.com.au/products/kestrel-2000-wind-meter))
 
 > [!NOTE]
 > The **Ground reference kit** above assumes the
@@ -442,8 +442,13 @@ Formal paths use the wiki's placeholder syntax; an example follows each.
    > `True`.
 
 5. The bundled `.graw` should be saved in the same `T0_raw` folder.
-6. The `.gpro` should be generated using the APPN GPT Pipeline (`.json` and
-   wiki links _TODO: add links_) and stored in the adjacent `T1_proc` folder.
+6. The `.gpro` should be generated using the APPN GPT Pipeline (see the
+   [Processing Pipelines](../../Pipelines/ProcessingPipelines/Processing_Pipelines.md)
+   document and the
+   [`Gobi_standard_pipeline_v1.0.yaml`](../../Pipelines/ProcessingPipelines/yaml/Gobi_standard_pipeline_v1.0.yaml)
+   in the adjacent
+   [`yaml/`](../../Pipelines/ProcessingPipelines/yaml/) folder) and
+   stored in the adjacent `T1_proc` folder.
 
    Formal path:
 
