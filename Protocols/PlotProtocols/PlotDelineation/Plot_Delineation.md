@@ -454,18 +454,18 @@ Three parallel patterns — one per family (`plots`, `sampling`, and `gcp`):
   [APPN Plot Shapefile Standard](#appn-plot-shapefile-standard)).
   Used by every sensor unless a sensor-specific variant is justified.
 
-  > [!NOTE]
-  > The main `plots` file is the entry point every downstream
-  > pipeline looks for, so it should keep its **short, unversioned
-  > name** (`{YYYYSiteName}_plots.geojson`) for the life of the
-  > trial. When the layout is re-fit and a new version supersedes
-  > the current main file, **prefer the `_deprecated` tag over
-  > bumping `_v{NN}` on the main file** — rename the old file to
-  > `{YYYYSiteName}_plots_{YYYYMMDD}_deprecated.geojson` (date tag
-  > disambiguates multiple deprecations) and save the new layout
-  > back under the plain `{YYYYSiteName}_plots.geojson` name. This
-  > keeps the main file easy to find and unambiguous, and keeps
-  > older copies clearly marked as superseded.
+> [!NOTE]
+> The main `plots` file is the entry point every downstream
+> pipeline looks for, so it should keep its **short, unversioned
+> name** (`{YYYYSiteName}_plots.geojson`) for the life of the
+> trial. When the layout is re-fit and a new version supersedes
+> the current main file, **prefer the `_deprecated` tag over
+> bumping `_v{NN}` on the main file** — rename the old file to
+> `{YYYYSiteName}_plots_{YYYYMMDD}_deprecated.geojson` (date tag
+> disambiguates multiple deprecations) and save the new layout
+> back under the plain `{YYYYSiteName}_plots.geojson` name. This
+> keeps the main file easy to find and unambiguous, and keeps
+> older copies clearly marked as superseded.
 
 - `plots_unbuffered` — full plot footprint with **no inward analysis
   buffer**, for cases where the entire plot area is needed.
