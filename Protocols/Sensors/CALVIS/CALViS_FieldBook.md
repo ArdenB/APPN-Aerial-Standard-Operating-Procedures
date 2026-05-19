@@ -232,10 +232,11 @@ analysis across APPN operations.
    - 2 sets of GRYFN calibration reflectance panels should be used if
      available, especially for flights longer than 15 minutes.
    - When using 1 calibration panel, the panel should be placed in the centre
-     of a flight line in the middle of the flight.
+     of a flight line in the middle of the flight (Figure below).
 
-   ![Calibration panel layout](CALViS_FieldBook_media/image_a8646f9369b2.png)
-
+   ![Calibration panel layout](CALViS_FieldBook_media/single_elm_panel_flight_diagram.png)
+   Figure: Single ELM panel flight layout. One 4-panel reflectance set is deployed near the centre of the survey area, alongside the validation             panel set and its paired GCPs. The 5-GCP layout covers centre, corner, and off-axis positions, and all panels and GCPs sit inside the             ~10% effective capture area inset from the polygon edge.
+   
    - When using two panels, they should be placed in the centre of flight
      lines 1/3 and 2/3 of the mission, noting that all missions would be less
      than 30 minutes long due to limitations of the IF1200.
@@ -244,7 +245,7 @@ analysis across APPN operations.
      capture so that you fly over a calibration panel approximately every
      15 minutes.
 
-4. Set up the landing pad and UAV in a safe RTH location.
+5. Set up the landing pad and UAV in a safe RTH location.
 
 > [!IMPORTANT]
 > In dusty environments, an additional tarp must be used under the
