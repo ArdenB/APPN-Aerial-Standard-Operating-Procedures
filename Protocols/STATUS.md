@@ -29,7 +29,7 @@ Tick = stage complete. Update each page's `status:` list in [`publish.yaml`](../
 | [Validation Flight](FlightDesign/ValidationFlight/Validation_Flight.md) | Flight Design | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
 | [QA Process](QA/QAprocess/AerialDataQC.md) | Quality Assurance | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
 | [Spectral Panel Cleaning and Calibration](QA/SpectralPanel/Spectral_Panel_Cleaning_and_Calibration.md) | Quality Assurance | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | Current STUB- Draft being written |
-| [Plot Delineation](PlotProtocols/PlotDelineation/Plot_Delineation.md) | Plot Protocols | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |  |
+| [Plot Delineation](PlotProtocols/PlotDelineation/Plot_Delineation.md) | Plot Protocols | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
 | [Data Folder Structure](DataManagement/DataFolderStructure/DataFolderStructure.md) | Data Management | ✅ | ✅ | ✅ | ✅ | ✅ |  |
 | [Processing Pipelines](Pipelines/ProcessingPipelines/Processing_Pipelines.md) | Processing & Data Products | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
 | [M3M Processing Pipeline](Pipelines/M3MPipeline/M3M_Processing_Pipeline.md) | Processing & Data Products | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | Current STUB- Draft being written |
@@ -39,7 +39,7 @@ Tick = stage complete. Update each page's `status:` list in [`publish.yaml`](../
 
 - Documents tracked: **18**
 - Drafted: **14 / 18**
-- EWG feedback: **9 / 18**
-- Modified: **9 / 18**
-- Approved: **8 / 18**
+- EWG feedback: **10 / 18**
+- Modified: **10 / 18**
+- Approved: **9 / 18**
 - Adopted: **1 / 18**

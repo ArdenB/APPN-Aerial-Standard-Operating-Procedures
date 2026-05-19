@@ -142,7 +142,7 @@ pages:
     wiki_page: Plot-Delineation
     title: "Plot Delineation"
     category: PlotProtocols
-    status: [drafted]
+    status: [drafted, ewg_feedback, modified, approved]
 
   - source: Protocols/DataManagement/DataFolderStructure/DataFolderStructure.md
     wiki_page: Data-Folder-Structure
