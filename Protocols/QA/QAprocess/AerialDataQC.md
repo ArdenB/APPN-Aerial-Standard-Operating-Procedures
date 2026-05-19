@@ -374,7 +374,8 @@ flight was collected.*
 #### 2. Create the Vector Layer
 
 > [!IMPORTANT]
-> **TODO:** Richard please check and update this section.
+> **TODO:** Richard please check and update this section. with info about 
+> new panels
 
 
 1. Navigate to **Layer → Create Layer → New GeoPackage Layer…** for GeoJSON

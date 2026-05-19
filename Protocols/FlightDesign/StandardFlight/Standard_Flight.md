@@ -29,39 +29,12 @@
 >
 > **Outstanding TODOs:**
 >
-> **Content review**
-> - [ ] Review and revise all section content for technical accuracy
->       and completeness.
-> - [ ] Cross-check terminology and links against the sensor fieldbooks.
-> - [ ] Confirm equipment checklists with field operators (all three
->       flight designs).
->
 > **Figures to produce** (see master list in [`/IMAGE_TODO.md`](../../../IMAGE_TODO.md))
-> - [x] **Photo** — Panel set correctly laid out on a folding table
->       (see [Panel Setup](#panel-setup)).
-> - [x] **Photo** — Validation panel table with the elevated GCP and
->       the paired ground GCP in the adjacent flight line
->       (see [Validation Panel Setup](#validation-panel-setup)).
-> - [x] **Diagram** — Dual ELM panel flight: panel placement at 1/3
->       and 2/3, flight-line orientation, edge-of-polygon buffer, and
->       5-GCP layout
->       (see [Dual ELM panel flight](#dual-elm-panel-flight)).
-> - [x] **Diagram** — Single ELM panel flight: panel placement near
->       centre, validation panel position, flight-line orientation,
->       edge buffer, and 5-GCP layout
->       (see [Single ELM panel flight](#single-elm-panel-flight)).
-> - [x] **Diagram** — Multi-Flight Capture: sub-flight polygons with
->       overlap zone, shared ELM panel set + 2 tie GCPs in the overlap,
->       dual-panel layout per sub-flight, validation panel placement,
->       and expanded GCP distribution
->       (see [Multi-Flight Capture](#multi-flight-capture)).
 > - [ ] **Photo (suggested)** — Hero/cover photo of a complete,
 >       correctly-staged standard flight site (drone, panel table,
 >       GCPs visible) for use as a reference ideal.
 >
 > **Cross-links to add**
-> - [x] Recommended folding table (e.g. Bunnings product link) in
->       [Panel Setup](#panel-setup).
 > - [ ] Processing pipeline page covering dual-panel ingestion in GPT,
 >       referenced from the
 >       [Dual ELM panel flight](#dual-elm-panel-flight) rationale.

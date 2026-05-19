@@ -61,20 +61,8 @@ _No outstanding TODOs._
 Document-wide status: **Approved** (pending Adopted). Outstanding TODOs at
 [lines 25–95](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#L25-L95).
 
-**Content review**
-
-- [ ] Review and revise all section content for technical accuracy and
-  completeness.
-- [ ] Cross-check terminology and links against the sensor fieldbooks.
-- [ ] Confirm equipment checklists with field operators for all three
-  flight designs (Dual ELM, Single ELM, Multi-Flight Capture).
-
 **Figures to produce** (see [IMAGE_TODO.md](IMAGE_TODO.md))
 
-- [ ] **Photo** — Panel set correctly laid out on a folding table.
-- [ ] **Photo** — Validation panel table with the elevated GCP and the
-  paired ground GCP in the adjacent flight line (finish once the new
-  panels arrive).
 - [ ] **Photo (suggested)** — Hero/cover photo of a complete,
   correctly-staged standard flight site.
 
