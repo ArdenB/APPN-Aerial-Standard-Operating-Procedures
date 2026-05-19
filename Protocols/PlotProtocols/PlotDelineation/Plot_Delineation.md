@@ -61,11 +61,9 @@ reflected inline; outstanding follow-ups are flagged in the
   - [Storage location](#storage-location) — confirmed as
     `Documentation/Plot_Layout/`.
   - [File naming convention](#file-naming-convention) — sensor tag in
-    the file name (e.g. `CALVIS`, `GOBI`, `HIRES`, `M3M`); revision
-    being finalised by Arden.
+    the file name (e.g. `CALVIS`, `GOBI`, `HIRES`, `M3M`).
 - [Joining Trial Information](#joining-trial-information) — how trial
-  metadata is attached to the plot geometry via `plot_id`. Spreadsheet
-  spec still pending EWG.
+  metadata is attached to the plot geometry via `plot_id`.
 - [Methods](#methods) — supported procedures for generating an
   APPN-compliant plot layout file.
   - [Method 1: FIELDimageR (QGIS)](#method-1-fieldimager-qgis)
@@ -181,8 +179,8 @@ downstream pipelines can ingest them without trial-specific configuration.
 > [!IMPORTANT]
 > **Field EWG decision:** the **mandatory attribute set is now
 > ratified** — see the table below. `species` has been **removed**.
-> Treatment of optional columns (placeholder columns vs omit when
-> empty) is still under discussion.
+> Optional columns must be **omitted entirely** when no data is
+> available (rather than carried as empty / placeholder columns).
 
 Every APPN plot polygon **must** carry the following attributes:
 

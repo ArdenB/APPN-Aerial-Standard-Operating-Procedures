@@ -20,11 +20,6 @@ because an image would clearly help).
 
 ## Standard Flight — [Protocols/FlightDesign/StandardFlight/Standard_Flight.md](Protocols/FlightDesign/StandardFlight/Standard_Flight.md)
 
-- [x] **Photo** · *Explicit* — [Panel Setup](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#panel-setup): GRYFN 4-panel ELM reflectance set (11 / 30 / 56 / 82 %) laid out in brightness order on a level folding table, oriented along the planned flight direction, in an open unshaded area.
-- [x] **Photo** · *Explicit* — [Validation Panel Setup](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#validation-panel-setup): Validation panel table with the 2-panel validation set, the elevated GCP on the table, and the paired ground GCP placed in the adjacent flight line perpendicular to the elevated GCP.
-- [x] **Diagram** · *Explicit* — [Dual ELM panel flight](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#dual-elm-panel-flight): Top-down annotated layout showing panel placements at 1/3 and 2/3 along the long axis, flight-line direction arrows, ~10 % edge-of-polygon buffer, and labelled 5-GCP layout.
-- [x] **Diagram** · *Explicit* — [Single ELM panel flight](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#single-elm-panel-flight): Top-down annotated layout with central ELM panel set, validation panel position, flight-line orientation, edge buffer, and labelled 5-GCP layout.
-- [x] **Diagram** · *Explicit* — [Multi-Flight Capture](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#multi-flight-capture): Sub-flight polygons with overlap zone, shared ELM panel set + 2 tie GCPs in the overlap (highlighted), dual panels per sub-flight, validation panel placement, expanded GCP distribution.
 - [ ] **Photo** · *Suggested* — [Standard Flight overview](Protocols/FlightDesign/StandardFlight/Standard_Flight.md): Hero/cover photo of a complete, correctly-staged standard flight site (drone + panel table + GCPs visible) usable as the reference ideal.
 
 ## Validation Flight — [Protocols/FlightDesign/ValidationFlight/Validation_Flight.md](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md)
@@ -45,19 +40,16 @@ because an image would clearly help).
 
 ## GOBI M350 Field Book — [Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md](Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md)
 
-- [ ] **Diagram** · *Explicit* — [Onsite Preflight Operations](Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md#onsite-preflight-operations): Embed or cross-link the panel + 5-GCP layout diagram from the Standard Flight Procedure (replaces existing `(TO DO: ADD STANDARD FLIGHT LAYOUT md)`).
 - [ ] **Photo** · *Suggested* — Sensor mounting close-up: GOBI on M350 quick-release with cable routing and SD/SSD slot visible.
 - [ ] **Photo** · *Suggested* — Powering-on / boot-LED reference photo so operators can confirm a healthy state.
 
 ## GOBI IF1200 Field Book — [Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md](Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md)
 
-- [ ] **Diagram** · *Explicit* — [Pre-Flight](Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md#pre-flight): Embed or cross-link the panel + 5-GCP layout diagram from the Standard Flight Procedure.
 - [ ] **Photo** · *Suggested* — IF1200 + GOBI assembled airframe photo with payload, antennas, and battery bay annotated.
 - [ ] **Photo** · *Suggested* — Ground-station setup photo (RC, tablet, telemetry mast).
 
 ## CALViS Field Book — [Protocols/Sensors/CALVIS/CALViS_FieldBook.md](Protocols/Sensors/CALVIS/CALViS_FieldBook.md)
 
-- [ ] **Diagram** · *Explicit* — [Onsite Preflight Operations](Protocols/Sensors/CALVIS/CALViS_FieldBook.md#onsite-preflight-operations): Embed or cross-link the panel + 5-GCP layout diagram from the Standard Flight Procedure.
 - [ ] **Photo** · *Suggested* — CALViS sensor head close-up showing fibre routing and downwelling sensor orientation.
 - [ ] **Photo** · *Suggested* — Field-deployed CALViS rig with downwelling sensor levelled and unobstructed.
 
@@ -101,11 +93,11 @@ because an image would clearly help).
 
 | Type        | Explicit | Suggested | Total |
 | ----------- | -------- | --------- | ----- |
-| Diagram     | 8        | 0         | 8     |
-| Photo       | 4        | 14        | 18    |
+| Diagram     | 2        | 0         | 2     |
+| Photo       | 2        | 14        | 16    |
 | Screenshot  | 8        | 2         | 10    |
 | Chart       | 0        | 2         | 2     |
-| **Total**   | **20**   | **18**    | **38** |
+| **Total**   | **12**   | **18**    | **30** |
 
 > Counts include the "Photo / Image" item under Method 3 as a Photo and
 > the "Photo / Chart" item under M3M as a Photo. Adjust if recategorised.

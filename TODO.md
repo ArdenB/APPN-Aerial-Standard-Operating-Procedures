@@ -207,60 +207,14 @@ Document-wide status: **Approved** (pending Adopted).
 
 ---
 
-# Not yet approved
-
-The documents below have not yet reached **Approved** status in
-[Protocols/STATUS.md](Protocols/STATUS.md). They still need to be
-progressed through drafting, EWG feedback, and modification before they
-can join the Approved group above.
-
----
-
 ## Plot Delineation — [Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md)
 
-Document-wide status: **Drafted** — not yet in EWG feedback. Major
-decisions ratified at the APPN Field EWG plot-delineation meeting
-(GeoJSON file format, storage location, minimum attribute set
+Document-wide status: **Approved** (pending Adopted). Major decisions
+ratified at the APPN Field EWG plot-delineation meeting (GeoJSON file
+format, storage location, minimum attribute set
 `fid`/`plot_id`/`row`/`range`/`crop`, sensor identifier in filename).
 Follow-ups captured at
 [lines 30–105](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L30-L105).
-
-**Recommended buffer** ([line 58](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L58))
-
-- [ ] Decide whether the buffer should be a **percentage** or a
-  **"ditch a row"** rule (likely species-specific).
-- [ ] Arden to write up the revised buffer guidance (real-world plot
-  examples, minimum-vs-target framing, species-specific notes), replacing
-  the placeholder examples with realistic plot sizes (6 × 2, 10 × 3,
-  6 × 1.5 — DPIRD, 4 × 1.5 — UOA OzBarley).
-
-**Required attributes** ([line 64](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L64))
-
-- [ ] Decide how to handle **optional columns** — carry as empty /
-  placeholder columns, or omit entirely when no data is available.
-- [ ] Confirm which metadata-capture approach (or harmonised superset)
-  across the two delineation tools is the APPN standard.
-
-**File naming convention** ([line 71](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L71))
-
-- [ ] Arden to propose a naming convention that includes the sensor
-  identifier (`VNIR_RGB`, `LiDAR`, `RGB`), clear handling of special
-  cases (e.g. all-of-plot biomass collection at UOA), and per-sensor
-  variants only when the geometries actually differ.
-- [ ] Set the hard rule: if shapefile differences **within a single
-  sensor** exceed ~**5 cm**, escalate and fix the root cause rather
-  than producing extra files.
-
-**Joining trial information** ([line 84](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L84))
-
-- [ ] Define the **trial-information spreadsheet specification** —
-  mandatory columns, format (`.csv` vs `.xlsx`), naming, and storage
-  location.
-- [ ] Decide whether the join is performed **once at trial setup** or
-  **re-applied** each time the shapefile is regenerated, and whether the
-  joined output overwrites or is saved as a separate file.
-- [ ] Encourage researchers / clients to provide better plot information
-  up front (trial design + plot dimensions).
 
 **Methods** ([line 96](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L96))
 
@@ -275,6 +229,15 @@ Follow-ups captured at
 - [ ] Improve the FIELDimageR corner-coordinate fitting workflow
   (currently iterative)
   ([line 590](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L590)).
+
+---
+
+# Not yet approved
+
+The documents below have not yet reached **Approved** status in
+[Protocols/STATUS.md](Protocols/STATUS.md). They still need to be
+progressed through drafting, EWG feedback, and modification before they
+can join the Approved group above.
 
 ---
 
@@ -410,31 +373,6 @@ APPN **Field EWG** review / ratification before they can be treated as
 the APPN standard. (Fieldbooks, the Data Folder Structure document, and
 the README files do not currently contain explicit Field EWG approval
 gates.)
-
-### Plot Delineation — [Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md)
-
-Decisions ratified at the Field EWG plot-delineation meeting (file
-format = GeoJSON, storage location, minimum attribute set, sensor in
-filename) are captured at
-[lines 36–55](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L36-L55).
-Remaining EWG follow-ups:
-
-- [ ] **Recommended buffer rule** — percentage vs "ditch a row", and
-  associated species-specific guidance
-  ([line 58](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L58)).
-- [ ] **Optional column handling** in the plot shapefile (carry as
-  empty vs omit)
-  ([line 65](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L65)).
-- [ ] **Metadata-capture approach** across the two delineation tools
-  (which to standardise on)
-  ([line 68](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L68)).
-- [ ] **File naming convention** for plot-layout GeoJSONs (sensor
-  identifier, special-case handling, per-sensor variants, ≤5 cm
-  intra-sensor rule)
-  ([lines 71–82](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L71-L82)).
-- [ ] **Trial-information spreadsheet specification** and end-to-end
-  join procedure
-  ([lines 84–93](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L84-L93)).
 
 ### Standard Flight — [Protocols/FlightDesign/StandardFlight/Standard_Flight.md](Protocols/FlightDesign/StandardFlight/Standard_Flight.md)
 
