@@ -183,17 +183,18 @@ operations.
      capture so that you fly over a calibration panel approximately every
      15 minutes.
 
-   ![Calibration panel layout (GOBI_FieldBook_media/single_elm_panel_flight_diagram.png)
+   ![Calibration panel layout](GOBI_IF1200_FieldBook_media/single_elm_panel_flight_diagram.png)
 
-5. Set up the landing pad and UAV in a safe RTH location.
+
+6. Set up the landing pad and UAV in a safe RTH location.
 
    > [!IMPORTANT]
    > In dusty environments, an additional tarp must be used under the
    > landing pad.
 
-6. On the controller, set up a safe UAV RTH location, RTH altitude, and
+7. On the controller, set up a safe UAV RTH location, RTH altitude, and
    other geo-fencing settings on the IF1200.
-7. Attach payload to the aircraft:
+8. Attach payload to the aircraft:
 
    > [!CAUTION]
    > **TBC for GOBI on IF1200.** The IF1200 dovetail has no hot-swap
@@ -211,16 +212,16 @@ operations.
      A2).
    - Remove RGB and Nano HP lens caps.
    - Insert RGB SD card.
-8. Power on the radio controller; check battery status.
-9. Launch QGroundControl on the IF1200 controller.
-10. Review the flight plan, checking operational height and double-checking
+9. Power on the radio controller; check battery status.
+10. Launch QGroundControl on the IF1200 controller.
+11. Review the flight plan, checking operational height and double-checking
     that area of interest, GCPs, and reflectance panels are all within the
     capture polygon.
-11. Power on the aircraft; confirm connection to GCS and battery status;
+12. Power on the aircraft; confirm connection to GCS and battery status;
     ensure Remote ID is enabled.
-12. The IF1200 does not use RTK; ensure a minimum of 8 satellites and GPS
+13. The IF1200 does not use RTK; ensure a minimum of 8 satellites and GPS
     lock before flying.
-13. Upload the flight plan to the aircraft.
+14. Upload the flight plan to the aircraft.
 
 ---
 
