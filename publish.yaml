@@ -13,7 +13,7 @@
 #   drafted        — content is complete enough to circulate
 #   ewg_feedback   — sent to the Field EWG; feedback received
 #   modified       — feedback addressed in the working draft
-#   approved       — Field EWG has signed off the modified draft
+#   approved       — Experts from Field EWG has signed off the modified draft
 #   adopted        — published as a locked revision and live on the wiki
 # Add stage IDs to the list as each stage is completed. Optional `notes:` is a
 # free-text field shown in the tracker table.
