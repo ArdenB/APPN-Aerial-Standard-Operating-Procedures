@@ -22,7 +22,8 @@ conda create -n appn-sop -c conda-forge \
     mammoth \
     pyyaml \
     pandoc \
-    tectonic
+    tectonic \
+    librsvg
 conda activate appn-sop
 ```
 
@@ -37,6 +38,10 @@ What each package is for:
   `publish_to_wiki.py` and gives the best-looking PDFs without installing the
   full TeX Live (~2 GB). First run is slow because it downloads the LaTeX
   packages it needs into a per-user cache; subsequent runs are fast.
+- **`librsvg`** — provides `rsvg-convert`, required by pandoc to embed SVG
+  images (e.g. EMF→SVG icons in the Validation Flight protocol) when
+  rendering via a LaTeX engine. Without it the PDF build fails with
+  `rsvg-convert: ... does not exist`.
 
 ### Optional extras
 

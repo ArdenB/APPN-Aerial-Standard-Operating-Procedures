@@ -162,26 +162,39 @@ confidence in downstream data analysis across APPN operations.
    (install a peg or permanent GCP below the base station for recurring
    flights), let it run for at least 15 minutes, and start recording the
    RINEX file before flying.
-4. Set up reflectance targets for calibration and validation, using a
-   spirit bubble to ensure they are all laid flat. Place 2 GCPs in the
-   field to ensure geometric calibration. GCPs should be located next to
-   calibration panels, ensuring they are in alternate flight lines.
-   - Both the calibration and validation panels should be placed on level
-     folding tables to avoid dirt, reduce angle, and reduce spectral
-     spillover. Keeping them level is important.
-   - 2 sets of GRYFN calibration reflectance panels should be used if
-     available, especially for flight lengths > 15 minutes.
-   - When using **1** calibration panel, the panel should be placed in the
-     centre of a flight line in the middle of the flight.
-   - When using **2** panels, they should be placed in the centre of
-     flight lines 1/3 and 2/3 of the mission, noting that all missions
-     would be less than 30 minutes long due to limitations of the IF1200.
-   - You will need to move the panels if you will be flying multiple
-     missions. Panels need to be in every flight in multi-flight mission
-     capture so that you fly over a calibration panel approximately every
-     15 minutes.
+4. Set up reflectance panels, the validation panel, and GCPs following the
+   [Standard Flight Procedure](../../FlightDesign/StandardFlight/Standard_Flight.md).
+   In summary:
 
-   ![Calibration panel layout](GOBI_M350_FieldBook_media/image_a8646f9369b2.png)
+   - Use the [Dual ELM panel flight](../../FlightDesign/StandardFlight/Standard_Flight.md#dual-elm-panel-flight)
+     layout by default (mandatory for missions > 15 minutes).
+   - Fall back to the [Single ELM panel flight](../../FlightDesign/StandardFlight/Standard_Flight.md#single-elm-panel-flight)
+     layout only when a second panel set is unavailable or for short
+     missions (≤ 10 minutes) under stable illumination.
+   - Deploy the 2-panel validation set with its paired elevated + ground
+     GCPs per [Validation Panel Setup](../../FlightDesign/StandardFlight/Standard_Flight.md#validation-panel-setup).
+   - Follow the [Panel Setup](../../FlightDesign/StandardFlight/Standard_Flight.md#panel-setup)
+     rules (level folding table, panels in brightness order aligned with
+     the flight direction, record panel-surface height).
+   - Place 5 GCPs per [Ground Control Points](../../FlightDesign/StandardFlight/Standard_Flight.md#ground-control-points)
+     — in alternate flight lines, next to the calibration panels.
+   - When flying multiple missions, panels and GCPs must be present in
+     every flight (panels overflown approximately every 15 minutes).
+
+   ![GRYFN 4-panel ELM reflectance set laid out in brightness order on a levelled folding table in an open, unshaded area](GOBI_M350_FieldBook_media/panel_setup_table.jpg)
+
+   *Figure: Correctly deployed 4-panel ELM reflectance set on a levelled
+   folding table. See the
+   [Standard Flight Procedure](../../FlightDesign/StandardFlight/Standard_Flight.md#panel-setup)
+   for the full panel and GCP layout diagrams.*
+
+   ![Top-down diagram of a dual ELM panel flight: survey polygon with two 4-panel reflectance sets placed at the 1/3 and 2/3 positions along the long axis, validation panel set near the centre, flight lines aligned with the long axis, ~10% edge-of-polygon buffer, and a 5-GCP layout (two centre validation GCPs, two corner GCPs, one off-axis GCP)](GOBI_M350_FieldBook_media/dual_elm_panel_flight_diagram.png)
+
+   *Figure: Dual ELM panel flight layout — default layout for GOBI
+   M350 surveys. See the
+   [Dual ELM panel flight](../../FlightDesign/StandardFlight/Standard_Flight.md#dual-elm-panel-flight)
+   section of the Standard Flight Procedure for the full rationale and
+   alternative layouts.*
 
 5. Set up the landing pad and UAV in a safe RTH location.
    - In dusty environments an additional tarp should be used under the

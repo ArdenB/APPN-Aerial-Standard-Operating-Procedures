@@ -37,12 +37,11 @@
 >       flight designs).
 >
 > **Figures to produce** (see master list in [`/IMAGE_TODO.md`](../../../IMAGE_TODO.md))
-> - [ ] **Photo** — Panel set correctly laid out on a folding table
+> - [x] **Photo** — Panel set correctly laid out on a folding table
 >       (see [Panel Setup](#panel-setup)).
-> - [ ] **Photo** — Validation panel table with the elevated GCP and
+> - [x] **Photo** — Validation panel table with the elevated GCP and
 >       the paired ground GCP in the adjacent flight line
 >       (see [Validation Panel Setup](#validation-panel-setup)).
->       Finish when new panels arrive.  
 > - [x] **Diagram** — Dual ELM panel flight: panel placement at 1/3
 >       and 2/3, flight-line orientation, edge-of-polygon buffer, and
 >       5-GCP layout
@@ -67,26 +66,6 @@
 >       referenced from the
 >       [Dual ELM panel flight](#dual-elm-panel-flight) rationale.
 >
-> **Pending APEx / GRYFN decisions (revise before season start)**
-> - [ ] Flight-line orientation guidance — confirm or revise the
->       align-with-planting-direction recommendation in
->       [Flight-line Orientation](#flight-line-orientation).
-> - [ ] Confirm whether the Dual ELM panel flight is truly
->       **mandatory** under variable illumination, or only strongly
->       recommended (see
->       [Dual ELM panel flight: When to use](#dual-elm-panel-flight)).
-> - [ ] Confirm whether the Single ELM panel flight is permitted at
->       all under variable illumination (see
->       [Single ELM panel flight: When to use](#single-elm-panel-flight)).
->
-> **Operational parameters still to be defined**
-> - [ ] Maximum permissible wind speed per UAV / sensor combination.
-> - [ ] Standard exposure-setting procedure (cross-link once finalised
->       in the sensor fieldbooks).
-> - [ ] Minimum acceptable solar elevation for routine surveys.
-> - [ ] Quantitative definition of the "effective capture area"
->       inset (currently ~10% — see
->       [Background callout](#background-and-common-elements-of-all-standard-flights)).
 
 ---
 
@@ -236,11 +215,14 @@ support data QC:
    flight line**, positioned **perpendicular to the elevated GCP** (i.e.
    on a line running across-track from the table).
 
-> [!NOTE]
-> 🖼️ **Image needed (photo):** Field photograph of the validation
-> panel table showing the 2-panel validation reflectance set, the
-> elevated GCP mounted on the table, and the paired ground GCP placed
-> in the adjacent flight line perpendicular to the elevated GCP.
+![Field photograph of the validation panel table: 2-panel validation reflectance set on a levelled folding table with the elevated GCP mounted alongside, and the paired ground GCP placed in the adjacent flight line perpendicular to the elevated GCP](Standard_Flight_media/validation_panel_table.jpg)
+
+*Figure: Validation panel deployment. The 2-panel validation reflectance
+set is mounted on a levelled folding table with an elevated GCP placed
+alongside the panels. The paired ground GCP sits in the adjacent flight
+line, perpendicular (across-track) to the elevated GCP, so the two GCPs
+can be used during QC to check for flight-line tearing and vertical
+accuracy.*
 
 This paired GCP arrangement is used during data QC to check for:
 

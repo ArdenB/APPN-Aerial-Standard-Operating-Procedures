@@ -300,18 +300,16 @@ site. Specifically:
   30%, 50%, 70%, and 90% of the line, plus the paired elevated /
   ground GCP at the validation panel table.
 
-The legacy panel-layout figure used to illustrate this design:
+![Spectral validation flight panel layout (legacy placeholder figure — to be replaced)](Validation_Flight_media/image_d43bd2392053.jpg)
 
-![Spectral validation flight panel layout (legacy figure)](Validation_Flight_media/image_d43bd2392053.jpg)
-
-| Symbol | Meaning |
-| ------ | ------- |
-| ![Ground control points](Validation_Flight_media/image_0343859d6c18.svg) | Ground control points |
-| ![GRYFN reflection panel set](Validation_Flight_media/image_70fce4aa1513.svg) | GRYFN reflection panel set |
-| ![Independent validation panel](Validation_Flight_media/image_df0114ae9e97.png) | Independent validation panel |
-
-> _TODO: Replace legacy figure with a new annotated diagram matching
-> the restructured procedure._
+> [!NOTE]
+> 🖼️ **Image needed (diagram):** The figure above is a **legacy
+> placeholder** retained only so the section is not blank. Replace
+> with a new annotated top-down diagram of the spectral validation
+> flight — dual ELM panel placements, validation panel position, N–S
+> flight-line orientation, edge buffer, and the 5-GCP layout, plus a
+> legend for GCPs, GRYFN reflectance panel sets, and the independent
+> validation panel. Tracked in [IMAGE_TODO.md](../../../IMAGE_TODO.md).
 
 #### IF1200 + CALViS or GOBI flight parameters _(draft)_
 

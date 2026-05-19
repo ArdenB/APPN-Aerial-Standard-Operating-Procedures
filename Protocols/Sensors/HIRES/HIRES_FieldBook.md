@@ -23,6 +23,40 @@ across APPN field nodes.
 
 ---
 
+## Season Working Plan — Team & Outstanding Items
+
+> [!NOTE]
+> This section captures the cross-node working arrangements and outstanding
+> decisions agreed for the current season. It is project / coordination
+> context rather than field procedure, and is mirrored in
+> [TODO.md](../../../TODO.md) for tracking.
+
+### Team responsibilities (proposed — to be confirmed by each node)
+
+| Person / Team           | Proposed contribution                                                                            |
+| :---------------------- | :----------------------------------------------------------------------------------------------- |
+| UQ                      | Lead the photogrammetry pipeline build; contribute time and expertise.                           |
+| Author (technical)      | Contribute to the technical side of photogrammetry processing and Metashape settings.            |
+| James                   | Support pipeline development.                                                                    |
+| Dillon                  | Technical review (proposed).                                                                     |
+| Richard / Arden (USyd)  | Support and advise (proposed).                                                                   |
+| CSU team                | Provide technical input (proposed).                                                              |
+| Bipul                   | Integration of tooling for image conversions, etc. (proposed).                                   |
+| Warin & Bipul           | Lead non-photogrammetry pipeline; expand team as needed.                                         |
+
+### Critical outstanding items
+
+- [x] **APPN plot-extraction method** — agreed; see
+  [Plot Delineation](../../PlotProtocols/PlotDelineation/Plot_Delineation.md).
+- [ ] **Working team confirmation** — node leads to confirm named
+  contributors for the photogrammetry pipeline.
+- [ ] **PhaseOne SDK capability** — confirm scope of Image SDK
+  functionality and resourcing for GUI / code expertise.
+- [ ] **Boresight calibration** — decide whether to pursue as a means of
+  improving image geo-location.
+
+---
+
 ## Document Structure
 
 1. [Equipment Checklist](#equipment-checklist) — what to bring to the field.
@@ -49,9 +83,7 @@ across APPN field nodes.
     Table 2 consolidated mission, camera, and environmental settings.
 12. [GSD vs Altitude Lookup](#gsd-vs-altitude-lookup) — Table 3 ground
     sampling distance reference.
-13. [Shutter Speed Lookup](#shutter-speed-lookup) — Table 4 minimum
-    shutter speed by altitude and ground speed.
-14. [Non-Routine, First-Time, and Commissioning Procedures](#non-routine-first-time-and-commissioning-procedures) —
+13. [Non-Routine, First-Time, and Commissioning Procedures](#non-routine-first-time-and-commissioning-procedures) —
     damping plate, iX Capture, gimbal balancing, CoG calibration, and
     custom camera setup.
 
@@ -152,24 +184,12 @@ across APPN field nodes.
 
    ![DJI Pilot 2 payload configuration](HIRES_FieldBook_media/image_fff1db401282.png)
 
-   > [!NOTE]
-   > **[NC1]** Does this happen automatically — do we need the custom
-   > settings? Also ensure that we list (and ideally include a screenshot
-   > of) the specific camera, as we previously had an issue specifying the
-   > incorrect camera which then resulted in the wrong overlap and GSD
-   > settings.
-
 7. Set the flight altitude mode to **Relative to Take-off Point**.
 8. Set image overlap and triggering parameters in the **Advanced Settings**
    of the mapping mission:
    - Front (forward) overlap: **80%**
    - Side (lateral) overlap: **80%**
    - Photo mode: **Distance Interval Shot**
-
-   > [!NOTE]
-   > **[NC2]** Retain these overlap values for now. If we move to a
-   > non-photogrammetry processing pathway, this could be reduced a fair
-   > bit.
 
 9. Set the course angle to align with the experimental layout:
    - Use **row-aligned** orientation for plot-based trials where crop rows
@@ -179,31 +199,16 @@ across APPN field nodes.
     (GSD) and flight speed according to the mission standard type settings
     in [Table 1 — APPN Hi-Res Mission Standard Types](#appn-hi-res-mission-standard-types).
     These bundles are optimised to balance spatial resolution, coverage, and
-    motion-blur risk. The chosen altitude must be documented in the flight
-    log.
+    motion-blur risk.
 
-    > [!NOTE]
-    > **[NC3]** Repeats the altitude-mode step above.
-    >
-    > **[NC4]** What flight log?
-    >
-    > **[CC5]** I think this is just a USyd requirement — could likely be
-    > deleted.
+11. Disable **Elevation Optimisation**.
 
-11. Disable **Elevation Optimisation** for standard agricultural surveys
-    unless operating in highly variable terrain.
-
-    > [!NOTE]
-    > **[NC8]** Do we need to cover going into the camera settings here
-    > and setting at this point?
-
-12. Use the [Phase One flight calculator](https://flightcalculator.phaseone.com/)
-    to optimise flight speed whilst minimising blur. This may need to be
-    changed on site if lighting conditions require longer exposures.
-
-    > [!NOTE]
-    > **[NC9]** Becomes redundant when setting the standard types — we
-    > should let ISO compensate, and adjust speed only in low light.
+12. For flight settings including height and pixel size (including ground
+    sampling distance (GSD)), and flight speed (to avoid motion blur),
+    refer to [Table 1 — APPN Hi-Res Mission Standard Types](#appn-hi-res-mission-standard-types),
+    and use DJI Pilot 2 app. If a custom setup is needed, refer to the
+    [Phase One flight calculator](https://flightcalculator.phaseone.com/)
+    to optimise flight speed whilst minimising blur.
 
 13. Save the mission using the convention `YYYYMMDD_XXXX` (as above).
 
@@ -215,29 +220,14 @@ across APPN field nodes.
 
 Pre-tuned parameter bundles for the four APPN Hi-Res Mission Standard Types.
 Flight parameters must match the application and must not deviate from these
-settings. Validate shutter speed and flight speed (to ensure no motion blur)
-against [Table 4 — Shutter Speed Lookup](#shutter-speed-lookup) for the
-specific speed you select.
-
-> [!NOTE]
-> **[NC6]** I am proposing this becomes the master reference for flight
-> settings.
+settings.
 
 | Standard Mission Type | Scenario                                                                                       | Altitude   | Speed       | Shutter   | Aperture | Overlap |
 | :-------------------- | :--------------------------------------------------------------------------------------------- | :--------- | :---------- | :-------- | :------- | :------ |
-| **Type 1**            | Plant counting / small structures (flowers, heads, early lesions, emergence counting)          | 12–20 m    | 0.9–1.6 m/s | ≥ 1/4000  | f/8      | 80/80   |
+| **Type 1**            | Plant counting / small structures (flowers, heads, early lesions, emergence counting)          | 12 m       | 0.9–1.6 m/s | ≥ 1/4000  | f/8      | 80/80   |
 | **Type 2**            | Plot phenotyping (canopy traits, vigour)                                                       | 30–50 m    | 2.4–4.1 m/s | ≥ 1/4000  | f/8      | 80/80   |
 | **Type 3**            | Canopy coverage / plot averages                                                                | 50–70 m    | 4.1–5.7 m/s | ≥ 1/4000  | f/8      | 80/80   |
 | **Type 4**            | Large-area flat terrain ortho (efficiency mode)                                                | 80–120 m   | 6.5–9.8 m/s | ≥ 1/4000  | f/8      | 80/80   |
-
-> [!NOTE]
-> Faster ground speeds may be used at specific altitudes provided the
-> shutter speed remains within the limits of
-> [Table 4 — Shutter Speed Lookup](#shutter-speed-lookup).
-
-> [!NOTE]
-> **[NC7]** My sense for Type 1 is to standardise to 12 m only — not a
-> range.
 
 ---
 
@@ -253,28 +243,12 @@ guidance, see [Sensor Configuration Reference (Table 2)](#sensor-configuration-r
    light conditions.
 2. **Shutter speed** — set a **minimum shutter speed of 1/4000 s** across
    all operating scenarios per
-   [Table 1](#appn-hi-res-mission-standard-types), and validate against
-   [Table 4](#shutter-speed-lookup). DJI Pilot 2 mission planning will
+   [Table 1](#appn-hi-res-mission-standard-types). DJI Pilot 2 mission planning will
    always set a conservative shutter speed that does not allow image
    motion blur.
-3. **Focus** — set to **infinity**.
-
-   > [!NOTE]
-   > **[NC10]** Comment from Dan is relevant here — need to check that for
-   > a 12 m flight we are OK at infinity manual focus.
-   >
-   > **[NC11]** We may need to consider moving to autofocus and then a
-   > setting that gets heads in focus.
-   >
-   > **[NC12]** Is there a way to glue or disable to infinity to stop this
-   > moving? Has been an issue on other cameras with a fixed, manual focus.
-   >
-   > **[DS15]** I haven't operated the Phase One directly, so I can't speak
-   > to the specifics, but focus settings are worth considering. In
-   > particular, ensure the camera is focused on the plane of interest —
-   > for example, if counting sorghum heads, focus should be set at head
-   > height rather than the ground. With tall crops, depth of field can
-   > be enough to render your target slightly out of focus.
+3. **Focus** — set focus mode to **Manual Focus** and focus to **infinity**.
+   Some crop types and applications may require custom settings to ensure
+   the target is not out of focus.
 
 4. **ISO range** — Min: **200** / Max: **3200**. **ISO is the only
    variable parameter** used to achieve the correct exposure and a
@@ -355,11 +329,6 @@ aperture remain fixed).
      wind speed over **5 m/s (18 km/h)** should be recorded.
    - Do not operate in conditions below 0 °C or above 40 °C.
 
-   > [!NOTE]
-   > **[NC13]** Where, how, and how is this then propagated through as
-   > metadata? Unless it can be captured as metadata, there is no point
-   > recording it.
-
 2. Turn on the aeronautical radio and set to local CTAF (find in
    [ERSA](https://www.airservicesaustralia.com/aip/aip.asp)).
 3. Set up the DJI D-RTK 2 base station on a tripod and power on at least
@@ -374,19 +343,11 @@ aperture remain fixed).
    longitude of the base station to the known surveyed (or past) location.
    The aircraft should be switched off during this step.
 
-   > [!NOTE]
-   > **[NC14]** Do we need to consider setting this up on a standard
-   > point? This will become increasingly important for the non-GCP
-   > photogrammetry methods.
-   >
-   > Best practice will be to survey in a point that is referenced to a
-   > GNSS station, then set the DJI D-RTK 2 to this specific lat/long
-   > location — otherwise the real-world error will be 3–5 m.
-
 4. Deploy GCPs in the field, ensuring good coverage of the area of
-   interest. If using Propeller Aeropoints, ensure they are switched on
-   and logging. If using standard GCPs, log GNSS coordinates using a
-   Trimble or Emlid GNSS system.
+   interest. A **minimum of 6 Aeropoints (or other GCPs)** should be
+   deployed per site. If using Propeller Aeropoints, ensure they are
+   switched on and logging. If using standard GCPs, log GNSS coordinates
+   using a Trimble or Emlid GNSS system.
 5. Set up the landing pad and UAV in a safe RTH location.
    - In dusty environments an additional tarp should be used under the
      landing pad.
@@ -470,10 +431,8 @@ aperture remain fixed).
 
 1. Remove the CFexpress card from the camera and offload data to a
    computer using a card reader.
-2. After offload and backup, format the card for the next mission.
-
-   > [!NOTE]
-   > **[NC16]** I would only format in the controller.
+2. After offload and backup, format the card for the next mission in the
+   DJI Controller.
 
 ---
 
@@ -493,7 +452,7 @@ substituting any other lens or camera body invalidates the GSD column in
 | **Altitude Mode**            | Relative to Takeoff Point (ALT)                                                                    | Assumes takeoff elevation ≈ site elevation.                                                                                                     |
 | **Route Altitude (m)**       | Select from [Table 3](#gsd-vs-altitude-lookup) — tailor to mission objective                       | Counting plant organs / flowers / heads → lowest practical altitude (12–20 m). Canopy coverage / plot averages → 50–120 m.                      |
 | **Elevation Optimisation**   | DISABLED                                                                                           | Do not enable for ortho missions — can cause alignment issues in Metashape.                                                                     |
-| **Speed (m/s)**              | As fast as mission allows (recommended 3–10 m/s max); cross-check with [Table 4](#shutter-speed-lookup) | Motion blur = shutter interval (s) × drone speed (m/s). **Rule: motion blur ≤ GSD.** See worked example below.                              |
+| **Speed (m/s)**              | As fast as mission allows (recommended 3–10 m/s max); cross-check with [Table 1](#appn-hi-res-mission-standard-types) | Motion blur = shutter interval (s) × drone speed (m/s). **Rule: motion blur ≤ GSD.** See worked example below.                              |
 | **Frontal & Side Overlap**   | 80 / 80 (default, high-quality ortho)                                                              | 80/80 is the true-ortho setting — minimises lean, best for crop / plant-structure work.                                                         |
 | **Route Start Point**        | Furthest polygon corner from pilot                                                                 | Mission works back toward the pilot, finishing closest to the takeoff point. Reduces return-transit risk if battery runs low.                   |
 | **Takeoff Speed (m/s)**      | 10–15                                                                                              | Transit-only speed (takeoff point → first waypoint). Safe to run faster than capture speed because no images are triggered in transit.          |
@@ -511,11 +470,11 @@ substituting any other lens or camera body invalidates the GSD column in
 
 | Parameter                     | Recommended setting                                                                                | Operational note                                                                                                                                                                              |
 | :---------------------------- | :------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Exposure Mode**             | Manual (fixed aperture + fixed shutter + auto ISO)                                                 | Lock shutter (1/4000 or faster — see [Table 4](#shutter-speed-lookup)), set aperture to f/8, let ISO adjust. Protects motion-blur ceiling first, radiometric quality second.                  |
+| **Exposure Mode**             | Manual (fixed aperture + fixed shutter + auto ISO)                                                 | Lock shutter (1/4000 or faster — see [Table 1](#appn-hi-res-mission-standard-types)), set aperture to f/8, let ISO adjust. Protects motion-blur ceiling first, radiometric quality second.                  |
 | **EV Compensation**           | 0 baseline — adjust to +1 in low-light / emergence conditions                                      | +1 EV pushes the histogram right for more tonal information. Verify with live histogram.                                                                                                      |
 | **ISO**                       | Base 200 (sensor native) — max 3200                                                                | iXM-GS120 native ISO range is 200–6400 (RGB). Noise becomes visibly detectable above ISO 3200.                                                                                                |
 | **Aperture**                  | f/8 min (sweet spot) — f/11 max                                                                    | Sharpness peaks ~f/8 across the frame; edge softness appears wide of f/5.6 and diffraction softens past f/11.                                                                                 |
-| **Shutter Speed**             | Set per [Table 4](#shutter-speed-lookup) — minimum 1/4000, up to 1/16,000                          | Motion blur rule: shutter × speed ≤ GSD × 0.5 (half-pixel tolerance).                                                                                                                         |
+| **Shutter Speed**             | Set per [Table 1](#appn-hi-res-mission-standard-types) — minimum 1/4000, up to 1/16,000          | Motion blur rule: shutter × speed ≤ GSD × 0.5 (half-pixel tolerance).                                                                                                                         |
 | **Focus Mode**                | Manual focus locked to infinity (> 3 m) **or** AF (single acquisition at mission start)            | A calibrated fixed-focus 80 mm (infinity-only) achieves ±2 px RMSE vs. higher residuals on an uncalibrated AF. For research-critical work, consider requesting the fixed 80 mm.               |
 | **Focus Bracketing**          | OFF                                                                                                | Bracketing multiplies frame count and breaks consistent GSD assumptions for ortho processing.                                                                                                 |
 | **White Balance**             | Fixed to Daylight (5500 K)                                                                         | Fixed WB ensures radiometric consistency for post-processing.                                                                                                                                 |
@@ -534,7 +493,7 @@ substituting any other lens or camera body invalidates the GSD column in
 
 | Parameter                     | Recommended setting                                                                              | Operational note                                                                                                                                                                                                |
 | :---------------------------- | :----------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Ground Control Points**     | Minimum 5 per site (4 corners + 1 centre); surveyed with RTK/PPK receiver, ≤ 2 cm accuracy       | Required for absolute accuracy validation. For repeat monitoring plots, install permanent GCP markers.                                                                                                          |
+| **Ground Control Points**     | Minimum 6 per site (4 corners + 2 distributed across the AOI); surveyed with RTK/PPK receiver, ≤ 2 cm accuracy | Required for absolute accuracy validation. For repeat monitoring plots, install permanent GCP markers.                                                                                                          |
 | **Cross-Runs over GCPs**      | INCLUDE — fly a perpendicular cross-strip over the GCP line after the main mission               | Per Phase One ANZ guidance, cross-runs are valuable for boresight angle determination, especially after CoG calibration and with the gimbal aligned to nadir. Adds ~5 min per mission.                          |
 | **Gimbal Calibration**        | Verify nadir alignment before each flight day                                                    | Even small gimbal offsets propagate into exterior orientation errors across a full mission.                                                                                                                     |
 
@@ -555,28 +514,6 @@ focal length (80 mm); values match the Phase One published GSD table.
 | 70                      | ~3.0        | 0.30        | Large-area plot-average traits                            |
 | 100                     | ~4.3        | 0.43        | Site-scale mapping, large trial blocks                    |
 | 120                     | 5.2         | 0.52        | Wide-area ortho — max altitude standard ops               |
-
----
-
-## Shutter Speed Lookup
-
-*Table 4 — Minimum shutter speed (expressed as 1/x of a second) required to
-keep motion blur below half a pixel at each altitude / speed combination
-(research-grade).* Read down (altitude) and across (ground speed) to find
-the floor (values rounded up to the nearest hundred).
-
-| Alt ↓ \ Spd → | 1 m/s   | 2 m/s   | 3 m/s    | 4 m/s    | 5 m/s    | 6 m/s    | 7 m/s    | 8 m/s    | 9 m/s    | 10 m/s   |
-| :------------ | :------ | :------ | :------- | :------- | :------- | :------- | :------- | :------- | :------- | :------- |
-| **10 m**      | 1/4700  | 1/9400  | 1/14000  | 1/18700  | 1/23300  | 1/28000  | 1/32600  | 1/37300  | 1/41900  | 1/46600  |
-| **20 m**      | 1/2400  | 1/4700  | 1/7000   | 1/9400   | 1/11700  | 1/14000  | 1/16300  | 1/18700  | 1/21000  | 1/23300  |
-| **30 m**      | 1/1600  | 1/3200  | 1/4700   | 1/6300   | 1/7800   | 1/9400   | 1/10900  | 1/12500  | 1/14000  | 1/15600  |
-| **40 m**      | 1/1200  | 1/2400  | 1/3500   | 1/4700   | 1/5900   | 1/7000   | 1/8200   | 1/9400   | 1/10500  | 1/11700  |
-| **50 m**      | 1/1000  | 1/1900  | 1/2800   | 1/3800   | 1/4700   | 1/5600   | 1/6600   | 1/7500   | 1/8400   | 1/9400   |
-| **60 m**      | 1/800   | 1/1600  | 1/2400   | 1/3200   | 1/3900   | 1/4700   | 1/5500   | 1/6300   | 1/7000   | 1/7800   |
-| **70 m**      | 1/700   | 1/1400  | 1/2000   | 1/2700   | 1/3400   | 1/4000   | 1/4700   | 1/5400   | 1/6000   | 1/6700   |
-| **80 m**      | 1/600   | 1/1200  | 1/1800   | 1/2400   | 1/3000   | 1/3500   | 1/4100   | 1/4700   | 1/5300   | 1/5900   |
-| **90 m**      | 1/600   | 1/1100  | 1/1600   | 1/2100   | 1/2600   | 1/3200   | 1/3700   | 1/4200   | 1/4700   | 1/5200   |
-| **100 m**     | 1/500   | 1/1000  | 1/1400   | 1/1900   | 1/2400   | 1/2800   | 1/3300   | 1/3800   | 1/4200   | 1/4700   |
 
 ---
 

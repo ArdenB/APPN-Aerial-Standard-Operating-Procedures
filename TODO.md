@@ -234,6 +234,34 @@ Document-wide status: **Drafted, currently in EWG feedback**
 - [ ] Address EWG feedback and progress the document to the **Modified**
   stage.
 
+**Season working plan — team responsibilities** (proposed — to be
+confirmed by each node; mirrored in
+[Season Working Plan](Protocols/Sensors/HIRES/HIRES_FieldBook.md#season-working-plan--team--outstanding-items))
+
+- [ ] **UQ** — lead the photogrammetry pipeline build; contribute time
+  and expertise.
+- [ ] **Author (technical)** — contribute to the technical side of
+  photogrammetry processing and Metashape settings.
+- [ ] **James** — support pipeline development.
+- [ ] **Dillon** — technical review (proposed).
+- [ ] **Richard / Arden (USyd)** — support and advise (proposed).
+- [ ] **CSU team** — provide technical input (proposed).
+- [ ] **Bipul** — integration of tooling for image conversions, etc.
+  (proposed).
+- [ ] **Warin & Bipul** — lead non-photogrammetry pipeline; expand team
+  as needed.
+
+**Season working plan — critical outstanding items**
+
+- [x] **APPN plot-extraction method** — agreed; see
+  [Plot Delineation](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md).
+- [ ] **Working team confirmation** — node leads to confirm named
+  contributors for the photogrammetry pipeline.
+- [ ] **PhaseOne SDK capability** — confirm scope of Image SDK
+  functionality and resourcing for GUI / code expertise.
+- [ ] **Boresight calibration** — decide whether to pursue as a means of
+  improving image geo-location.
+
 ## M3M Fieldbook — [Protocols/Sensors/M3M/M3M_FieldBook.md](Protocols/Sensors/M3M/M3M_FieldBook.md)
 
 Document-wide status: **Stub** — content placeholder only.
