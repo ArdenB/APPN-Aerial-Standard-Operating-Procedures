@@ -203,9 +203,8 @@ operations.
 7. Attach payload to the aircraft:
 
 > [!CAUTION]
-> **TBC for GOBI on IF1200.** The IF1200 dovetail has no hot-swap
-> protection, so ensure the IF1200 is powered off when attaching or
-> removing the sensor
+> The IF1200 dovetail has no hot-swap protection, so ensure the IF1200
+> is powered off when attaching or removing the sensor
 > ([more details](https://gryfn.gitbook.io/gryfn-hardware/headwall-co-aligned-hp/user-manual/integration)).
 
    - Check that all lenses and sensors are clean. If not, use professional
