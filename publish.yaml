@@ -78,19 +78,19 @@ pages:
     wiki_page: CALViS-Fieldbook
     title: "CALViS Fieldbook"
     category: Sensors
-    status: [drafted, ewg_feedback, modified]
+    status: [drafted, ewg_feedback, modified, approved]
 
   - source: Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md
     wiki_page: GOBI-M350-Fieldbook
     title: "GOBI M350 Fieldbook"
     category: Sensors
-    status: [drafted, ewg_feedback, modified]
+    status: [drafted, ewg_feedback, modified, approved]
 
   - source: Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md
     wiki_page: GOBI-IF1200-Fieldbook
     title: "GOBI IF1200 Fieldbook"
     category: Sensors
-    status: [drafted, ewg_feedback, modified]
+    status: [drafted, ewg_feedback, modified, approved]
 
   - source: Protocols/Sensors/M3M/M3M_FieldBook.md
     wiki_page: M3M-Fieldbook
@@ -103,26 +103,26 @@ pages:
     wiki_page: HiRes-Fieldbook
     title: "HiRes Fieldbook"
     category: Sensors
-    status: [drafted, ewg_feedback]
+    status: [drafted, ewg_feedback, modified]
     notes: "Currently getting EWG Feedback"
 
   - source: Protocols/FlightDesign/StandardFlight/Standard_Flight.md
     wiki_page: Standard-Flight
     title: "Standard Flight Procedure"
     category: FlightDesign
-    status: [drafted, ewg_feedback, modified]
+    status: [drafted, ewg_feedback, modified, approved]
 
   - source: Protocols/FlightDesign/ValidationFlight/Validation_Flight.md
     wiki_page: Validation-Flight
     title: "Validation Flight"
     category: FlightDesign
-    status: [drafted, ewg_feedback]
+    status: [drafted, ewg_feedback, modified, approved]
 
   - source: Protocols/QA/QAprocess/AerialDataQC.md
     wiki_page: QA-Process
     title: "QA Process"
     category: QA
-    status: [drafted, ewg_feedback, modified]
+    status: [drafted, ewg_feedback, modified, approved]
 
   - source: Protocols/QA/SpectralPanel/Spectral_Panel_Cleaning_and_Calibration.md
     wiki_page: Spectral-Panel-Cleaning-and-Calibration
@@ -154,7 +154,7 @@ pages:
     wiki_page: Processing-Pipelines
     title: "Processing Pipelines"
     category: Pipelines
-    status: [drafted, ewg_feedback, modified]
+    status: [drafted, ewg_feedback, modified, approved]
 
   - source: Protocols/Pipelines/M3MPipeline/M3M_Processing_Pipeline.md
     wiki_page: M3M-Processing-Pipeline

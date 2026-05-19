@@ -20,18 +20,18 @@ Tick = stage complete. Update each page's `status:` list in [`publish.yaml`](../
 | [QC and Reporting](Background/QCandReporting/QC_and_Reporting.md) | Background | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | Background document - not a protocol. No Approval needed |
 | [Standard Data Products](Background/StandardDataProducts/Standard_Data_Products.md) | Background | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | Background document - not a protocol |
 | [Ground-Based Phenotyping and Environmental Platforms](Background/PhenotypingAndEnvironmental/Ground_Phenotyping_and_Environmental.md) | Background | ✅ | ⬜ | ⬜ | ⬜ | ⬜ | Placeholder — formal protocols TBD |
-| [CALViS Fieldbook](Sensors/CALVIS/CALViS_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ✅ | ⬜ | ⬜ |  |
-| [GOBI M350 Fieldbook](Sensors/GOBI/GOBI_M350_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ✅ | ⬜ | ⬜ |  |
-| [GOBI IF1200 Fieldbook](Sensors/GOBI/GOBI_IF1200_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ✅ | ⬜ | ⬜ |  |
+| [CALViS Fieldbook](Sensors/CALVIS/CALViS_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
+| [GOBI M350 Fieldbook](Sensors/GOBI/GOBI_M350_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
+| [GOBI IF1200 Fieldbook](Sensors/GOBI/GOBI_IF1200_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
 | [M3M Fieldbook](Sensors/M3M/M3M_FieldBook.md) | Sensor Fieldbooks | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | Current STUB- Draft being written |
-| [HiRes Fieldbook](Sensors/HIRES/HIRES_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ⬜ | ⬜ | ⬜ | Currently getting EWG Feedback |
-| [Standard Flight Procedure](FlightDesign/StandardFlight/Standard_Flight.md) | Flight Design | ✅ | ✅ | ✅ | ⬜ | ⬜ |  |
-| [Validation Flight](FlightDesign/ValidationFlight/Validation_Flight.md) | Flight Design | ✅ | ✅ | ⬜ | ⬜ | ⬜ |  |
-| [QA Process](QA/QAprocess/AerialDataQC.md) | Quality Assurance | ✅ | ✅ | ✅ | ⬜ | ⬜ |  |
+| [HiRes Fieldbook](Sensors/HIRES/HIRES_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ✅ | ⬜ | ⬜ | Currently getting EWG Feedback |
+| [Standard Flight Procedure](FlightDesign/StandardFlight/Standard_Flight.md) | Flight Design | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
+| [Validation Flight](FlightDesign/ValidationFlight/Validation_Flight.md) | Flight Design | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
+| [QA Process](QA/QAprocess/AerialDataQC.md) | Quality Assurance | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
 | [Spectral Panel Cleaning and Calibration](QA/SpectralPanel/Spectral_Panel_Cleaning_and_Calibration.md) | Quality Assurance | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | Current STUB- Draft being written |
 | [Plot Delineation](PlotProtocols/PlotDelineation/Plot_Delineation.md) | Plot Protocols | ✅ | ⬜ | ⬜ | ⬜ | ⬜ |  |
 | [Data Folder Structure](DataManagement/DataFolderStructure/DataFolderStructure.md) | Data Management | ✅ | ✅ | ✅ | ✅ | ✅ |  |
-| [Processing Pipelines](Pipelines/ProcessingPipelines/Processing_Pipelines.md) | Processing & Data Products | ✅ | ✅ | ✅ | ⬜ | ⬜ |  |
+| [Processing Pipelines](Pipelines/ProcessingPipelines/Processing_Pipelines.md) | Processing & Data Products | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
 | [M3M Processing Pipeline](Pipelines/M3MPipeline/M3M_Processing_Pipeline.md) | Processing & Data Products | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | Current STUB- Draft being written |
 | [HiRes Processing Pipeline](Pipelines/HiResPipeline/HiRes_Processing_Pipeline.md) | Processing & Data Products | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | Current STUB- Draft being written |
 
@@ -40,6 +40,6 @@ Tick = stage complete. Update each page's `status:` list in [`publish.yaml`](../
 - Documents tracked: **18**
 - Drafted: **14 / 18**
 - EWG feedback: **9 / 18**
-- Modified: **7 / 18**
-- Approved: **1 / 18**
+- Modified: **9 / 18**
+- Approved: **8 / 18**
 - Adopted: **1 / 18**
