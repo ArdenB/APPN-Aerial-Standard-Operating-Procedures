@@ -194,19 +194,19 @@ operations.
 
 5. Set up the landing pad and UAV in a safe RTH location.
 
-   > [!IMPORTANT]
-   > In dusty environments, an additional tarp must be used under the
-   > landing pad.
+> [!IMPORTANT]
+> In dusty environments, an additional tarp must be used under the
+> landing pad.
 
 6. On the controller, set up a safe UAV RTH location, RTH altitude, and
    other geo-fencing settings on the IF1200.
 7. Attach payload to the aircraft:
 
-   > [!CAUTION]
-   > **TBC for GOBI on IF1200.** The IF1200 dovetail has no hot-swap
-   > protection, so ensure the IF1200 is powered off when attaching or
-   > removing the sensor
-   > ([more details](https://gryfn.gitbook.io/gryfn-hardware/headwall-co-aligned-hp/user-manual/integration)).
+> [!CAUTION]
+> **TBC for GOBI on IF1200.** The IF1200 dovetail has no hot-swap
+> protection, so ensure the IF1200 is powered off when attaching or
+> removing the sensor
+> ([more details](https://gryfn.gitbook.io/gryfn-hardware/headwall-co-aligned-hp/user-manual/integration)).
 
    - Check that all lenses and sensors are clean. If not, use professional
      lens cleaning wipes (e.g.
