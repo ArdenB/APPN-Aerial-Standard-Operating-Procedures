@@ -250,7 +250,14 @@ analysis across APPN operations.
    section of the Standard Flight Procedure for the full rationale and
    alternative layouts.*
 
-4. Set up the landing pad and UAV in a safe RTH location.
+   ![Top-down diagram of a single ELM panel flight: one 4-panel reflectance set deployed near the centre of the survey area, alongside the validation panel set and its paired GCPs, with a 5-GCP layout covering centre, corner and off-axis positions, all inside the ~10% effective capture area inset from the polygon edge](CALViS_FieldBook_media/single_elm_panel_flight_diagram.png)
+
+   *Figure: Single ELM panel flight layout — fallback when a second
+   panel set is unavailable. See the
+   [Single ELM panel flight](../../FlightDesign/StandardFlight/Standard_Flight.md#single-elm-panel-flight)
+   section of the Standard Flight Procedure for full guidance.*
+
+5. Set up the landing pad and UAV in a safe RTH location.
 
 > [!IMPORTANT]
 > In dusty environments, an additional tarp must be used under the
