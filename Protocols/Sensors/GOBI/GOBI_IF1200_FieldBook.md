@@ -183,7 +183,7 @@ operations.
      capture so that you fly over a calibration panel approximately every
      15 minutes.
 
-   ![Calibration panel layout](GOBI_IF1200_FieldBook_media/image_a8646f9369b2.png)
+   ![Calibration panel layout (FlightDesign/StandardFlight/Standard_Flight_media/single_elm_panel_flight_diagram.png)
 
 5. Set up the landing pad and UAV in a safe RTH location.
 
