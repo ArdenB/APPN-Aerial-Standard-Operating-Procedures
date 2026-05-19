@@ -586,14 +586,6 @@ For each APEx flight, record:
    3. NE–SW
    4. NW–SE
 
-#### Extras and post-processing experiments
-
-1. UAV platform — vibrations
-2. RTK
-3. Auscors base station vs Emlid RINEX (particularly for remote sites)
-4. DSM resolution
-5. Spectral binning in different ways
-6. SBG error reports in GPRO
 
 > Test different **wind speed and climate conditions** (may not be a
 > discrete experiment if a high-frequency weather station is set up

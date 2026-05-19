@@ -1,15 +1,5 @@
 # APPN – Plot Delineation
 
-> [!WARNING]
-> **Draft document — most major decisions ratified, some follow-ups
-> still pending with the APPN Field EWG.** The Field EWG
-> plot-delineation meeting ratified the file format (GeoJSON), the
-> minimum required attribute set, the storage location, and the
-> general approach to buffers. Outstanding follow-ups (the final
-> buffer rule, optional-column handling, the file naming convention,
-> and the trial-information spreadsheet specification) are listed in
-> the [Outstanding TODOs](#document-status--work-in-progress) below.
-
 This protocol defines the APPN standard for plot delineation shapefiles —
 their structure, attributes, and storage location within the APPN folder
 hierarchy — and documents the supported methods for producing them from
@@ -32,66 +22,10 @@ analysis across APPN trials.
 > This protocol is a draft and requires further revision before it can
 > be considered final. The points below capture the state of each
 > section after the **APPN Field EWG plot-delineation meeting**.
->
-> **✅ Resolved at the Field EWG meeting:**
->
-> - **File format — GeoJSON ratified as the primary format** (Arden,
->   Bipul agreed). Shapefile remains accepted only as a legacy /
->   companion format.
-> - **Storage location — current `Documentation/Plot_Layout/` path is
->   confirmed**, no changes required (see
->   [Storage location](#storage-location)).
-> - **Buffer table approach is endorsed** (Lleyton): values in the
->   table represent **minimum** buffers; Arden to replace the
->   placeholder examples with realistic plot sizes (6 × 2, 10 × 3,
->   6 × 1.5 — DPIRD, 4 × 1.5 — UOA OzBarley) and note that plot
->   widths can vary substantially (Ingrid).
-> - **Minimum required attribute set agreed:** `fid`, `plot_id`,
->   `row`, `range`, `crop`. `is_buffer` and `block` are **optional**
->   (carried when the trial design defines them).
-> - **Sensor identifier belongs in the file name** (Ingrid) —
->   different sensors can produce different geometries (UOA: RGB vs
->   LiDAR vs VNIR all differ). Use `VNIR_RGB` as the sensor tag for
->   both CALViS and GOBI products.
+> A small working group has reviewed the this document
+> 
 >
 > **⚠️ Still outstanding — Field EWG follow-ups:**
->
-> **Recommended buffer** (see [Recommended Buffer](#recommended-buffer))
-> - [ ] Decide whether the buffer should be a **percentage** or a
->       **"ditch a row"** rule — may end up being species-specific.
->       Goal is simply to stop edge effects.
-> - [ ] Arden to write up the revised buffer guidance (real-life plot
->       examples, minimum-vs-target framing, species-specific notes).
->
-> **Required attributes** (see [Required attributes](#required-attributes))
-> - [ ] Decide how to handle **optional columns** — carry as empty /
->       placeholder columns, or omit entirely when no data is
->       available.
-> - [ ] Both delineation tools have metadata-capture approaches —
->       confirm which approach (or harmonised superset) is the APPN
->       standard.
->
-> **File naming convention** (see [File naming convention](#file-naming-convention))
-> - [ ] Arden to report back with a proposed naming convention that
->       includes:
->   - The **sensor identifier** (e.g. `VNIR_RGB`, `LiDAR`, `RGB`).
->   - Clear handling of **special cases** (e.g. all-of-plot biomass
->       collection at UOA).
->   - Per-sensor variants only when the geometries actually differ.
-> - [ ] Set a hard rule: if shapefile differences **within a single
->       sensor** exceed ~**5 cm**, do **not** hack around them with
->       extra files — escalate and address the root cause.
->
-> **Joining trial information** (see [Joining Trial Information](#joining-trial-information))
-> - [ ] Define the **trial-information spreadsheet specification** —
->       mandatory columns, format (`.csv` vs `.xlsx`), naming, and
->       storage location.
-> - [ ] Decide whether the join is performed **once at trial setup**
->       or **re-applied each time** the shapefile is regenerated, and
->       whether the joined output overwrites or is saved as a separate
->       file.
-> - [ ] Encourage researchers / clients to **provide better plot
->       information** up front (trial design + plot dimensions).
 >
 > **Methods** (see [Methods](#methods))
 > - [ ] **Mickey to write the GPT plot-creation tool** (becomes
@@ -127,7 +61,8 @@ reflected inline; outstanding follow-ups are flagged in the
   - [Storage location](#storage-location) — confirmed as
     `Documentation/Plot_Layout/`.
   - [File naming convention](#file-naming-convention) — sensor tag in
-    the file name (e.g. `VNIR_RGB`); revision being finalised by Arden.
+    the file name (e.g. `CALVIS`, `GOBI`, `HIRES`, `M3M`); revision
+    being finalised by Arden.
 - [Joining Trial Information](#joining-trial-information) — how trial
   metadata is attached to the plot geometry via `plot_id`. Spreadsheet
   spec still pending EWG.
@@ -160,29 +95,21 @@ plot extent, regardless of which method is used to generate the shapefile.
 
 ### Recommended Buffer
 
-> [!IMPORTANT]
-> The Field EWG endorsed the **table-based buffer approach** (Lleyton).
-> The values in the table are **minimum buffers** — trials should
-> apply at least these buffers, and may apply more if site / canopy
-> conditions warrant. Arden is updating the table with realistic plot
-> sizes (6 × 2, 10 × 3, 6 × 1.5 — DPIRD, 4 × 1.5 — UOA OzBarley) to
-> replace the original placeholders.
->
-> **Still open:** whether the rule should be expressed as a
-> **percentage of plot dimension** or as a **"ditch a row"** rule
-> (likely species-specific). The agreed objective is simply to
-> eliminate edge effects — see the
-> [Outstanding TODOs](#document-status--work-in-progress) at the top.
-
 To keep results comparable across nodes, APPN trials should apply at
 least the inward buffer specified in the table below to every plot
 polygon. The current working rule is:
 
-> [!NOTE]
+> [!IMPORTANT]
 > **APPN minimum buffer (working rule):** 0.3 m from each plot end and
-> 0.2 m from each plot side (across the drill direction), **or** 15 %
-> of the corresponding plot dimension — whichever is larger. Final
-> rule (% vs ditch-a-row) is still under EWG discussion.
+> 0.2 m from each plot side (across the drill direction), **or** the 
+> width of one row — whichever is larger. 
+
+> [!NOTE]
+> The "one row width" fallback is intended to handle
+> **sorghum and other widely-spaced crops**, where the fixed 0.2 m
+> side buffer is narrower than a single inter-row spacing and would
+> still capture neighbouring rows. A more general species-specific
+> rule is still pending with the EWG.
 
 The buffer used must be recorded in the tool-specific configuration saved
 alongside the shapefile (e.g. the FIELDimageR JSON) so the layout can be
@@ -192,20 +119,16 @@ reproduced.
 
 | Plot size (L × W)                       | Min. buffer (end / side) | Analysis area (L × W) | % of plot |
 | --------------------------------------- | ------------------------ | --------------------- | --------- |
-| 6 m × 2 m   (common cereal yield plot)  | 0.5 m / 0.25 m           | 5.0 m × 1.5 m         | ~63 %     |
-| 6 m × 1.5 m (DPIRD standard)            | 0.5 m / 0.2 m            | 5.0 m × 1.1 m         | ~61 %     |
+| 6 m × 2 m   (common cereal yield plot)  | 0.3 m / 0.2 m            | 5.4 m × 1.6 m         | ~72 %     |
+| 6 m × 1.5 m (DPIRD standard)            | 0.3 m / 0.2 m            | 5.4 m × 1.1 m         | ~66 %     |
 | 4 m × 1.5 m (UOA OzBarley)              | 0.3 m / 0.2 m            | 3.4 m × 1.1 m         | ~62 %     |
-| 10 m × 3 m (common agronomy strip)      | 1.0 m / 0.5 m            | 8.0 m × 2.0 m         | ~53 %     |
+| 10 m × 3 m (Sorghum agronomy strip)     | 1.0 m / 0.5 m            | 8.0 m × 2.0 m         | ~53 %     |
 
 > [!NOTE]
 > Plot widths can vary substantially between trials (Ingrid — UOA),
 > so the table is **illustrative**, not exhaustive. Apply the working
 > rule above to any plot size not listed.
 
-> [!NOTE]
-> **Sorghum and other widely-spaced crops** can require a different
-> buffer logic — flagged for the species-specific decision still
-> pending with the EWG.
 
 #### When to increase the buffer
 
@@ -215,11 +138,6 @@ reproduced.
 - Narrow alleys (<0.5 m) where neighbouring canopies merge.
 - Trials without RTK GNSS or without ground control points (GCPs) in the
   orthomosaic.
-
-#### When a smaller buffer may be acceptable
-
-- RTK-georeferenced GCPs present in the orthomosaic.
-- Wide alleys with bare inter-row visible between plots.
 
 > [!NOTE]
 > Any deviation from the default buffer must be recorded with the trial's
@@ -233,11 +151,6 @@ All APPN plot shapefiles must conform to the following standard so that
 downstream pipelines can ingest them without trial-specific configuration.
 
 ### File format
-
-> [!IMPORTANT]
-> **Field EWG decision:** **GeoJSON is the ratified primary format**
-> for all new APPN plot layout files (Arden, Bipul agreed). Shapefile
-> is retained only as a legacy / companion format.
 
 - **Primary format:** **GeoJSON** (`.geojson`) — a single, plain-text,
   self-contained file. See
@@ -286,7 +199,16 @@ Every APPN plot polygon **must** carry the following attributes:
 > the tool's internal polygon ID; `plot_id` is the agronomic plot
 > number from the trial design. Conflating the two breaks
 > reproducibility when the shapefile is regenerated and `fid` values
-> shift. **`plot_id` (not `fid`) is the join key for trial metadata.**
+> shift.
+>
+> **`plot_id` (not `fid`) is the join key for trial metadata.**
+> Trial information arrives in a wide range of formats and structures
+> across nodes and projects and cannot realistically be standardised
+> into a single schema, so at a minimum the shapefile and the trial
+> spreadsheet must share `plot_id` for the join described in
+> [Joining Trial Information](#joining-trial-information) to be
+> performed reliably. `fid` must not be used as the join key — it is
+> tool-assigned and may change when the shapefile is regenerated.
 
 #### Optional attributes
 
@@ -315,23 +237,77 @@ Provenance (used to trace how the polygon was produced):
 
 - `method` — delineation method (e.g. `FIELDimageR`, `DPIRD`, `GPT`).
 - `buffer_end_m`, `buffer_side_m` — buffer values applied (in metres).
-- `source_ortho` — filename or ID of the orthomosaic the polygon was
+- `source_file` — filename or ID of the orthomosaic the polygon was
   fit to.
 - `created` — ISO date the file was generated.
+- `created_by` — Name of the person who produced the file, 
+  for provenance and follow-up queries.
+- `notes` — Any additional infomation about creation or usage
 
 > [!NOTE]
 > Both Method 1 (FIELDimageR) and Method 2 (DPIRD Field Mapping Tool)
-> have their own metadata-capture conventions. Harmonising these into 
-> a single standard is still outstanding. Metadata should be saved
-> alongside the current file.
+> have their own metadata-capture conventions, and harmonising these
+> into a single standard is still outstanding. Metadata should be
+> saved alongside the layer file. Where additional metadata needs to
+> be added manually, use the schema below.
+
+```json
+{
+  "type": "FeatureCollection",
+  "name": "2025IAWatson_plots_v01",
+  "crs": {
+    "type": "name",
+    "properties": { "name": "urn:ogc:def:crs:EPSG::7855" }
+  },
+  "provenance_metadata": {
+    "datasetId": "2025IAWatson_plots_v01",
+    "site": "2025IAWatson",
+    "node": "USYD_Narrabri",
+    "method": "FIELDimageR",
+    "source_file": "2025IAWatson_CALVIS_Orthomosaic.tif",
+    "sensor": "CALVIS",
+    "buffer_end_m": 0.3,
+    "buffer_side_m": 0.2,
+    "created": "2026-05-18",
+    "created_by": "Arden Burrell",
+    "originatingSystem": "QGIS 3.36 + FIELDimageR",
+    "notes": "Buffer applied per APPN minimum working rule."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [ [ [ /* … */ ] ] ]
+      },
+      "properties": {
+        "fid": 1,
+        "plot_id": 1001,
+        "row": 1,
+        "range": 1,
+        "crop": "Wheat",
+        "is_buffer": false,
+        "block": 1,
+        "genotype": "Scepter",
+        "treatment": "N0"
+      }
+    }
+    /* … one Feature per plot … */
+  ]
+}
+```
 
 > [!NOTE]
-> The columns required to **join trial information** from the trial
-> spreadsheet are still to be defined. At a minimum, the shapefile and
-> the spreadsheet must share `plot_id` so that the join described in
-> [Joining Trial Information](#joining-trial-information) can be
-> performed reliably. `fid` should not be used as the join key — it is
-> tool-assigned and may change when the shapefile is regenerated. 
+> `crs` should match the projected CRS of the source orthomosaic
+> (typically the relevant GDA2020 / MGA zone — `EPSG:7855` is shown
+> here for Narrabri NSW). `provenance_metadata` is a top-level
+> sidecar object that records how the layer was produced and mirrors
+> the per-feature provenance attributes listed above. Per-feature
+> `properties` must include the [Required attributes](#required-attributes)
+> and may include any of the optional attributes when the data is
+> available.
+
+
 
 ### Storage location
 
@@ -359,124 +335,320 @@ Also save the tool-specific configuration used to generate the layout
 file (e.g. the FIELDimageR JSON settings) alongside it so the layout can
 be reproduced.
 
+### Folder README
+
+Each `Plot_Layout/` folder **should** contain a `README.md` capturing
+site-specific context that doesn't fit cleanly into per-file
+`provenance_metadata`: which file is the current main `plots` layout,
+why any variant (`plots_unbuffered`, `plots_rszone`, `plots_{sensor}`)
+exists, a deprecation log, sampling-campaign notes, and any known
+quirks. Machine-readable provenance still lives in each file's
+`provenance_metadata`; the README is the human-readable companion for
+the folder as a whole.
+
+Suggested template:
+
+```markdown
+# Plot Layout — {YYYYSiteName}
+
+Site-specific notes for the files in this folder. For the APPN-wide
+spec see the [Plot Delineation protocol](…/Plot_Delineation.md).
+
+## Current main file
+- `{YYYYSiteName}_plots.geojson` — fitted YYYY-MM-DD by <name>,
+  method <FIELDimageR | DPIRD | GPT>.
+
+## Variants in use
+- `plots_unbuffered` — used by <pipeline / person> for <reason>.
+- `plots_{sensor}` — justified because <CRS / portion-of-plot reason>;
+  approved by EWG on <date>.
+
+## Sampling campaigns
+- `sampling_biomass_YYYYMMDD…` — operator, quadrat size, anything odd.
+
+## Deprecated files
+| File | Replaced on | Reason | Superseded by |
+| --- | --- | --- | --- |
+| `…_plots_20250901_deprecated.geojson` | 2025-09-01 | Re-fit after RTK base correction | `…_plots.geojson` |
+
+## Known issues / quirks
+- e.g. "HIRES flight 2025-10-12 had a 7 cm N–S offset — corrected in
+  re-process."
+```
+
 ### File naming convention
 
+A site's `Plot_Layout/` directory holds **three families** of vector
+file, and the naming convention is built around that split:
+
+1. **Plot files (`plots*`)** — define the **plot polygons** (the area
+   to analyse). Every site has **one main `plots` file** with a short,
+   simple name that is reused across every sensor wherever possible.
+   Additional plot files may be added with longer, descriptive
+   suffixes that record their more limited usage — for example, an
+   unbuffered variant, a sensor-specific variant, or a remote-sensing-
+   only sub-area.
+2. **Sampling files (`sampling_*`)** — record the **portion of each
+   plot that was actually sampled** by a destructive or in-field
+   measurement (biomass cut, height measurement, emergence count, head
+   count, etc.). One file per measurement type, named after the
+   measurement.
+3. **GCP file (`gcp`)** — **permanent ground control points only**
+   (fixed, surveyed markers that persist across flights and seasons).
+   Temporary or per-flight GCPs are **not** stored here — they belong
+   with the flight that used them.
+
 > [!IMPORTANT]
-> **Field EWG meeting outcome:** the convention below is being
-> revised by Arden following the meeting and is **not yet ratified**.
-> Key decisions captured at the meeting:
->
-> - The **sensor identifier belongs in the file name** (Ingrid). Use
->   `VNIR_RGB` as the sensor tag for **both CALViS and GOBI** products.
->   Other expected tags: `RGB` (HiRes), `LiDAR`, etc.
-> - Sensor-specific shapefile variants are only justified when the
->   different sensors **actually produce different geometries**
->   (UOA reports RGB vs LiDAR vs VNIR can all differ).
-> - **Hard rule:** if shapefile differences **within a single sensor**
->   exceed ~**5 cm**, do **not** create extra files to work around
->   them — escalate and address the root cause.
-> - The convention must clearly handle **special cases** — e.g.
->   all-of-plot biomass collection at UOA — with role tags or
->   exclusion layers.
->
-> Arden to report back with the revised convention.
+> **The main `plots` file is the only mandatory vector file.** Every
+> APPN project and site **must** have a
+> `{YYYYSiteName}_plots.geojson` in its `Plot_Layout/` folder — it is
+> the entry point every downstream pipeline depends on. All other
+> files in the three families (`plots_*` variants, `sampling_*`,
+> `gcp`) are **optional** and are added only when the trial actually
+> needs them. A `README.md` in the folder (see
+> [Folder README](#folder-readme)) is **strongly recommended** for
+> every site, even when only the main `plots` file is present.
 
-A site's `Plot_Layout/` directory may contain more than one plot
-shapefile — for example, the main analysis layout, sensor-specific
-variants where geometries genuinely differ, and exclusion layers
-covering areas affected by destructive field interventions (biomass
-cuts, manual sampling quadrats, damaged plots, etc.). A consistent
-naming convention keeps these distinguishable.
 
-Working format (subject to revision per the EWG decisions above):
+
+
+#### Working format
+
+Three parallel patterns — one per family (`plots`, `sampling`, and `gcp`):
 
 ```
-{YYYYSiteName}_{role}[_{sensor}][_v{NN}].{ext}
+{YYYYSiteName}_plots[_{descriptor}][_{sensor}][_{YYYYMMDD}][_v{NN}][_deprecated].{ext}    # plot files
+{YYYYSiteName}_sampling_{measurement}[_{YYYYMMDD}][_v{NN}][_deprecated].{ext}             # sampling files
+{YYYYSiteName}_gcp[_{YYYYMMDD}][_v{NN}][_deprecated].{ext}                                # ground control points
 ```
+
+**Common fields** (apply to all three patterns):
 
 | Field | Notes |
 | --- | --- |
 | `{YYYYSiteName}` | Site identifier (year + site name), matching the parent folder name with the `_F` suffix dropped. Plot layouts only apply to field sites. |
-| `{role}` | Short role tag describing what the layer represents (see below). |
-| `{sensor}` | **Optional sensor tag**, included when sensor-specific geometries are needed (e.g. `VNIR_RGB`, `RGB`, `LiDAR`). Use `VNIR_RGB` for both CALViS and GOBI. Only add a sensor-specific file when the geometry genuinely differs — see the 5 cm rule above. |
+| `{YYYYMMDD}` | **Optional** ISO-style date tag (e.g. `20251104`) identifying the date the file applies to — typically the **sampling / measurement date** on `sampling_*` files, or the **survey date** on a permanent `gcp` file. Omit on the main `plots` file (which spans the whole season). **Mandatory** on `sampling_*` files when more than one event of the same measurement occurs in a season.<br><br>**Multi-date / range syntax:** when a single sampling event spans more than one day, combine dates in the tag itself — use `and` to list discrete dates (`20251104and20251125`) and `to` for a continuous date range (`20251104to20251108`). The two joiners may be combined (`20251104to20251108and20251215`). Keep dates in chronological order. |
 | `_v{NN}` | Optional zero-padded revision (`_v01`, `_v02`, …). Bump on any change to geometry or attributes. |
+| `_deprecated` | **Optional** terminal tag flagging a file that has been **superseded but retained for provenance** (e.g. the older revision of a re-fit plot layout, or a measurement file replaced by a corrected version). The replacement file keeps the original name (or a bumped `_v{NN}`); the superseded file is renamed with this suffix appended so downstream pipelines skip it. Record the reason for deprecation and the name of the superseding file in the deprecated file's `provenance_metadata.notes`. |
 | `{ext}` | `geojson` (mandated primary). `shp` (with sidecars) is also accepted as a legacy / companion file. |
 
-Working role tags:
 
-- `plots` — the primary analysis layout (one polygon per plot, buffer
-  applied per the [APPN Plot Shapefile Standard](#appn-plot-shapefile-standard)).
-- `plots_raw` — unbuffered or pre-buffer plot footprints, if retained.
-- `exclude_biomass` — areas removed for biomass cuts.
-- `exclude_biomass_full` — plots **entirely** removed for biomass
-  collection (e.g. UOA all-of-plot biomass workflow).
-- `exclude_sampling` — areas removed for other destructive sampling
-  (manual quadrats, soil cores, etc.).
-- `exclude_damage` — plots or sub-areas excluded due to damage,
-  lodging, weed pressure, or other quality issues.
-- `gcp` — ground control point locations, if stored alongside the
-  layout.
 
-Examples (within
-`USYD_Narrabri/2025_SIFOzBarley/2025IAWatson_F/Documentation/Plot_Layout/`):
+**Plot-file fields** (`plots[_{descriptor}][_{sensor}]`):
+
+| Field | Notes |
+| --- | --- |
+| `{descriptor}` | **Optional** short tag for a non-default plot variant (`unbuffered`, `rszone`, …). Omit on the main file. |
+| `{sensor}` | **Optional** sensor tag — use the platform name (`CALVIS`, `GOBI`, `HIRES`, `M3M`). Only add a sensor-specific file when the geometry genuinely differs — see the 5 cm rule above. |
+
+**Sampling-file fields** (`sampling_{measurement}`):
+
+| Field | Notes |
+| --- | --- |
+| `{measurement}` | **Mandatory** on sampling files. Short tag identifying the measurement type (`biomass`, `height`, `emergence`, `headcount`, …). |
+
+#### Plot file tags
+
+- `plots` — **the main file.** Primary analysis layout (one polygon
+  per plot, buffer applied per the
+  [APPN Plot Shapefile Standard](#appn-plot-shapefile-standard)).
+  Used by every sensor unless a sensor-specific variant is justified.
+
+  > [!NOTE]
+  > The main `plots` file is the entry point every downstream
+  > pipeline looks for, so it should keep its **short, unversioned
+  > name** (`{YYYYSiteName}_plots.geojson`) for the life of the
+  > trial. When the layout is re-fit and a new version supersedes
+  > the current main file, **prefer the `_deprecated` tag over
+  > bumping `_v{NN}` on the main file** — rename the old file to
+  > `{YYYYSiteName}_plots_{YYYYMMDD}_deprecated.geojson` (date tag
+  > disambiguates multiple deprecations) and save the new layout
+  > back under the plain `{YYYYSiteName}_plots.geojson` name. This
+  > keeps the main file easy to find and unambiguous, and keeps
+  > older copies clearly marked as superseded.
+
+- `plots_unbuffered` — full plot footprint with **no inward analysis
+  buffer**, for cases where the entire plot area is needed.
+- `plots_rszone` — sub-area within each plot **reserved for remote
+  sensing** and kept off-limits to destructive sampling.
+- `plots_{sensor}` — sensor-specific geometry variant, where
+  `{sensor}` is the platform name (`CALVIS`, `GOBI`, `HIRES`, or
+  `M3M`). Only create one when the sensor geometry genuinely differs
+  (see 5 cm rule above).
+
+> [!IMPORTANT]
+> **When a `plots_{sensor}` file is justified.** A sensor-specific
+> plot file should only be created when the sensor *systematically*
+> needs different polygons from the main `plots` file. The two
+> accepted justifications are:
+>
+> 1. **The sensor exports in a different CRS** and cannot be
+>    reprojected losslessly into the standard GDA2020 / MGA zone of
+>    the main `plots` file.
+> 2. **The sensor captures a different portion of the plot** (e.g.
+>    `Omega` capturing the entire plot without bufffer),
+>    so a single shared polygon would systematically clip or
+>    over-extend the analysis area.
+>
+> **Hard rule:** if plot-file differences **within a single sensor**
+> exceed ~**5 cm**, do **not** create extra files to work around
+> them — escalate and address the root cause (georeferencing,
+> orthorectification, GCPs).
+>
+> **Strongly discouraged:** stacking further tags such as
+> `plots_{sensor}_{YYYYMMDD}` — or, worse,
+> `plots_{sensor}_{YYYYMMDD}_{run}` — to paper over a single bad
+> run (e.g. one flight with the wrong CRS or a spatial misalignment).
+> This fragments the plot layout across files, breaks downstream
+> pipelines that key on the main `plots` file, and hides a real
+> data-capture problem. Re-process the offending run instead. Per-run
+> overrides at this level are a **last resort** — use only after all
+> other attempts to fix the data have failed, and record the
+> justification in the file's `provenance_metadata.notes`.
+
+#### Sampling file tags
+
+One file per measurement type. Extensible — add new tags as new
+measurements are introduced.
+
+- `sampling_biomass` — footprints of biomass cuts within each plot.
+  Whole-plot biomass collection (e.g. UOA all-of-plot workflow) uses
+  the same `sampling_biomass` tag with polygons matching the full
+  plot extent — differentiate it via the date tag, not a separate
+  filename suffix.
+- `sampling_height` — locations / quadrats where canopy height was
+  measured.
+- `sampling_emergence` — emergence-count quadrats.
+- `sampling_headcount` — headcount quadrats.
+- `sampling_{measurement}` — extensible for other destructive or
+  in-field sampling (manual quadrats, soil cores, damage assessments,
+  etc.).
+
+#### Other tags
+
+- `gcp` — **permanent** ground control point locations only (fixed,
+  surveyed markers that persist across flights and seasons).
+  Temporary or per-flight GCPs must **not** be stored here — they
+  belong with the flight that used them.
+
+#### Examples
+
+Within
+`USYD_Narrabri/2025_SIFOzBarley/2025IAWatson_F/Documentation/Plot_Layout/`:
 
 ```
-2025IAWatson_plots_v01.geojson                 (primary file — GeoJSON)
-2025IAWatson_plots_VNIR_RGB_v01.geojson        (CALViS / GOBI variant, only if geometry differs)
-2025IAWatson_plots_LiDAR_v01.geojson           (LiDAR variant, only if geometry differs)
-2025IAWatson_plots_v01.shp                     (+ .shx .dbf .prj .cpg — optional companion)
-2025IAWatson_plots_v01.json                    (FIELDimageR settings)
-2025IAWatson_exclude_biomass_v01.geojson
-2025IAWatson_exclude_biomass_full_v01.geojson  (all-of-plot biomass collection)
+# Plot files
+2025IAWatson_plots.geojson                  (main file — used by every sensor)
+2025IAWatson_plots_unbuffered_v01.geojson       (full plot footprint, no inward buffer)
+2025IAWatson_plots_rszone_v01.geojson           (RS-safe sub-area, no destructive sampling)
+2025IAWatson_plots_HIRES_v01.geojson            (sensor variant — only if geometry differs)
+2025IAWatson_plots_v01.shp                      (+ .shx .dbf .prj .cpg — optional companion)
+2025IAWatson_plots_v01.json                     (FIELDimageR settings sidecar)
+
+# Sampling files (one per measurement type; date tag identifies the sampling event)
+2025IAWatson_sampling_biomass_20251104_v01.geojson                (single biomass cut, 2025-11-04)
+2025IAWatson_sampling_biomass_20251104and20251125_v01.geojson     (biomass cut spread over two discrete days)
+2025IAWatson_sampling_biomass_20251201to20251205_v01.geojson      (biomass cut over a 5-day window)
+2025IAWatson_sampling_emergence_20250710_v01.geojson
+2025IAWatson_sampling_headcount_20251018_v01.geojson
+
+# Ground control points
+2025IAWatson_gcp_v01.geojson
+
+# Superseded but retained for provenance
+2025IAWatson_plots_20250901_deprecated.geojson  (previous main layout, replaced 2025-09-01 — see notes)
 ```
 
 > [!NOTE]
-> Exclusion layers should use the **same CRS and `plot_id` scheme** as
-> the primary `plots` layer so that downstream pipelines can spatially
-> subtract or flag affected plots without additional configuration.
+> All `sampling_*` and `plots_*` variant files should use the **same
+> CRS and `plot_id` scheme** as the main `plots` file so that
+> downstream pipelines can spatially join, subtract, or flag affected
+> plots without additional configuration. The **only** accepted
+> exception is when a sensor cannot output in the standard GDA2020
+> CRS — in that case the variant file may use the sensor's native
+> CRS, but the CRS must be declared in the file's
+> `provenance_metadata` and a reprojection step added to the
+> downstream pipeline.
 
 ---
 
 ## Joining Trial Information
 
+Trial information arrives in a wide range of formats and structures
+across nodes, projects, and collaborators (trial designs, agronomy
+records, breeder spreadsheets, LIMS exports) and **cannot realistically
+be standardised** into a single APPN schema. Instead of mandating a
+spreadsheet layout, APPN mandates **one thing only**: the trial
+spreadsheet must carry a `plot_id` column whose values match the
+`plot_id` attribute of the plot GeoJSON exactly (same type, same
+zero-padding, no whitespace). Everything else is up to the trial.
+
 > [!IMPORTANT]
-> **Field EWG status:** the trial-information spreadsheet specification
-> (mandatory columns, file format, naming convention, storage location)
-> and the end-to-end procedure for joining it onto the plot shapefile
-> are still **to be defined**. The placeholder workflow below uses
-> `plot_id` as the join key (which is ratified) but the spreadsheet
-> spec itself is **not yet the APPN standard**.
->
-> Encourage researchers and clients to **provide better plot
-> information up front** (trial design + plot dimensions) so the
-> spreadsheet can be assembled reliably.
->
-> Open EWG questions:
->
-> - Required vs. optional columns in the trial spreadsheet (e.g.
->   `plot_id`, `row`, `range`, `block` / `replicate`, `crop`,
->   `genotype`, `treatment`).
-> - Preferred file format (`.csv` vs `.xlsx`) and naming convention.
-> - Where the trial spreadsheet lives in the APPN folder structure
->   (likely under `Documentation/`).
-> - Whether the join is performed once at trial setup, or re-applied
->   each time the shapefile is regenerated.
-> - Whether the joined output overwrites the source file or is saved
->   as a separate `*_joined` file.
+> **The only hard requirement is the join key.** The trial
+> spreadsheet **must** include a `plot_id` column that matches the
+> plot file's `plot_id` one-to-one. `fid` must **not** be used as the
+> join key — it is tool-assigned and changes when the plot file is
+> regenerated.
 
-Most delineation tools produce a shapefile whose plots are identified
-by a tool-assigned `fid` plus the design's `plot_id`. Trial metadata is
-attached as a separate step using `plot_id` as the join key:
+### Suggested columns
 
-1. Prepare a spreadsheet (CSV or XLSX) of trial information with one row
-   per plot and a `plot_id` column whose values match the shapefile's
-   `plot_id`.
-2. In QGIS, load both layers and use **Properties → Joins** on the
-   shapefile to join the spreadsheet on the `plot_id` field. Do not use
-   `fid` as the join key — it is tool-assigned and may change when the
-   shapefile is regenerated.
-3. Export the joined layer back to a shapefile in the same `Plot_Layout`
-   directory so the trial metadata is persisted in the `.dbf`.
+The columns below are **examples**, not a required schema. Include the
+ones the trial actually uses; omit the rest. Add any trial-specific
+columns you need.
+
+| Column | Typical use |
+| --- | --- |
+| `plot_id` | **Required.** Join key — must match the plot file. |
+| `row`, `range` | Trial-design coordinates (handy for sanity-checking the join). |
+| `block` / `replicate` | Replication block from the trial design. |
+| `crop` | Crop type (e.g. `Wheat`). |
+| `genotype` / `entry` | Variety, line, or accession code (anonymised if proprietary). |
+| `treatment` | Agronomic / experimental treatment (e.g. `N0`, `Irrigated`). |
+| `sowing_date` | ISO date sown. |
+| `seed_rate`, `row_spacing_m` | Agronomy parameters when relevant. |
+| `notes` | Free-text per-plot notes (damage, missing rows, etc.). |
+
+### Example template (`{YYYYSiteName}_trial_info.csv`)
+
+```csv
+plot_id,row,range,block,crop,genotype,treatment,sowing_date,notes
+1001,1,1,1,Wheat,Scepter,N0,2025-05-12,
+1002,1,2,1,Wheat,Mace,N0,2025-05-12,
+1003,1,3,1,Wheat,Scepter,N100,2025-05-12,
+2001,2,1,2,Wheat,Mace,N100,2025-05-12,missing first row
+...
+```
+
+CSV is preferred (plain text, diff-friendly, opens everywhere); XLSX
+is acceptable if the trial team already maintains it.
+
+### Storage location
+
+Trial-information files live in a dedicated **`Trial_Info/`** subfolder
+alongside `Plot_Layout/` under the site's `Documentation/` directory:
+
+```
+{Node}/
+  {YYYY_ProjectDesc[_I|E][_Researcher][_org]}/
+  {YYYYSiteName[_F|C]}/Documentation/
+    Plot_Layout/
+    Trial_Info/
+```
+
+Example:
+
+```
+USYD_Narrabri/2025_SIFOzBarley/2025IAWatson_F/Documentation/Trial_Info/
+  2025IAWatson_trial_info.csv          (current trial info)
+  2025IAWatson_trial_info_20250612_deprecated.csv   (superseded version)
+  README.md                            (source spreadsheets, contacts, quirks)
+```
+
+The same `_deprecated` and `_v{NN}` conventions used for plot files
+apply here (see [File naming convention](#file-naming-convention)).
+Record the current filename and any quirks in the folder's `README.md`,
+and reference it from the `Plot_Layout/` [Folder README](#folder-readme)
+so the two folders stay linked.
 
 ---
 
