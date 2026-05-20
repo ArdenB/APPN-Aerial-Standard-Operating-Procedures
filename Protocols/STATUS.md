@@ -26,7 +26,7 @@ Tick = stage complete. Update each page's `status:` list in [`publish.yaml`](../
 | [M3M Fieldbook](Sensors/M3M/M3M_FieldBook.md) | Sensor Fieldbooks | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | Current STUB- Draft being written |
 | [HiRes Fieldbook](Sensors/HIRES/HIRES_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ✅ | ⬜ | ⬜ | Currently getting EWG Feedback |
 | [Standard Flight Procedure](FlightDesign/StandardFlight/Standard_Flight.md) | Flight Design | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
-| [Validation Flight](FlightDesign/ValidationFlight/Validation_Flight.md) | Flight Design | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
+| [Validation Flight](FlightDesign/ValidationFlight/Validation_Flight.md) | Flight Design | ✅ | ✅ | ✅ | ⬜ | ⬜ |  |
 | [QA Process](QA/QAprocess/AerialDataQC.md) | Quality Assurance | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
 | [Spectral Panel Cleaning and Calibration](QA/SpectralPanel/Spectral_Panel_Cleaning_and_Calibration.md) | Quality Assurance | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | Current STUB- Draft being written |
 | [Plot Delineation](PlotProtocols/PlotDelineation/Plot_Delineation.md) | Plot Protocols | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
@@ -41,5 +41,5 @@ Tick = stage complete. Update each page's `status:` list in [`publish.yaml`](../
 - Drafted: **14 / 18**
 - EWG feedback: **10 / 18**
 - Modified: **10 / 18**
-- Approved: **9 / 18**
+- Approved: **8 / 18**
 - Adopted: **1 / 18**

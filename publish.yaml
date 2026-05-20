@@ -116,7 +116,7 @@ pages:
     wiki_page: Validation-Flight
     title: "Validation Flight"
     category: FlightDesign
-    status: [drafted, ewg_feedback, modified, approved]
+    status: [drafted, ewg_feedback, modified]
 
   - source: Protocols/QA/QAprocess/AerialDataQC.md
     wiki_page: QA-Process
