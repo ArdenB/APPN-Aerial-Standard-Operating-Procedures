@@ -78,7 +78,7 @@ confidence in downstream data analysis across APPN operations.
   - [ ] 1 x Calibration validation panels (20%, 45%)
   - [ ] 5 × Propeller Aeropoints or other ground control points (GCPs) and/or RTK GNSS system 
   - [ ] 2 × folding tables to elevate panels
-  - [ ] *If over 50 km from CORS base station*, a portable RTK base station
+  - [ ] *If over 30 km from a single CORS base station*, a portable RTK base station
         ([link to GRYFN gitbook](https://gryfn.gitbook.io/gryfn-operations/operations/base-station-availability))
 - [ ] **Accessories**
   - [ ] Safety gear (signage and high-vis vests)
@@ -357,6 +357,8 @@ confidence in downstream data analysis across APPN operations.
    hyperspectral data later due to its size.
 8. Clear data directories after download and backup to avoid filling the
    500 GB SSD.
+
+- Gryfn Processing Tool v1.94 and greater have the ability to query the sensor directly with the new firmware and so can be used to offload the data. In some cases where the drone is powered off too quickly post stopping the mission the gnss data may be absent. This canb be recovered by connecting directly to the SBG via FTP, instructions for connection below.
 
 ### Data storage, processing & validation
 
