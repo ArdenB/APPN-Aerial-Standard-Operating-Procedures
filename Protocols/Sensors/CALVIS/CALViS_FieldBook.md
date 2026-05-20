@@ -137,7 +137,7 @@ analysis across APPN operations.
 4. Open QGroundControl (QGC)
    ([download here](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html))
    on a PC and connect a USB-A cable to the PC and USB-C into the USB-C port
-   at the top of the IF1200.
+   at the top of the IF1200. Other option is to connect a Ground Contol station directly to the IF1200 via the Herelink hotspot [follow steps here](https://docs.inspiredflight.com/inspired-documentation/products/aircraft/if1200/operating-the-aircraft/wireless-connection-to-ground-station).
 
 > [!IMPORTANT]
 > A USB-C to USB-C cable will **not** work for the QGC <-> IF1200 connection
@@ -211,11 +211,13 @@ analysis across APPN operations.
    sun is ±20° of solar noon, approximately 2 hours before or after noon
    (**however**, this will depend on time of year and latitude — please
    check [here](https://gml.noaa.gov/grad/solcalc/) if unsure).
+   
+__comment: solar noon is a moving target so we are essentially saying at this time of year we can fly at a lower solar altitude in adelaide than in brisbane by having ±20° of solar noon as our limit, maybe we should follow this recommendation, [GRYFN](https://gryfn.gitbook.io/gryfn-operations/sensing-technologies/hyperspectral)__
 
-2. Turn on the aeronautical radio and set to local CTAF (find in
+3. Turn on the aeronautical radio and set to local CTAF (find in
    [ERSA](https://www.airservicesaustralia.com/aip/aip.asp)).
 
-3. Set up reflectance panels, the validation panel, and GCPs following the
+4. Set up reflectance panels, the validation panel, and GCPs following the
    [Standard Flight Procedure](../../FlightDesign/StandardFlight/Standard_Flight.md).
    In summary:
 
@@ -340,6 +342,8 @@ analysis across APPN operations.
    - When adjusting exposure, use the lowest gain mode possible while still
      achieving sufficient saturation to boost SNR, without adjusting frame
      period.
+   - HyperspecIII displays two graphs of counts one is in spatial and one spectral dimension. For exposure setting the spectral    graph should be the main focus, and the X-hair toggle at top of screen may be useful for selecting a brightly lit part of the    scene for exposure setting. Note here counts are on the y-axis with the max @65,000, so 95% = ~61,750 counts. HSinsight works    similarly with though the measure in intensity and so ~95% can be set dierctly.
+   - [Example](https://www.youtube.com/watch?v=8DAJToJKQhw).
 
 > [!NOTE]
 > (GRYFN) Low gain is unlikely to ever be possible with SWIR. They are
@@ -478,6 +482,8 @@ analysis across APPN operations.
 6. Navigate to the mission date.
 7. Select all files.
 8. Download all files.
+
+In HyperpsecIII at download the tab PNG creation can be diabled and this can be completed in the Gryfn Processing Tool. This has some advantages in speed of download as well as creating PNGs with greater contrast among ground reference panels for easier mapping of panel reflectance. Download via FTP is also an option for the VNIR+Lidar data with the logins provided on sensor.
 
 ### GNSS-INS
 
@@ -627,7 +633,7 @@ the sensors:
 ### Headwall Polygon Tool — Workflow
 
 1. Import KML.
-   - Must be in Google Earth format.
+   - Must be in Google Earth format (i.e. contain a z-dimension).
 2. Export KML.
 3. Save KML.
 4. In File Explorer, rename the KML as the survey name.
