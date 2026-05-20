@@ -27,6 +27,7 @@ publish script when a new revision is cut.
 - [CALViS Fieldbook](Protocols/Sensors/CALVIS/CALViS_FieldBook.md)
 - [GOBI M350 Fieldbook](Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md)
 - [GOBI IF1200 Fieldbook](Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md)
+- [HiRes Fieldbook](Protocols/Sensors/HIRES/HIRES_FieldBook.md)
 - [Standard Flight Procedure](Protocols/FlightDesign/StandardFlight/Standard_Flight.md)
 - [QA Process](Protocols/QA/QAprocess/AerialDataQC.md)
 - [Plot Delineation](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md)

@@ -24,7 +24,7 @@ Tick = stage complete. Update each page's `status:` list in [`publish.yaml`](../
 | [GOBI M350 Fieldbook](Sensors/GOBI/GOBI_M350_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
 | [GOBI IF1200 Fieldbook](Sensors/GOBI/GOBI_IF1200_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
 | [M3M Fieldbook](Sensors/M3M/M3M_FieldBook.md) | Sensor Fieldbooks | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | Current STUB- Draft being written |
-| [HiRes Fieldbook](Sensors/HIRES/HIRES_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ✅ | ⬜ | ⬜ | Currently getting EWG Feedback |
+| [HiRes Fieldbook](Sensors/HIRES/HIRES_FieldBook.md) | Sensor Fieldbooks | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
 | [Standard Flight Procedure](FlightDesign/StandardFlight/Standard_Flight.md) | Flight Design | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
 | [Validation Flight](FlightDesign/ValidationFlight/Validation_Flight.md) | Flight Design | ✅ | ✅ | ✅ | ⬜ | ⬜ |  |
 | [QA Process](QA/QAprocess/AerialDataQC.md) | Quality Assurance | ✅ | ✅ | ✅ | ✅ | ⬜ |  |
@@ -41,5 +41,5 @@ Tick = stage complete. Update each page's `status:` list in [`publish.yaml`](../
 - Drafted: **14 / 18**
 - EWG feedback: **10 / 18**
 - Modified: **10 / 18**
-- Approved: **8 / 18**
+- Approved: **9 / 18**
 - Adopted: **1 / 18**
