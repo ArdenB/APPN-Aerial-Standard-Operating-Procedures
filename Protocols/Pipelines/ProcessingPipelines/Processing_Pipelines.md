@@ -91,7 +91,9 @@ unique number.
 #### Radiometric calibration files
 
 Each sensor has an associated set of radiometric calibration files supplied
-by GRYFN. In the radiometric calibartion file folder there is subfolders. It is recommended to remove the .nuc folder keeping the .raw folder to prevent Gryfn Processing Tool from grabing the wrong files. 
+by GRYFN. The radiometric calibration folder contains subfolders; it is
+recommended to remove the `.nuc` folder and keep the `.raw` folder to prevent
+the Gryfn Processing Tool from grabbing the wrong files.
 
 > [!IMPORTANT]
 > Verify that the **Radiometric Calibration Location** parameter in GPT
