@@ -246,7 +246,7 @@ guidance, see [Sensor Configuration Reference (Table 2)](#sensor-configuration-r
    [Table 1](#appn-hi-res-mission-standard-types). DJI Pilot 2 mission planning will
    always set a conservative shutter speed that does not allow image
    motion blur.
-3. **Focus** — set focus mode to **Manual Focus** and focus to **infinity**.
+3. **Focus** — set focus mode to **Manual Focus** and focus to **autofocus**.
    Some crop types and applications may require custom settings to ensure
    the target is not out of focus.
 
@@ -475,7 +475,7 @@ substituting any other lens or camera body invalidates the GSD column in
 | **ISO**                       | Base 200 (sensor native) — max 3200                                                                | iXM-GS120 native ISO range is 200–6400 (RGB). Noise becomes visibly detectable above ISO 3200.                                                                                                |
 | **Aperture**                  | f/8 min (sweet spot) — f/11 max                                                                    | Sharpness peaks ~f/8 across the frame; edge softness appears wide of f/5.6 and diffraction softens past f/11.                                                                                 |
 | **Shutter Speed**             | Set per [Table 1](#appn-hi-res-mission-standard-types) — minimum 1/4000, up to 1/16,000          | Motion blur rule: shutter × speed ≤ GSD × 0.5 (half-pixel tolerance).                                                                                                                         |
-| **Focus Mode**                | Manual focus locked to infinity (> 3 m) **or** AF (single acquisition at mission start)            | A calibrated fixed-focus 80 mm (infinity-only) achieves ±2 px RMSE vs. higher residuals on an uncalibrated AF. For research-critical work, consider requesting the fixed 80 mm.               |
+| **Focus Mode**                | Manual focus locked to autofocus            | Autofocus has achieved clearer resolution at the UWA node than manual settings.               |
 | **Focus Bracketing**          | OFF                                                                                                | Bracketing multiplies frame count and breaks consistent GSD assumptions for ortho processing.                                                                                                 |
 | **White Balance**             | Fixed to Daylight (5500 K)                                                                         | Fixed WB ensures radiometric consistency for post-processing.                                                                                                                                 |
 | **File Format**               | IIQ (RAW, 14-bit)                                                                                  | Expect ~100 MB per IIQ frame.                                                                                                                                                                 |
