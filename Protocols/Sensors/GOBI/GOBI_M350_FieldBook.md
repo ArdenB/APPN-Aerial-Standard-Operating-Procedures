@@ -358,7 +358,11 @@ confidence in downstream data analysis across APPN operations.
 8. Clear data directories after download and backup to avoid filling the
    500 GB SSD.
 
-- Gryfn Processing Tool v1.94 and greater have the ability to query the sensor directly with the new firmware and so can be used to offload the data. In some cases where the drone is powered off too quickly post stopping the mission the gnss data may be absent. This canb be recovered by connecting directly to the SBG via FTP, instructions for connection below.
+- Gryfn Processing Tool v1.94 and greater can query the sensor directly with
+  the new firmware and so can be used to offload the data. In some cases
+  where the drone is powered off too quickly after stopping the mission the
+  GNSS data may be absent. This can be recovered by connecting directly to
+  the SBG via FTP — instructions for connection below.
 
 ### Data storage, processing & validation
 
