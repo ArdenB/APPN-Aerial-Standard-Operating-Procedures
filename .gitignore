@@ -1,3 +1,7 @@
+# WSL / Windows alternate data stream metadata
+*:Zone.Identifier
+*.Identifier
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
