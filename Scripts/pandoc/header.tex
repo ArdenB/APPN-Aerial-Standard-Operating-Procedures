@@ -30,6 +30,23 @@
 \newunicodechar{☐}{\ensuremath{\square}}
 \newunicodechar{☑}{\ensuremath{\boxdot}}
 \newunicodechar{☒}{\ensuremath{\boxtimes}}
+% Common math / comparison symbols that appear in body text but aren't in the
+% default lmroman fonts. Render via math mode so the TeX engine doesn't emit
+% "Missing character" warnings.
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{≠}{\ensuremath{\neq}}
+\newunicodechar{±}{\ensuremath{\pm}}
+\newunicodechar{×}{\ensuremath{\times}}
+\newunicodechar{÷}{\ensuremath{\div}}
+\newunicodechar{∼}{\ensuremath{\sim}}
+\newunicodechar{·}{\ensuremath{\cdot}}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{←}{\ensuremath{\leftarrow}}
+\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
+\newunicodechar{°}{\ensuremath{^\circ}}
+\newunicodechar{μ}{\ensuremath{\mu}}
 
 % Wrap long lines in fenced code blocks (pandoc emits Verbatim/Highlighting
 % environments via fancyvrb). fvextra extends fancyvrb with breaklines.
