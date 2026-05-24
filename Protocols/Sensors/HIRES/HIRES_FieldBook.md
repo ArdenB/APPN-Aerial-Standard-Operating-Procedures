@@ -246,9 +246,26 @@ guidance, see [Sensor Configuration Reference (Table 2)](#sensor-configuration-r
    [Table 1](#appn-hi-res-mission-standard-types). DJI Pilot 2 mission planning will
    always set a conservative shutter speed that does not allow image
    motion blur.
-3. **Focus** — set focus mode to **Manual Focus** and focus to **infinity**.
-   Some crop types and applications may require custom settings to ensure
-   the target is not out of focus.
+3. **Focus** — default mode is to set the focus mode to **Auto Focus (AF)**.
+   This uses the Laser Range Finder (LRF) mounted on the camera to set the
+   focal distance. This is the optimal setting for most applications.
+
+> [!NOTE]
+> Some crop types and applications, such as imaging plant heads at
+> maturity in plots surrounded by bare soil where the focal distance to
+> the target of interest may change when using AF mode, advanced focal
+> settings may be required to ensure the target of interest is always in
+> focus. Consider setting **Manual Focus (MF)** and "Focus Distance
+> Slider" to set focus at the distance to the target where this is
+> consistent (e.g. on flat ground or on terrain-following missions). You
+> can also use advanced "Focus Limit Control" focus settings and "Gate"
+> (or other) options with an appropriate minimum and maximum focus
+> limits. It is not recommended to use "Focus Bracketing" solutions, as
+> this will generate many additional images at the same location that
+> will impact photogrammetry processing and also impact flying speed.
+>
+> Also refer to the P3 Camera advanced focus settings for more
+> information [here](https://www.phaseone.com/wp-content/uploads/2024/01/Phase-One-P3-Smart-Focus-Features-.pdf).
 
 4. **ISO range** — Min: **200** / Max: **3200**. **ISO is the only
    variable parameter** used to achieve the correct exposure and a
@@ -475,7 +492,7 @@ substituting any other lens or camera body invalidates the GSD column in
 | **ISO**                       | Base 200 (sensor native) — max 3200                                                                | iXM-GS120 native ISO range is 200–6400 (RGB). Noise becomes visibly detectable above ISO 3200.                                                                                                |
 | **Aperture**                  | f/8 min (sweet spot) — f/11 max                                                                    | Sharpness peaks ~f/8 across the frame; edge softness appears wide of f/5.6 and diffraction softens past f/11.                                                                                 |
 | **Shutter Speed**             | Set per [Table 1](#appn-hi-res-mission-standard-types) — minimum 1/4000, up to 1/16,000          | Motion blur rule: shutter × speed ≤ GSD × 0.5 (half-pixel tolerance).                                                                                                                         |
-| **Focus Mode**                | Manual focus locked to infinity (> 3 m) **or** AF (single acquisition at mission start)            | A calibrated fixed-focus 80 mm (infinity-only) achieves ±2 px RMSE vs. higher residuals on an uncalibrated AF. For research-critical work, consider requesting the fixed 80 mm.               |
+| **Focus Mode**                | Auto Focus (AF) using the on-camera Laser Range Finder (LRF) as the default. Switch to Manual Focus with the Focus Distance Slider, or use Focus Limit Control (Gate) for targets where the LRF reading may not track the object of interest (e.g. tall heads above bare soil). | At f/8 the depth of field is sufficient for most APPN missions when AF/LRF is used. Avoid Focus Bracketing — it inflates frame count and breaks consistent GSD assumptions for ortho processing. See the [Phase One P3 Smart Focus Features guide](https://www.phaseone.com/wp-content/uploads/2024/01/Phase-One-P3-Smart-Focus-Features-.pdf). |
 | **Focus Bracketing**          | OFF                                                                                                | Bracketing multiplies frame count and breaks consistent GSD assumptions for ortho processing.                                                                                                 |
 | **White Balance**             | Fixed to Daylight (5500 K)                                                                         | Fixed WB ensures radiometric consistency for post-processing.                                                                                                                                 |
 | **File Format**               | IIQ (RAW, 14-bit)                                                                                  | Expect ~100 MB per IIQ frame.                                                                                                                                                                 |
