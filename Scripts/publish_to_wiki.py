@@ -60,6 +60,9 @@ FOOTER_FILE = WIKI_ASSETS_DIR / "_Footer.md"
 # Pandoc assets used when rendering PDFs.
 PANDOC_ASSETS_DIR = SCRIPT_DIR / "pandoc"
 GFM_ALERTS_FILTER = PANDOC_ASSETS_DIR / "gfm-alerts.lua"
+# Assigns relative column widths to every Table so the LaTeX writer emits
+# wrapping `p{...}` columns instead of overflowing `l` columns.
+TABLE_WIDTHS_FILTER = PANDOC_ASSETS_DIR / "table-widths.lua"
 LATEX_HEADER = PANDOC_ASSETS_DIR / "header.tex"
 # Extra header included only for standalone checklist PDFs to tighten the
 # title block so the heading fits on the first page.
@@ -729,6 +732,8 @@ def _pandoc_pdf_cmd(source_arg: str | Path, pdf_path: Path,
     ]
     if GFM_ALERTS_FILTER.is_file():
         cmd += ["--lua-filter", str(GFM_ALERTS_FILTER)]
+    if TABLE_WIDTHS_FILTER.is_file():
+        cmd += ["--lua-filter", str(TABLE_WIDTHS_FILTER)]
     # LaTeX engines accept geometry; HTML-based engines ignore it.
     if engine in {"xelatex", "lualatex", "pdflatex", "tectonic"}:
         cmd += ["-V", "geometry:margin=2cm"]
