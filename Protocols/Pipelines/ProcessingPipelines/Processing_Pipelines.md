@@ -252,9 +252,54 @@ for the canonical specifications, file sizes, and software compatibility.
 |---|---|---|---|---|
 | LiDAR Digital Surface Model (DSM) | `LiDAR_DSM.tif` | 8 cm (fixed) | GeoTIFF | Extent: VNIR scene |
 | LiDAR Digital Terrain Model (DTM) | `LiDAR_DTM.tif` | 1 m | GeoTIFF | Extent: processing extent |
-| Combined LiDAR Point Cloud | `LiDAR_CombinedPointCloud.las` | Native point spacing | LAS | Outliers removed during combination |
+| Combined LiDAR Point Cloud | `LiDAR_CombinedPointCloud.las/.laz` | Native point spacing | LAS | Outliers removed during combination |
 | VNIR Orthomosaic | `VNIR_Orthomosaic.bin` | 4 cm (GSD-based) | ENVI (`.bin` + `.hdr`) | binning = 2, radiometric calibration applied |
 | SWIR Orthomosaic | `SWIR_Orthomosaic.bin` | 4 cm (GSD-based) | ENVI (`.bin` + `.hdr`) | binning = 2, radiometric calibration applied |
+
+### Inspecting the CALViS Outputs. 
+
+To inspect the DSM, DTM, RGB orthomosiac and the VNIR orthomosiac we recommend  QGIS https://qgis.org/, shown below is QGIS v4.0 +, to view the pointcloud we recommend CloudCompare https://www.cloudcompare.org/. Note that the same approach works for the GOBI products, the only difference being the RGB orthomosiac whcih can also be viewed in QGIS. 
+
+The data outputs are stored in the "products" folder in the gpro 
+
+   ![CALVIS_products](Processing_Pipelines_media/CALVIS_products.png)
+
+#### Inspecting the VNIR orthomosiac
+
+Open QGIS 4 and drag and drop the VNIR ".bin" then select "add layers"
+
+   ![CALVIS_products](Processing_Pipelines_media/load_vnir_qgis.png)
+
+You will notice that the hyperspectral orthomosiac has a poor visualisation , this is because the default bands (wavelengths) visualised in in QGIS are not ideal. We recommend setting the visualisation to Red Green Blue. To do this double click the file in the “Layers” section of QGIS, navigate to symbology and set the Red Green and Blue bands to the appropriate colour. 
+
+
+   ![CALVIS_products](Processing_Pipelines_media/RGB_VNIR.png)
+
+Next, it can be helpful to investigate, and sanity check some reflectance values.  To do this we can use the “Identify Features” button.  Click the button and then click a pixel on the orthomosiac. A good sanity check is to use a GRYFN panel, for example click on the 30% panel and check that the values are hovering around the 30% reflectance. One you click a pixel it defaults to a table, switching it to “graph” can make it easier to quickly interpret.  
+
+   ![CALVIS_products](Processing_Pipelines_media/qgis_31_panel_vnir.png)
+
+Following this you can click on grass, a crop, whatever is of interest to your flight (below is grass) 
+
+   ![CALVIS_products](Processing_Pipelines_media/qgis_grass.png)
+
+The steps for the SWIR are the same except  there are no presets for RGB bands. 
+
+
+If your VNIR Orthmosiac looks  odd, it can be good to check your DSM to make sure the LIDAR was working. To investigate your DSM just drag and drop the “.TIF” file into QGIS (note that this is actually a GeoTiff and contains spatial information). Make sure that the min max values make logical sense (e.g. the distance between the ground and the tallest feature)
+
+![alt text](Processing_Pipelines_media/qgis_dsm.png)
+
+Lastly, if you want to view your point cloud you can drag and drop the (.las or .laz file) into CloudCompare
+
+![alt text](Processing_Pipelines_media/cloud_compare.png)
+
+![alt text](Processing_Pipelines_media/cloud_compare_yes_to_all.png)
+
+![alt text](Processing_Pipelines_media/cloud_compare_point_cloud.png)
+
+All these steps apply to the GOBI the only difference being the RGB image (which is a Geotiff and loads just like the DSM)
+
 
 ---
 
@@ -431,3 +476,4 @@ for the canonical specifications, file sizes, and software compatibility.
 | Combined LiDAR Point Cloud | `LiDAR_CombinedPointCloud.las` | Native point spacing | LAS | Outliers removed during combination |
 | VNIR Orthomosaic | `VNIR_Orthomosaic.bin` | 4 cm (GSD-based) | ENVI (`.bin` + `.hdr`) | binning = 2, radiometric calibration applied |
 | RGB Orthomosaic | `RGB_Orthomosaic.tif` | 0.6 cm (fixed) | GeoTIFF | Feature-matching (SIFT) bundle adjustment applied |
+
