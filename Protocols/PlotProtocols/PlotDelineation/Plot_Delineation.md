@@ -997,14 +997,184 @@ Detailed installation instruction and documentation: [DPIRD Field Mapping Tool D
 
 ## Method 3: GPT plot creation tool
 
-> [!IMPORTANT]
-> **TODO — Mickey to write.** This section will document the
-> GRYFN Processing Tool (GPT) plot-creation workflow as the third
-> supported APPN method. Replaces the previous placeholder
-> *"GRYFN plot tool — TODO"*.
+The GRYFN Plot Extraction Tool is software that automatically generates
+plot boundary files for agricultural research trials. This procedure
+describes the complete workflow from project creation to final GeoJSON
+export.
+
+Official wiki:
+[https://gryfn.gitbook.io/gryfn-software/gryfn-plot-extraction-tool](https://gryfn.gitbook.io/gryfn-software/gryfn-plot-extraction-tool).
+
+### Step 1 — Install the Software
+
+Download and install the GRYFN Plot Extraction Tool from the official
+website. The licence is required from GRYFN.
+
+### Step 2 — Create a New Project
+
+Click **New Project**. A new window will open. Complete the following
+fields:
+
+- **Output prefix:** Enter a project name.
+- **Output path:** Define the folder where outputs will be saved. For
+  example:
+  `Q:\Adelaide\2025_SIFOzBarley\Roseworthy\Documentation\Plot_Layout`
+- **Image layers:** Add one or more image layers. Supported types
+  include LiDAR DSM, high-resolution RGB mosaic, VNIR orthomosaic, and
+  SWIR orthomosaic.
+- **Base map:** Select one layer as the base map. The VNIR orthomosaic
+  is recommended due to its smaller file size. Click **Load**.
+- **Extent:** Click **Create**. A polygon with four corners will appear
+  on the map. Click and drag each corner to define the site boundary.
+
+> [!NOTE]
+> Right-click the map to pan, and scroll the mouse wheel to zoom in and
+> out.
+
+- **Field name:** Enter a name for the field.
+- **Unit:** Ensure this is set to **Metric**.
+- **Plot dimensions:** Enter the range count, row count, plot length,
+  and plot width.
+- **Segments per Plot:** If plots contain two or more treatment zones,
+  enter the number of segments. Otherwise, leave it as default: `1`.
+
+Click **OK** to close the window, then click **Open Project** to load
+the YAML project file you just created.
+
+![Creating a new project in the GRYFN Plot Extraction Tool](Plot_Delineation_media/image_1.jpg)
+
+### Step 3 — Create the Plots
+
+There are two methods for creating plots: manual and automatic. Both
+are described below. Choose the method that best suits your data and
+field conditions.
+
+#### Option A — Manual Plot Creation
+
+This method creates plots with a uniform size and spacing. It is best
+suited for uniformly planted trials with accurately captured
+orthomosaic imagery.
+
+- Click **Manual Plot Creation** in the GRYFN Plot Extraction Tool.
+- Load the base map (e.g. VNIR orthomosaic) and click **Load**. The map
+  will display with a set of slim plot polygons overlaid, which will
+  need to be adjusted.
+- **Plot dimensions:** Enter the plot length and width. Apply standard
+  buffer values (e.g. a 4 m × 1.5 m plot uses a 3.4 m × 1.1 m analysis
+  area).
+- **Gap size:** Enter the gap between plots with the appropriate buffer
+  added. Examples:
+  - Range gap of 2 m: gap = 2 + 0.3 + 0.3 = 2.6 m
+  - Row gap of 0.2 m: gap = 0.2 + 0.4 + 0.4 = 1.0 m
+- **Rotation:** Enter a rotation angle to align the plot grid with the
+  map. Use the up and down arrow keys for fine adjustments.
+- **Position:** Use the **Move**, **Up**, **Down**, **Left**, and
+  **Right** controls to align the plot grid with the map.
+- Once the plot locations are satisfactory, click **Export Plots**,
+  then click **OK**.
+
+![Manual plot creation controls](Plot_Delineation_media/image_2.jpg)
+
+![Manual plot creation — adjusted grid](Plot_Delineation_media/image_3.jpg)
+
+> [!NOTE]
+> Minor manual adjustment in QGIS or ArcGIS may be required after
+> export. Not all plots are perfectly planted, and GPS drift between
+> flight lines during image collection can introduce small positional
+> offsets.
+
+#### Option B — Automatic Plot Extraction
+
+This method detects plot boundaries automatically using vegetation
+indices and gap detection.
+
+- Click **Plot Extraction** in the GRYFN Plot Extraction Tool.
+- Select the VNIR Orthomosaic as the map and click **Load**.
+- Use the default values for detection cell size and click **OK**.
+- Select a vegetation index for detection. Both GLI and NGRDI generally
+  produce reliable results.
+- A map rotated to vertical or horizontal orientation will appear.
+  Based on the rotation applied, select whether the row direction is
+  vertical or horizontal. Select **Gaps** as the row detection option.
+- **Minimum spacing:** Enter the minimum plot dimension (e.g. for a
+  1.5 m row, enter 1.4 m to avoid missed detections).
+- Click **Detect Rows/Alleys**. A grid will appear on the map.
+
+![Automatic plot extraction settings](Plot_Delineation_media/image_4.jpg)
+
+![Detected rows and alleys](Plot_Delineation_media/image_5.jpg)
+
+- Verify that the correct number of rows and alleys are present. Extra
+  rows or alleys at the edges can be removed by selecting them and
+  clicking **Delete Selected Item**. Missing lines can be added and
+  dragged to the correct position.
+- Click **Export Plots**, then click **OK**.
+
+![Reviewing and editing detected rows/alleys](Plot_Delineation_media/image_6.jpg)
+
+#### Plot-Based Refinement (Automatic Method Only)
+
+After automatic extraction, an additional refinement step is required:
+
+- Click **Plot-based Refinement** in the GRYFN Plot Extraction Tool.
+- Load the map and select a vegetation index.
+- Load the input plot file from:
+  `project_name\plot_extraction\project_name_plots_for_refinement.geojson`
+- Enter the segment width and length, using standard buffer values.
+- Click **Refine and Export**.
+- Review the output plots to confirm no plots are missing or
+  incorrectly positioned, then click **OK**.
+
+![Plot-based refinement](Plot_Delineation_media/image_7.jpg)
+
+### Step 4 — Label the Plots
+
+Click **Labeling** in the GRYFN Plot Extraction Tool and complete the
+following steps:
+
+- Load the map and click **Load**.
+- Load the GeoJSON file created in the previous step:
+  - Manual method:
+    `project_name\manual_creation\project_name_plots_manual`
+  - Automatic method:
+    `project_name\plot_refinement\project_name_RP-plots`
+- Select the plot origin (Range 1, Row 1) by choosing position 1, 2,
+  3, or 4 as shown on the map.
+- Click **Label**, then **Export**, then **OK**.
+
+![Selecting the plot origin and labelling](Plot_Delineation_media/image_8.jpg)
+
+### Step 5 — Add `fid` and `plot_id` Columns in QGIS
+
+The final step adds two calculated attribute columns to the GeoJSON
+file using QGIS.
+
+- Open the GeoJSON file in QGIS.
+- Right-click the layer in the **Layers** panel and select **Open
+  Attribute Table**.
+- Click the pencil icon (top left of the table) to enable editing.
+- Click the calculator icon to open the **Field Calculator**.
+
+Add the `fid` column:
+
+- **Output field name:** `fid`
+- **Expression:** `$id + 1`
+- Click **Apply**, then **OK**.
+
+Add the `plot_id` column:
+
+- **Output field name:** `plot_id`
+- **Expression:** `row * 100 + range`
+- Click **Apply**, then **OK**.
+
+- Click the **Save** button (or press `Ctrl+S`) to save the edits.
+
+![Adding the plot_id column in the QGIS Field Calculator](Plot_Delineation_media/image_9.jpg)
 
 > [!NOTE]
 > Additional plot delineation methods will be documented here as they
 > are adopted by APPN.
+
+---
 
 ---
