@@ -1041,7 +1041,7 @@ fields:
 Click **OK** to close the window, then click **Open Project** to load
 the YAML project file you just created.
 
-![Creating a new project in the GRYFN Plot Extraction Tool](Plot_Delineation_media/image_1.jpg)
+![New Project window in the GRYFN Plot Extraction Tool](Plot_Delineation_media/image_1.jpg)
 
 ### Step 3 — Create the Plots
 
@@ -1073,9 +1073,7 @@ orthomosaic imagery.
 - Once the plot locations are satisfactory, click **Export Plots**,
   then click **OK**.
 
-![Manual plot creation controls](Plot_Delineation_media/image_2.jpg)
-
-![Manual plot creation — adjusted grid](Plot_Delineation_media/image_3.jpg)
+![Manual plot creation — adjusted plot grid](Plot_Delineation_media/image_2.jpg)
 
 > [!NOTE]
 > Minor manual adjustment in QGIS or ArcGIS may be required after
@@ -1100,17 +1098,18 @@ indices and gap detection.
   1.5 m row, enter 1.4 m to avoid missed detections).
 - Click **Detect Rows/Alleys**. A grid will appear on the map.
 
-![Automatic plot extraction settings](Plot_Delineation_media/image_4.jpg)
-
-![Detected rows and alleys](Plot_Delineation_media/image_5.jpg)
+![Detected rows and alleys overlaid on the map](Plot_Delineation_media/image_3.jpg)
 
 - Verify that the correct number of rows and alleys are present. Extra
   rows or alleys at the edges can be removed by selecting them and
   clicking **Delete Selected Item**. Missing lines can be added and
   dragged to the correct position.
-- Click **Export Plots**, then click **OK**.
 
-![Reviewing and editing detected rows/alleys](Plot_Delineation_media/image_6.jpg)
+
+
+- Click **Export Plots**, then click **OK**.
+![Reviewing and editing the detected rows and alleys](Plot_Delineation_media/image_4.jpg)
+
 
 #### Plot-Based Refinement (Automatic Method Only)
 
@@ -1125,7 +1124,7 @@ After automatic extraction, an additional refinement step is required:
 - Review the output plots to confirm no plots are missing or
   incorrectly positioned, then click **OK**.
 
-![Plot-based refinement](Plot_Delineation_media/image_7.jpg)
+  ![Exported plots from the automatic extraction](Plot_Delineation_media/image_5.jpg)
 
 ### Step 4 — Label the Plots
 
@@ -1140,9 +1139,12 @@ following steps:
     `project_name\plot_refinement\project_name_RP-plots`
 - Select the plot origin (Range 1, Row 1) by choosing position 1, 2,
   3, or 4 as shown on the map.
+
+
 - Click **Label**, then **Export**, then **OK**.
 
-![Selecting the plot origin and labelling](Plot_Delineation_media/image_8.jpg)
+![Selecting the plot origin (Range 1, Row 1)](Plot_Delineation_media/image_6.jpg)
+
 
 ### Step 5 — Add `fid` and `plot_id` Columns in QGIS
 
@@ -1155,11 +1157,15 @@ file using QGIS.
 - Click the pencil icon (top left of the table) to enable editing.
 - Click the calculator icon to open the **Field Calculator**.
 
+![Opening the Field Calculator in the QGIS Attribute Table](Plot_Delineation_media/image_7.jpg)
+
 Add the `fid` column:
 
 - **Output field name:** `fid`
 - **Expression:** `$id + 1`
 - Click **Apply**, then **OK**.
+
+![Field Calculator — adding the fid column](Plot_Delineation_media/image_8.jpg)
 
 Add the `plot_id` column:
 
@@ -1167,9 +1173,11 @@ Add the `plot_id` column:
 - **Expression:** `row * 100 + range`
 - Click **Apply**, then **OK**.
 
+
+
 - Click the **Save** button (or press `Ctrl+S`) to save the edits.
 
-![Adding the plot_id column in the QGIS Field Calculator](Plot_Delineation_media/image_9.jpg)
+![Field Calculator — adding the plot_id column](Plot_Delineation_media/image_9.jpg)
 
 > [!NOTE]
 > Additional plot delineation methods will be documented here as they
