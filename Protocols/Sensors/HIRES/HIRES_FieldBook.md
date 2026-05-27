@@ -281,14 +281,12 @@ guidance, see [Sensor Configuration Reference (Table 2)](#sensor-configuration-r
 5. Display the **live histogram** and confirm there is no sustained clipping
    in the highlights or shadows. Do **not** use any **EV compensation
    (+/-)** — allow ISO to adjust automatically within the configured range.
-6. **White balance** — fixed to **Sunny / 5500 K** (apply this setting in
-   all light conditions).
-7. Before take-off, **test-fire the camera** (from the DJI Pilot 2 app and
+6. Before take-off, **test-fire the camera** (from the DJI Pilot 2 app and
    M350 Controller) and confirm that the image is written successfully to
    the storage media.
-8. Ensure any legacy data has been downloaded and backed up. Format the
+7. Ensure any legacy data has been downloaded and backed up. Format the
    memory card from the DJI Pilot 2 app menus within the M350 Controller.
-9. Before starting the mission, manually fly to the planned operating
+8. Before starting the mission, manually fly to the planned operating
    altitude with the camera pointing down at the crop / plants. Confirm
    that the live preview and histogram show correct exposure.
 
