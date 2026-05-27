@@ -67,7 +67,7 @@ across APPN field nodes.
 4. [APPN Hi-Res Mission Standard Types](#appn-hi-res-mission-standard-types) —
    Table 1 standard mission bundles.
 5. [Camera Capture Settings](#camera-capture-settings) — aperture, shutter,
-   ISO, focus, and white balance, including
+   ISO, and focus, including
    [setting exposure with the live histogram](#setting-exposure-with-the-live-histogram).
 6. [Onsite Preflight Operations](#onsite-preflight-operations) — weather
    and airspace checks, GCP layout, payload mount, and aircraft setup.
