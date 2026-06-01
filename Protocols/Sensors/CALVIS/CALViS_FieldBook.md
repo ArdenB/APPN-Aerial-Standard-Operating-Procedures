@@ -181,6 +181,8 @@ analysis across APPN operations.
 
 6. Using both QGroundControl and the GRYFN flight calculator, determine the
    speed, altitude, and frame period required to survey the area of interest.
+   See the [Standard Mission Parameters](#standard-mission-parameters) table
+   below for examples of common flight types.
    - Do not go below 2 m/s or above 8 m/s for stability reasons (GRYFN).
      Speeds greater than 8 m/s lead to excessive aircraft pitch and speeds
      less than 2 m/s accentuate the impacts of wind on aircraft stability and
@@ -202,6 +204,14 @@ analysis across APPN operations.
    connection from PC to IF1200. Once the UAV is powered and connected to the
    RC, the mission will appear on the RC. If the mission doesn't appear on
    the RC, navigate to *Flight Planning* → *File* → *Vehicle* → *Download*.
+
+### Standard Mission Parameters
+
+| Standard Mission Type | Scenario                                                              | Altitude (m) | Speed (m/s) | Frame Period VNIR        | Frame Period SWIR        | Distance between flight lines — IF1200 (m) |
+| :-------------------- | :-------------------------------------------------------------------- | :----------: | :---------: | :----------------------- | :----------------------- | :----------------------------------------: |
+| Type 1                | Plant counting / small structures (intra-plot differences)           |      30      |     2.1     | 5.32 (20% oversampling)  | 6.0 (30% oversampling)   |                     8                      |
+| Type 2                | Plant breeding experiments (inter-plot differences)                  |      50      |     3.2     | 5.09 (30% oversampling)  | 6.56 (30% oversampling)  |                     13                     |
+| Type 3                | Large landscape measurements (strip trials, hyperspectral transects) |      80      |     5.1     | 5.11 (30% oversampling)  | 6.59 (30% oversampling)  |                     21                     |
 
 ---
 

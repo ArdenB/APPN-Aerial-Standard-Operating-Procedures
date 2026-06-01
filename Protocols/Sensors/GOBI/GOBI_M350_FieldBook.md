@@ -138,9 +138,22 @@ confidence in downstream data analysis across APPN operations.
    UAV powered on for this, just the controller.*
 7. Using both DJI Pilot 2 and the GRYFN flight calculator, determine the
    speed, altitude, and frame period required to survey the area of interest.
+   See the [Standard Mission Parameters](#standard-mission-parameters) table
+   below for examples of common flight types.
 8. Ensure the frame period is **> 20% oversampled (30% is our default)
    and the side overlap is 40%**. In windier conditions (> 5 m/s),
    increase the side overlap to 50%.
+
+### Standard Mission Parameters
+
+| Standard Mission Type | Scenario                                                              | Altitude (m) | Speed (m/s) | Frame Period (Hz)        | Side Overlap % (DJI)\* |
+| :-------------------- | :-------------------------------------------------------------------- | :----------: | :---------: | :----------------------- | :--------------------: |
+| Type 1                | Plant counting / small structures (intra-plot differences)           |      30      |     2.1     | 5.32 (20% oversampling)  |          75%           |
+| Type 2                | Plant breeding experiments (inter-plot differences)                  |      50      |     3.2     | 5.09 (30% oversampling)  |          75%           |
+| Type 3                | Large landscape measurements (strip trials, hyperspectral transects) |      80      |     5.1     | 5.11 (30% oversampling)  |          75%           |
+| Type 4                | Surveys using LiDAR and RGB only (ecosystem measurements, forestry)  |     100      |      9      | N/A                      |          75%           |
+
+> \* When using the RGB camera, select *custom camera* in flight planning.
 
 ---
 

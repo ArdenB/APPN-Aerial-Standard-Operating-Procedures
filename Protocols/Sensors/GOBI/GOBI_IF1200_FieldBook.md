@@ -127,6 +127,8 @@ operations.
 4. Import the *survey* polygon into QGroundControl.
 5. Using both QGroundControl and the GRYFN flight calculator, determine the
    speed, altitude, and frame period required to survey the area of interest.
+   See the [Standard Mission Parameters](#standard-mission-parameters) table
+   below for examples of common flight types.
    - Do not go below 2 m/s or above 8 m/s for stability reasons (GRYFN).
      Speeds greater than 8 m/s lead to excessive aircraft pitch and speeds
      less than 2 m/s accentuate the impacts of wind on aircraft stability and
@@ -136,6 +138,15 @@ operations.
      overlap is > 40% for the SWIR sensor, and the *turnaround distance* is
      2× flight speed (> 3× at > 6 m/s).
 6. Ensure flight lines are in the direction of planting (GRYFN).
+
+### Standard Mission Parameters
+
+| Standard Mission Type | Scenario                                                              | Altitude (m) | Speed (m/s) | Frame Period (Hz)        | Distance between flight lines — IF1200 (m) |
+| :-------------------- | :-------------------------------------------------------------------- | :----------: | :---------: | :----------------------- | :----------------------------------------: |
+| Type 1                | Plant counting / small structures (intra-plot differences)           |      30      |     2.1     | 5.32 (20% oversampling)  |                     8                      |
+| Type 2                | Plant breeding experiments (inter-plot differences)                  |      50      |     3.2     | 5.09 (30% oversampling)  |                     13                     |
+| Type 3                | Large landscape measurements (strip trials, hyperspectral transects) |      80      |     5.1     | 5.11 (30% oversampling)  |                     21                     |
+| Type 4                | Surveys using LiDAR and RGB only (ecosystem measurements, forestry)  |     100      |      9      | N/A                      |                     37                     |
 
 ---
 
