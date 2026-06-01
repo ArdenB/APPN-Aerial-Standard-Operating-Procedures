@@ -36,6 +36,10 @@
 > upcoming revisions. Treat the material below as a placeholder
 > scaffold only and do not rely on the current content for field use
 > until this notice is removed.
+>
+> Reworking of this document will occur as part of early-season APEx
+> work. Any validation flights flown in the meantime should follow the
+> [Standard Flight Procedure](../StandardFlight/Standard_Flight.md).
 
 ---
 

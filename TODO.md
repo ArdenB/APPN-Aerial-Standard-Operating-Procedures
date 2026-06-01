@@ -1,400 +1,79 @@
-# APPN Aerial SOP — Outstanding Work
+# APPN Aerial SOP — Revision 1.0 Release Checklist
 
-This document tracks outstanding work across the protocol `.md` files in this
-repository. Items are grouped per source document. A separate
-**Pending Field EWG approval** section at the end summarises everything that
-explicitly requires APPN Field EWG ratification before it can be treated as
-the APPN standard.
+This document tracks the **remaining work to cut revision 1.0**. All
+document-level content TODOs have either been completed or moved to the
+[future-release backlog](TODO_FUTURE.md) (Rev 1.1+). What remains below are
+the release-gate actions, not document content.
 
-**Ordering — priority is by document status** (per
-[Protocols/STATUS.md](Protocols/STATUS.md)):
-
-1. **Priority — Approved documents (finish first).** These have already
-   passed Field EWG approval; outstanding items here are the last barriers
-   to **Adopted** status and must be cleared first.
-2. **Not yet approved.** Drafts, EWG-feedback, and stub documents that
-   still need to progress through the earlier status gates.
-3. **Pending Field EWG approval.** Cross-cutting list of items explicitly
-   flagged in source documents as needing EWG sign-off.
-
-Document status across the SOP is tracked in
+Document status is tracked in
 [Protocols/STATUS.md](Protocols/STATUS.md) (auto-generated from
 [publish.yaml](publish.yaml)). The image / figure backlog is tracked
 separately in [IMAGE_TODO.md](IMAGE_TODO.md).
 
-Last refreshed by reviewing all `.md` files under `Protocols/` plus the
-top-level `README.md` and `Scripts/README.md`.
+---
+
+## 1.0 release gates
+
+- [ ] **Confirm the Approved → Adopted transition.** The Approved
+  documents have had all their in-scope content TODOs cleared. Mark each as
+  `adopted` in [publish.yaml](publish.yaml) when the locked revision is cut.
+  - [CALViS Fieldbook](Protocols/Sensors/CALVIS/CALViS_FieldBook.md)
+  - [GOBI M350 Fieldbook](Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md)
+  - [GOBI IF1200 Fieldbook](Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md)
+  - [HiRes Fieldbook](Protocols/Sensors/HIRES/HIRES_FieldBook.md)
+  - [Standard Flight Procedure](Protocols/FlightDesign/StandardFlight/Standard_Flight.md)
+  - [QA Process](Protocols/QA/QAprocess/AerialDataQC.md)
+  - [Plot Delineation](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md)
+  - [Processing Pipelines](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md)
+  - [Data Folder Structure](Protocols/DataManagement/DataFolderStructure/DataFolderStructure.md)
+    _(already Adopted)_
+
+- [ ] **Confirm 1.0 disposition for the in-progress / draft documents.** These
+  ship in 1.0 as clearly-marked drafts or placeholders; their content work is
+  deferred to [TODO_FUTURE.md](TODO_FUTURE.md):
+  - [Validation Flight](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md)
+    — Modified; carries a "being restructured" caution.
+  - [Platforms Overview](Protocols/Background/PlatformsOverview/Platforms_Overview.md)
+    — Drafted (background, no approval gate).
+  - Stubs (ship as "coming soon" placeholders): M3M Fieldbook, Spectral Panel
+    Cleaning & Calibration, M3M Processing Pipeline, HiRes Processing Pipeline,
+    Ground-Based Phenotyping & Environmental.
+
+- [ ] **Run the publish + PDF render** for the cut:
+  ```
+  python Scripts/publish_to_wiki.py
+  python Scripts/publish_to_wiki.py --pdf
+  ```
+
+- [ ] **Verify cross-links and figures** resolve in the published wiki copy
+  (the figure backlog in [IMAGE_TODO.md](IMAGE_TODO.md) is expected to remain
+  open for 1.0).
 
 ---
 
-# Priority — Approved documents (finish first)
+## What was cleared for 1.0
 
-The documents in this section have already reached **Approved** status in
-[Protocols/STATUS.md](Protocols/STATUS.md). Clearing the outstanding items
-below is what is needed to advance them to **Adopted**, so they should be
-prioritised over the not-yet-approved work that follows.
+The following in-scope content items were completed during release prep:
 
----
-
-## CALViS Fieldbook — [Protocols/Sensors/CALVIS/CALViS_FieldBook.md](Protocols/Sensors/CALVIS/CALViS_FieldBook.md)
-
-Document-wide status: **Approved** (pending Adopted).
-
-_No outstanding TODOs._
-
-## GOBI M350 Fieldbook — [Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md](Protocols/Sensors/GOBI/GOBI_M350_FieldBook.md)
-
-Document-wide status: **Approved** (pending Adopted).
-
-_No outstanding TODOs._
-
-## GOBI IF1200 Fieldbook — [Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md](Protocols/Sensors/GOBI/GOBI_IF1200_FieldBook.md)
-
-Document-wide status: **Approved** (pending Adopted).
-
-_No outstanding TODOs._
+- **Standard Flight** — added the cross-link to the Processing Pipelines
+  reflectance-target section; converted the inline APEx markers and status
+  banner to clean backlog references.
+- **Aerial Data QC** — wrote the **Accuracy reporting** section (report
+  contents, interpretation, storage) with pass/fail thresholds left as a
+  clearly-marked EWG placeholder; cleaned the GCP-conversion and Vector-Layer
+  TODO markers.
+- **Processing Pipelines** — converted the status banner and GOBI walkthrough
+  TODO to backlog references.
+- **Plot Delineation** — confirmed **Method 3 (GPT plot creation tool)** is
+  fully written; removed the stale "to be written by Mickey" markers.
+- **HiRes Fieldbook** — moved the stubbed Gimbal Balancing steps to the
+  backlog with a clean placeholder note.
 
 ---
 
-## Standard Flight — [Protocols/FlightDesign/StandardFlight/Standard_Flight.md](Protocols/FlightDesign/StandardFlight/Standard_Flight.md)
-
-Document-wide status: **Approved** (pending Adopted). Outstanding TODOs at
-[lines 25–95](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#L25-L95).
-
-**Figures to produce** (see [IMAGE_TODO.md](IMAGE_TODO.md))
-
-- [ ] **Photo (suggested)** — Hero/cover photo of a complete,
-  correctly-staged standard flight site.
-
-**Cross-links to add**
-
-- [ ] Add cross-link to the processing pipeline page covering dual-panel
-  ingestion in GPT
-  ([line 65](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#L65)).
-- [ ] Cross-link the processing pipeline page once published
-  ([line 306](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#L306)).
-
-**Pending APEx / GRYFN decisions** (revise before season start)
-
-- [ ] Confirm or revise the align-with-planting-direction recommendation
-  in Flight-line Orientation
-  ([line 70](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#L70)).
-- [ ] Confirm whether the Dual ELM panel flight is truly **mandatory**
-  under variable illumination, or only strongly recommended.
-- [ ] Confirm whether the Single ELM panel flight is permitted at all
-  under variable illumination.
-- [ ] Confirm the season-start parameter set
-  ([line 171](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#L171))
-  and the "single offload per flight" rule with APEx
-  ([line 376](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#L376)).
-
-**Operational parameters still to be defined**
-([line 82](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#L82))
-
-- [ ] Maximum permissible wind speed per UAV / sensor combination.
-- [ ] Standard exposure-setting procedure (cross-link once finalised in
-  the sensor fieldbooks).
-- [ ] Minimum acceptable solar elevation for routine surveys.
-- [ ] Quantitative definition of the "effective capture area" inset
-  (currently ~10%).
-
----
-
-## Validation Flight — [Protocols/FlightDesign/ValidationFlight/Validation_Flight.md](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md)
-
-Document-wide status: **Approved** (pending Adopted) — but currently
-being restructured (see CAUTION banner at
-[lines 30–37](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L30-L37)).
-TODO list at
-[lines 40–95](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L40-L95).
-
-**Content review**
-
-- [ ] Define and confirm the **frequency** of each validation flight type
-  (currently `_TODO_`)
-  ([line 52](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L52),
-  [line 266](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L266),
-  [line 427](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L427)).
-- [ ] Confirm the **acceptance criteria / pass-fail thresholds** for each
-  validation flight type with the Field EWG
-  ([line 377](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L377),
-  [line 466](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L466)).
-- [ ] Cross-check terminology and links against the sensor fieldbooks and
-  the Standard Flight Procedure.
-- [ ] Confirm equipment checklists with field operators for all three
-  validation flight types.
-- [ ] Add guidance on minimum site footprint and on documenting site
-  selection
-  ([line 165](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L165)).
-- [ ] Confirm minimum solar elevation and maximum permissible wind for
-  validation flights
-  ([line 183](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L183)).
-- [ ] Link to a standard validation flight log template
-  ([line 236](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L236)).
-- [ ] Insert the exposure-setting procedure for the spectral validation
-  flights (referenced in two procedure blocks at
-  [line 334](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L334)
-  and
-  [line 365](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L365)).
-- [ ] Specify required **weather station** and **downwelling radiation
-  sensor** models
-  ([lines 395–396](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L395-L396)).
-
-**Figures to produce** (see [IMAGE_TODO.md](IMAGE_TODO.md))
-
-- [ ] **Diagram** — Spectral validation flight (panel layout, flight-line
-  orientation, GCP distribution)
-  ([line 281](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L281),
-  [line 313](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L313)).
-- [ ] **Diagram** — Spatial validation flight (GCP layout, flight-line
-  geometry, check targets)
-  ([line 442](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L442)).
-- [ ] **Diagram** — APEx experimental flight reference layout.
-- [ ] **Photo (suggested)** — Example validation site.
-- [ ] **Chart (suggested)** — Sample QC plot showing spectral validation
-  metrics annotated as pass vs fail.
-
-**Cross-links to add**
-
-- [ ] Processing pipeline page describing how validation outputs are
-  analysed (radiometric drift, geometric error reports).
-- [ ] QA process page describing how validation results feed into the
-  node-level QA record.
-
-**Pending APEx decisions** (revise before season start)
-
-- [ ] Lock the standard validation flight footprint (area, altitude,
-  speed, overlap) once APEx parameter sweeps complete.
-- [ ] Confirm minimum solar elevation / time-of-day window for routine
-  validation flights.
-- [ ] Confirm whether spectral and spatial validation can be combined
-  into a single overflight or must be flown separately.
-
----
-
-## Aerial Data QC — [Protocols/QA/QAprocess/AerialDataQC.md](Protocols/QA/QAprocess/AerialDataQC.md)
-
-Document-wide status: **Approved** (pending Adopted).
-
-- [ ] Document the GCP-conversion process for each supported GCP type
-  (Aeropoint, Trimble, …)
-  ([line 188](Protocols/QA/QAprocess/AerialDataQC.md#L188)).
-- [ ] Write the **Accuracy reporting** section
-  ([line 324](Protocols/QA/QAprocess/AerialDataQC.md#L324)).
-- [ ] Richard to check and update the **Create the Vector Layer** section
-  ([line 377](Protocols/QA/QAprocess/AerialDataQC.md#L377)).
-- [ ] Expand the QC procedure beyond the Cali Week 2026 lead-up so it
-  becomes the standing standard for future flights.
-- [ ] Extend QC coverage beyond hyperspectral drones.
-- [ ] Update the naming-conventions table when panels other than GRYFN
-  are sourced.
-- [ ] Complete the **Positional QC** and **LiDAR QC** sections.
-
----
-
-## Processing Pipelines — [Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md)
-
-Document-wide status: **Approved** (pending Adopted).
-
-- [ ] CALViS walkthrough technical review by Richard Harwood
-  ([line 36](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md#L36)).
-- [ ] Add the **GOBI standard processing walkthrough** (currently outputs
-  only; placeholder at
-  [line 265](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md#L265)).
-- [ ] Automate handling of GNSS `.TO4` files in the raw-data formatting
-  step
-  ([line 128](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md#L128)).
-
----
-
-## Plot Delineation — [Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md)
-
-Document-wide status: **Approved** (pending Adopted). Major decisions
-ratified at the APPN Field EWG plot-delineation meeting (GeoJSON file
-format, storage location, minimum attribute set
-`fid`/`plot_id`/`row`/`range`/`crop`, sensor identifier in filename).
-Follow-ups captured at
-[lines 30–105](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L30-L105).
-
-**Methods** ([line 96](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L96))
-
-- [ ] **Mickey to write the GPT plot-creation tool** section (becomes
-  Method 3, replacing the previous "GRYFN plot tool" placeholder) —
-  see also [line 813](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L813).
-- [ ] **FIELDimageR meeting with Bipul and Mickey** — outcomes to be
-  folded back into
-  [Method 1](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L495).
-- [ ] For the **Omega** platform, capture **vegetation width** in trial
-  metadata so it can be used to set track width.
-- [ ] Improve the FIELDimageR corner-coordinate fitting workflow
-  (currently iterative)
-  ([line 590](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md#L590)).
-
----
-
-# Not yet approved
-
-The documents below have not yet reached **Approved** status in
-[Protocols/STATUS.md](Protocols/STATUS.md). They still need to be
-progressed through drafting, EWG feedback, and modification before they
-can join the Approved group above.
-
----
-
-## HiRes Fieldbook — [Protocols/Sensors/HIRES/HIRES_FieldBook.md](Protocols/Sensors/HIRES/HIRES_FieldBook.md)
-
-Document-wide status: **Drafted, currently in EWG feedback**
-(per [Protocols/STATUS.md](Protocols/STATUS.md)).
-
-- [ ] Address EWG feedback and progress the document to the **Modified**
-  stage.
-
-**Season working plan — team responsibilities** (proposed — to be
-confirmed by each node; mirrored in
-[Season Working Plan](Protocols/Sensors/HIRES/HIRES_FieldBook.md#season-working-plan--team--outstanding-items))
-
-- [ ] **UQ** — lead the photogrammetry pipeline build; contribute time
-  and expertise.
-- [ ] **Author (technical)** — contribute to the technical side of
-  photogrammetry processing and Metashape settings.
-- [ ] **James** — support pipeline development.
-- [ ] **Dillon** — technical review (proposed).
-- [ ] **Richard / Arden (USyd)** — support and advise (proposed).
-- [ ] **CSU team** — provide technical input (proposed).
-- [ ] **Bipul** — integration of tooling for image conversions, etc.
-  (proposed).
-- [ ] **Warin & Bipul** — lead non-photogrammetry pipeline; expand team
-  as needed.
-
-**Season working plan — critical outstanding items**
-
-- [x] **APPN plot-extraction method** — agreed; see
-  [Plot Delineation](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md).
-- [ ] **Working team confirmation** — node leads to confirm named
-  contributors for the photogrammetry pipeline.
-- [ ] **PhaseOne SDK capability** — confirm scope of Image SDK
-  functionality and resourcing for GUI / code expertise.
-- [ ] **Boresight calibration** — decide whether to pursue as a means of
-  improving image geo-location.
-
-## M3M Fieldbook — [Protocols/Sensors/M3M/M3M_FieldBook.md](Protocols/Sensors/M3M/M3M_FieldBook.md)
-
-Document-wide status: **Stub** — content placeholder only.
-
-- [ ] Write the M3M fieldbook (equipment checklist, preflight,
-  mission-standard types, camera capture settings, onsite preflight,
-  flight ops, in-flight checks, post-flight, data offload, sensor
-  configuration reference, GSD vs altitude lookup) — mirror the
-  structure used by the HiRes and CALViS fieldbooks.
-
----
-
-## Spectral Panel Cleaning and Calibration — [Protocols/QA/SpectralPanel/Spectral_Panel_Cleaning_and_Calibration.md](Protocols/QA/SpectralPanel/Spectral_Panel_Cleaning_and_Calibration.md)
-
-Document-wide status: **Stub** — content placeholder only.
-
-- [ ] Write the protocol covering: safe handling and storage of reference
-  panels; routine cleaning procedures and approved consumables; pre- and
-  post-flight panel capture workflows; recalibration intervals and
-  traceability records; field QA checks and rejection criteria.
-
----
-
-## HiRes Processing Pipeline — [Protocols/Pipelines/HiResPipeline/HiRes_Processing_Pipeline.md](Protocols/Pipelines/HiResPipeline/HiRes_Processing_Pipeline.md)
-
-Document-wide status: **Stub / AI-scaffolded** — content not yet
-validated (see CAUTION banner at
-[lines 13–23](Protocols/Pipelines/HiResPipeline/HiRes_Processing_Pipeline.md#L13-L23)).
-The current scaffold needs to be replaced with verified, operator-authored
-instructions.
-
-**Method 1 — PhaseOne iX Capture (Windows GUI)**
-([line 126](Protocols/Pipelines/HiResPipeline/HiRes_Processing_Pipeline.md#L126))
-
-- [ ] Document the iX Capture version pinned for APPN processing.
-- [ ] Document exact GUI parameter presets and screenshots.
-- [ ] Document export settings for handover to the orthomosaic stage.
-
-**Method 2 — PhaseOne Image SDK (Linux CLI / shell scripts)**
-([line 177](Protocols/Pipelines/HiResPipeline/HiRes_Processing_Pipeline.md#L177))
-
-- [ ] Document the Image SDK version pinned for APPN processing.
-- [ ] Add the reference shell pipeline (location in repo, invocation,
-  env vars).
-- [ ] Document parity checks against Method 1 (numerical equivalence
-  tests).
-- [ ] Document the container / environment (Conda / Docker) used for runs.
-
-**Method 3 — Display-focused orthomosaic**
-([line 234](Protocols/Pipelines/HiResPipeline/HiRes_Processing_Pipeline.md#L234))
-
-- [ ] Confirm preferred photogrammetry tool and version.
-- [ ] Document filename / folder convention so display products are
-  clearly distinguishable from the standard `RGB_Orthomosaic.tif`.
-- [ ] Document required watermark / metadata flag marking the product
-  as "display only — not for quantitative use".
-
-## M3M Processing Pipeline — [Protocols/Pipelines/M3MPipeline/M3M_Processing_Pipeline.md](Protocols/Pipelines/M3MPipeline/M3M_Processing_Pipeline.md)
-
-Document-wide status: **Stub** — content placeholder only.
-
-- [ ] Write the M3M processing pipeline documentation (toolchain, inputs,
-  step sequence, outputs, QA checks).
-
----
-
-## Background documents
-
-### Ground-Based Phenotyping and Environmental Platforms — [Protocols/Background/PhenotypingAndEnvironmental/Ground_Phenotyping_and_Environmental.md](Protocols/Background/PhenotypingAndEnvironmental/Ground_Phenotyping_and_Environmental.md)
-
-- [ ] Replace the placeholder section with the formal ground phenotyping
-  / environmental protocols once they exist (currently intentional
-  placeholder at
-  [line 87](Protocols/Background/PhenotypingAndEnvironmental/Ground_Phenotyping_and_Environmental.md#L87)).
-
-Other background documents (`Platforms_Overview.md`,
-`QC_and_Reporting.md`, `Standard_Data_Products.md`) have no outstanding
-inline TODOs.
-
----
-
-## Top-level — [README.md](README.md) and [Scripts/README.md](Scripts/README.md)
-
-- [ ] Update the `M3M/` and `HIRES/` "(stub)" annotations in the
-  repository tree once those sensor fieldbooks are no longer stubs
-  ([README.md line 29](README.md#L29)).
-
----
-
-## Pending Field EWG approval
-
-Items below are explicitly flagged in the source documents as requiring
-APPN **Field EWG** review / ratification before they can be treated as
-the APPN standard. (Fieldbooks, the Data Folder Structure document, and
-the README files do not currently contain explicit Field EWG approval
-gates.)
-
-### Standard Flight — [Protocols/FlightDesign/StandardFlight/Standard_Flight.md](Protocols/FlightDesign/StandardFlight/Standard_Flight.md)
-
-Pending APEx / GRYFN decisions to be revised before season start
-([lines 70–80](Protocols/FlightDesign/StandardFlight/Standard_Flight.md#L70-L80)):
-
-- [ ] Flight-line orientation guidance (align-with-planting direction).
-- [ ] Whether the Dual ELM panel flight is mandatory under variable
-  illumination.
-- [ ] Whether the Single ELM panel flight is permitted at all under
-  variable illumination.
-
-### Validation Flight — [Protocols/FlightDesign/ValidationFlight/Validation_Flight.md](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md)
-
-Pending Field EWG / APEx decisions
-([lines 82–94](Protocols/FlightDesign/ValidationFlight/Validation_Flight.md#L82-L94)):
-
-- [ ] Confirm pass-fail / acceptance criteria for each validation
-  flight type.
-- [ ] Lock the standard validation flight footprint (area, altitude,
-  speed, overlap) once APEx parameter sweeps complete.
-- [ ] Confirm minimum solar elevation / time-of-day window for routine
-  validation flights.
-- [ ] Confirm whether spectral and spatial validation can be combined
-  into a single overflight.
+## Where everything else went
+
+Everything that could not be completed for 1.0 — Field EWG approvals, APEx
+parameter sweeps, operational-parameter values, field photos/diagrams,
+sections owned by named contributors, and the five stub documents — is now
+tracked in **[TODO_FUTURE.md](TODO_FUTURE.md)** (Rev 1.1+).

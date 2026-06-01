@@ -48,7 +48,7 @@ Protocols/
 │   ├── CALVIS/                       Headwall CoAligned HP + LiDAR + GNSS-INS (IF1200)
 │   ├── GOBI/                         GOBI sensor platform (separate M350 and IF1200 fieldbooks)
 │   ├── M3M/                          DJI M3M multispectral platform (stub)
-│   └── HIRES/                        HiRes Phase One RGB platform (stub)
+│   └── HIRES/                        HiRes Phase One RGB platform
 ├── FlightDesign/
 │   ├── StandardFlight/               Standard flight procedure
 │   └── ValidationFlight/             Validation flight procedure

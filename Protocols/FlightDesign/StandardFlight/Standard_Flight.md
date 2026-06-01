@@ -21,24 +21,17 @@
 
 ---
 
-> [!IMPORTANT]
-> **Document status — work in progress.**
-> This protocol is a draft and requires further revision before it can
-> be considered final. New figures also need to be produced to
-> illustrate the procedures described below.
+> [!NOTE]
+> **Outstanding items deferred to a future revision.**
+> The procedure content below is complete for revision 1.0. The only
+> remaining items are tracked in the
+> [future-release backlog](../../../TODO_FUTURE.md):
 >
-> **Outstanding TODOs:**
->
-> **Figures to produce** (see master list in [`/IMAGE_TODO.md`](../../../IMAGE_TODO.md))
-> - [ ] **Photo (suggested)** — Hero/cover photo of a complete,
->       correctly-staged standard flight site (drone, panel table,
->       GCPs visible) for use as a reference ideal.
->
-> **Cross-links to add**
-> - [ ] Processing pipeline page covering dual-panel ingestion in GPT,
->       referenced from the
->       [Dual ELM panel flight](#dual-elm-panel-flight) rationale.
->
+> - A suggested hero/cover photo of a correctly-staged standard flight
+>   site (see [`/IMAGE_TODO.md`](../../../IMAGE_TODO.md)).
+> - Pre-season decisions on flight-line orientation and ELM-panel
+>   requirements under variable illumination, pending APEx / Field EWG
+>   sign-off.
 
 ---
 
@@ -119,8 +112,8 @@ This protocol is organised into two parts:
 > "operational reasons", as this greatly reduces stitching artefacts
 > between adjacent flight lines. Testing flight-line angle is a top
 > priority for APEx, and this guidance may be revised before the start of
-> the season.
-> TODO: ADJUST THIS BEFORE SEASON STARTS
+> the season (tracked in the
+> [future-release backlog](../../../TODO_FUTURE.md)).
 
 ### Panel Setup
 
@@ -257,8 +250,10 @@ the long axis of the survey area**.
   given image and its nearest panel overflight.
 - **Redundancy.** Both panel sets can be ingested by the GRYFN Processing
   Tool (GPT) during radiometric calibration, providing a backup if
-  one panel set is shaded, disturbed, or otherwise unusable.
-  _(TODO: cross-link to the processing pipeline page once published.)_
+  one panel set is shaded, disturbed, or otherwise unusable. See the
+  [Processing Pipelines](../../Pipelines/ProcessingPipelines/Processing_Pipelines.md#reflectance-target-values)
+  page for how panel reflectance targets are ingested during the ELM
+  calibration.
 - **Improved reflectance retrieval** over longer flights where
   illumination conditions are more likely to drift.
 
@@ -328,7 +323,8 @@ over once.
 - **Not recommended** for flights longer than 10 minutes — use the
   [Dual ELM panel flight](#dual-elm-panel-flight) instead.
 - **Not permitted** under variable illumination (e.g. broken cloud),
-  regardless of flight duration. (TODO: If APEx allows this)
+  regardless of flight duration. (Pending APEx confirmation — see the
+  [future-release backlog](../../../TODO_FUTURE.md).)
 
 ### Flight design
 

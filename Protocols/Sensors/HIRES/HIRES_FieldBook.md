@@ -29,7 +29,7 @@ across APPN field nodes.
 > This section captures the cross-node working arrangements and outstanding
 > decisions agreed for the current season. It is project / coordination
 > context rather than field procedure, and is mirrored in
-> [TODO.md](../../../TODO.md) for tracking.
+> [TODO_FUTURE.md](../../../TODO_FUTURE.md) for tracking.
 
 ### Team responsibilities (proposed — to be confirmed by each node)
 
@@ -583,19 +583,12 @@ in. Follow the steps below and the instructional video on gimbal balancing:
 [![Video titled: Balancing the P3 Payload | Phase One](HIRES_FieldBook_media/image_e4daeed9ebec.jpg)](https://youtu.be/T-foiXM-1tk?si=UCUcDNS9dvxEnD_t)
 
 > [!NOTE]
-> **[NC17]** @franco to write :)
-
-> [!NOTE]
-> 🖼️ **Image needed (photos):** Step-by-step photo sequence of the
-> gimbal-balance procedure — close-ups of each balance-adjustment
-> point on the P3 gimbal, plus a reference photo of the final settings
-> table values — to accompany the written steps below.
-
-1. X
-2. Y
-3. Z
-4. P
-5. Q
+> **The detailed step-by-step balance procedure is still being written**
+> (assigned to @franco) and will be added in a future revision, along with
+> a photo sequence and a final settings-table reference (tracked in the
+> [future-release backlog](../../../TODO_FUTURE.md) and
+> [`/IMAGE_TODO.md`](../../../IMAGE_TODO.md)). Until then, follow the Phase
+> One instructional video linked above.
 
 > [!TIP]
 > **Record and photograph the settings** (add to a settings table) so you

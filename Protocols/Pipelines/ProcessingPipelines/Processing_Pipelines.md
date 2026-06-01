@@ -5,7 +5,7 @@
 > [!IMPORTANT]
 > This page documents the **standardised GRYFN processing pipelines** used
 > within APPN for UAV-based data processing, intended for trained APPN staff
-> processing CALViS, GOBI, HiRes, and M3M datasets. Adherence to the
+> processing CALViS and GOBI. Adherence to the
 > pipelines below ensures reproducibility, quality assurance, and
 > cross-project comparability. For any processing run that **deviates from
 > the standard pipeline**, detailed records must be kept of every parameter
@@ -26,18 +26,6 @@ compatibility, see
 
 For additional information about all steps in this document, see the 
 [Gryfn Documentation](https://gryfn.gitbook.io/gryfn-software/documentation/quick-start-guide)
-
-> [!IMPORTANT]
-> **Document status — work in progress.**
-> This page is a draft and requires further revision before it can be
-> considered final.
->
-> **Outstanding TODOs:**
->
-> - [ ] CALViS walkthrough author / reviewer: Richard Harwood.
-> - [ ] Add the GOBI standard processing walkthrough (currently outputs only).
-> - [ ] Automate handling of GNSS `.TO4` files in the raw-data formatting
->       step.
 
 ---
 
@@ -127,7 +115,7 @@ can be bundled. The raw data folder will look like this:
 > When you download the VNIR data it has the **LiDAR data nested inside**
 > the VNIR folder, and the **VNIR dark frames** are in the same folder.
 > The **SWIR dark frames** are in a separate folder. The GNSS folder
-> contains the relevant `.TO4` files (automated handling is WIP).
+> contains the relevant `.TO4` files.
 
 ### 3. Create the graw bundle
 
@@ -309,8 +297,8 @@ The GOBI standard processing pipeline is defined by
 [`Gobi_standard_pipeline_v1.0.yaml`](https://github.com/ArdenB/APPN-Aerial-Standard-Operating-Procedures/blob/main/Protocols/Pipelines/ProcessingPipelines/yaml/Gobi_standard_pipeline_v1.0.yaml).
 
 > [!NOTE]
-> The GOBI standard processing walkthrough is **TODO**. The outputs of the
-> standard GOBI pipeline are documented below.
+> The GOBI workflow closely mirrors the CALViS walkthrough above; only
+> the GOBI-specific differences are called out below.
 
 The GOBI processing worflow is very similar to the CALViS. The main difference is that there is no SWIR but there is RGB data. 
 

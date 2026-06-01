@@ -184,9 +184,11 @@ a GeoJSON with one point per GCP and the fields `ID`, `X`, `Y`, `Z`, plus an
 explicit CRS. The exact conversion process depends on the GCP hardware
 (Aeropoint, Trimble, etc.).
 
-> [!IMPORTANT]
-> **TODO:** Document the conversion process for each supported GCP type
-> (Aeropoint, Trimble, …).
+> [!NOTE]
+> A step-by-step conversion process for each supported GCP type (Aeropoint,
+> Trimble, …) will be added in a future revision. This item is tracked in the
+> [future-release backlog](../../../TODO_FUTURE.md). Until then, follow the
+> hardware vendor's export workflow and the field-checks listed below.
 
 Common issues to watch for during conversion:
 
@@ -320,8 +322,57 @@ Run the QA code at
 observed (drone) and reference (surveyed) GCP locations. The report produces
 per-point residuals and overall RMSE in X, Y, and Z.
 
+The code pairs each observed point in `QC_GCP_points.geojson` with the
+matching reference point in `QC_GCP_groundtruth_points.geojson` using the
+`GCP_name` / `ID` fields (see [Naming Conventions](#naming-conventions)), so
+those identifiers **must** match exactly for a point to appear in the report.
+
+**What the report contains**
+
+- **Per-point residuals** — the signed difference between the observed and
+  reference position for every paired GCP, in metres, broken out as
+  `dX`, `dY`, and `dZ` (easting, northing, and height) plus the horizontal
+  (`dXY = sqrt(dX² + dY²)`) and total 3D offset. These identify whether an
+  error is uniform across the site (suggesting a systematic shift or datum
+  problem) or localised to individual points (suggesting a digitising or
+  ground-truth error).
+- **Summary statistics** — overall **RMSE** in X, Y, and Z, the horizontal
+  and 3D RMSE, and the mean (bias) and standard deviation of the residuals.
+  A large mean relative to the standard deviation indicates a systematic
+  offset; a large standard deviation indicates noisy or inconsistent
+  georeferencing.
+- **Point count** — the number of GCPs successfully paired. If this is lower
+  than the number of GCPs placed in the field, check for unmatched
+  `GCP_name` / `ID` values before interpreting the result.
+
+**How to interpret the result**
+
+1. Check the **point count** first — a report built from only one or two
+   paired GCPs is not a reliable accuracy estimate.
+2. Inspect the **mean residual (bias)**. A consistent non-zero bias in X, Y,
+   or Z across all points usually points to a CRS / height-datum mismatch
+   (see the common issues under [Field Data Collection](#field-data-collection))
+   rather than a true positional error, and can often be corrected without
+   reprocessing.
+3. Inspect **individual large residuals**. A single GCP with a much larger
+   offset than the rest is most often a mis-digitised observed point or a
+   bad ground-truth measurement — re-check that point before concluding the
+   flight has failed.
+4. Compare the **RMSE** against the acceptance thresholds below.
+
+**Where to save the report**
+
+Save the generated report alongside the input vector layers in the
+`T1_proc/QC_data/` folder (see [File Storage](#file-storage)) so the residuals
+travel with the dataset.
+
 > [!IMPORTANT]
-> **TODO:** Write this section and include lots of info.
+> **Pass / fail thresholds — to be confirmed by the Field EWG.** Quantitative
+> acceptance limits for horizontal RMSE, vertical RMSE, and maximum
+> single-point residual are not yet ratified. Until they are set, record the
+> reported values in the QC log and flag any flight whose RMSE is large
+> relative to the sensor's expected GSD for manual review. This item is
+> tracked in the [future-release backlog](../../../TODO_FUTURE.md).
 
 
 ---
@@ -373,9 +424,10 @@ flight was collected.*
 
 #### 2. Create the Vector Layer
 
-> [!IMPORTANT]
-> **TODO:** Richard please check and update this section. with info about 
-> new panels
+> [!NOTE]
+> This section is pending review and expansion (panel-specific guidance) by
+> Richard Harwood, tracked in the
+> [future-release backlog](../../../TODO_FUTURE.md).
 
 
 1. Navigate to **Layer → Create Layer → New GeoPackage Layer…** for GeoJSON

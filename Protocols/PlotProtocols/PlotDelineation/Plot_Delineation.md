@@ -18,23 +18,17 @@ analysis across APPN trials.
 ---
 
 > [!IMPORTANT]
-> **Document status — work in progress.**
-> This protocol is a draft and requires further revision before it can
-> be considered final. The points below capture the state of each
-> section after the **APPN Field EWG plot-delineation meeting**.
-> A small working group has reviewed the this document
-> 
->
-> **⚠️ Still outstanding — Field EWG follow-ups:**
->
-> **Methods** (see [Methods](#methods))
-> - [ ] **Mickey to write the GPT plot-creation tool** (becomes
->       Method 3, replacing the previous "GRYFN plot tool" placeholder).
-> - [ ] **FIELDimageR meeting with Bipul and Mickey** — still TBC;
->       outcomes to be folded back into
->       [Method 1](#method-1-fieldimager-qgis).
-> - [ ] For the **Omega** platform, capture **vegetation width** in
->       trial metadata so it can be used to set track width.
+> **Document status — methods under cross-validation.**
+> The APPN plot delineation standard and the three supported methods
+> below reflect the decisions made at the **APPN Field EWG
+> plot-delineation meeting**. **Zeljana Grbovic** is currently testing
+> whether all three methods
+> ([FIELDimageR](#method-1-fieldimager-qgis),
+> [DPIRD Field Mapping Tool](#method-2-dpird-field-mapping-tool), and
+> [GPT plot creation tool](#method-3-gpt-plot-creation-tool)) produce
+> consistent results. Parts of this protocol may change depending on
+> the outcome of that testing, which is tracked in the
+> [future-release backlog](../../../TODO_FUTURE.md).
 
 ---
 
@@ -69,7 +63,6 @@ reflected inline; outstanding follow-ups are flagged in the
   - [Method 1: FIELDimageR (QGIS)](#method-1-fieldimager-qgis)
   - [Method 2: DPIRD Field Mapping Tool](#method-2-dpird-field-mapping-tool)
   - [Method 3: GPT plot creation tool](#method-3-gpt-plot-creation-tool)
-    — to be written by Mickey.
 
 ---
 
@@ -676,12 +669,10 @@ the resulting shapefile must satisfy the
 [APPN Plot Shapefile Standard](#appn-plot-shapefile-standard) above.
 
 - [Method 1: FIELDimageR (QGIS)](#method-1-fieldimager-qgis)
-  — follow-up meeting with **Bipul and Mickey** is still TBC; outcomes
-  to be folded back into this section.
 - [Method 2: DPIRD Field Mapping Tool](#method-2-dpird-field-mapping-tool)
 - [Method 3: GPT plot creation tool](#method-3-gpt-plot-creation-tool)
-  — **to be written by Mickey** (replaces the previous "GRYFN plot
-  tool" placeholder).
+  — GRYFN Plot Extraction Tool workflow (replaces the previous "GRYFN
+  plot tool" placeholder).
 
 ---
 

@@ -215,10 +215,12 @@ analysis across APPN operations.
    check [here](https://gml.noaa.gov/grad/solcalc/) if unsure).
 
    > [!NOTE]
-   > **TODO (EWG review):** solar noon is a moving target, so a ±20° window
-   > effectively permits flying at a lower solar altitude in Adelaide than in
-   > Brisbane. Consider whether to instead adopt the
-   > [GRYFN recommendation](https://gryfn.gitbook.io/gryfn-operations/sensing-technologies/hyperspectral).
+   > **To be confirmed by in-field testing:** solar noon is a moving target,
+   > so a ±20° window effectively permits flying at a lower solar altitude in
+   > Adelaide than in Brisbane. Whether to instead adopt the
+   > [GRYFN recommendation](https://gryfn.gitbook.io/gryfn-operations/sensing-technologies/hyperspectral)
+   > will be evaluated as part of the APEx experimental flights this season,
+   > and is tracked in the [future-release backlog](../../../TODO_FUTURE.md).
 
 2. Turn on the aeronautical radio and set to local CTAF (find in
    [ERSA](https://www.airservicesaustralia.com/aip/aip.asp)).
@@ -363,8 +365,10 @@ analysis across APPN operations.
 > possible. 
 
 > [!NOTE]
-> **TODO:** add a reference image and notes covering the recommended
-> sensor angle during exposure setting.
+> A reference image and notes covering the recommended sensor angle during
+> exposure setting will be added in a future revision (tracked in the
+> [future-release backlog](../../../TODO_FUTURE.md) and
+> [`/IMAGE_TODO.md`](../../../IMAGE_TODO.md)).
 
 9. Toggle Hyperspec III to the SWIR sensor.
 10. Repeat the frame period / exposure steps for the SWIR sensor.
