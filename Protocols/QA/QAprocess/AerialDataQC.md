@@ -1,6 +1,11 @@
 # APPN – Aerial Data QC Protocols
 
 
+> [!IMPORTANT]
+> **The full QC pipeline is still under active development.** It is being
+> developed and tested as part of the early-season APEx flights, and parts
+> of this protocol may change as that work progresses.
+
 > [!NOTE]
 > This document describes procedures for measuring the uncertainty of drone
 > flights. Initially this document focuses on the
@@ -367,12 +372,11 @@ Save the generated report alongside the input vector layers in the
 travel with the dataset.
 
 > [!IMPORTANT]
-> **Pass / fail thresholds — to be confirmed by the Field EWG.** Quantitative
-> acceptance limits for horizontal RMSE, vertical RMSE, and maximum
-> single-point residual are not yet ratified. Until they are set, record the
-> reported values in the QC log and flag any flight whose RMSE is large
-> relative to the sensor's expected GSD for manual review. This item is
-> tracked in the [future-release backlog](../../../TODO_FUTURE.md).
+> **Pass / fail thresholds.** Flag a flight for **caution** when the RMSE
+> exceeds **5 cm**, and treat it as a **fail** when the RMSE exceeds
+> **10 cm**. Record the reported values in the QC log and review any flight
+> that breaches the caution threshold. These limits will be evaluated further
+> during the APEx flights to confirm they are appropriate.
 
 
 ---
@@ -386,7 +390,7 @@ all processing in software like GPT is complete.
 CALViS and GOBI flights conducted prior to the *Operational Excellence in APPN
 Hyperspectral Imaging* SIF likely consist of one GRYFN reflectance panel
 (used to generate the ELM in the GRYFN Processing Tool) along with additional
-panels for validation.
+panels for validation.### Extracting Pixels into a Table
 
 File naming, format (GeoJSON preferred), and storage location for the
 polygons created below all follow the
@@ -496,7 +500,7 @@ within the panel, they should be included.
 
    ![Save dialog](AerialDataQC_media/image_a77a81d079ab.png)
 
-### Extracting Pixels into a Table
+
 
 Arden Burrell has made a Python script that can go through the APPN standard
 folder structure, extract the values into a table, and save that as a `.csv`
@@ -514,6 +518,16 @@ have the following columns:
 band, wavelength, value, Panel_ref, node, project, site, sensor, date, run, panel_name, type, gpro_nu
 ```
 
+### Accuracy reporting
+
+> [!NOTE]
+> A spectral accuracy-reporting procedure is planned but not yet defined.
+> Developing an acceptable spectral accuracy baseline requires data from the
+> APEx flights; once that data is available, this section will document how
+> the extracted panel reflectances are compared against their known values
+> and the pass/fail criteria that result. This item is tracked in the
+> [future-release backlog](../../../TODO_FUTURE.md).
+
 ---
 
 
@@ -522,4 +536,13 @@ band, wavelength, value, Panel_ref, node, project, site, sensor, date, run, pane
 
 > [!WARNING]
 > This section is still a work in progress.
+
+> [!NOTE]
+> Both the LiDAR **sampling** and **accuracy-reporting** procedures are
+> planned but not yet defined. Developing the sampling workflow and an
+> acceptable LiDAR accuracy baseline requires data from the APEx flights;
+> once that data is available, this section will document how LiDAR
+> calibration surfaces are sampled, how the results are compared against
+> their reference values, and the pass/fail criteria that result. This item
+> is tracked in the [future-release backlog](../../../TODO_FUTURE.md).
 

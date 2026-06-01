@@ -173,8 +173,12 @@ Field procedure:
 - [ ] Update the naming-conventions table when panels other than GRYFN are
   sourced.
 - [ ] Complete the **Positional QC** and **LiDAR QC** sections.
-- [ ] Confirm positional-accuracy **pass/fail thresholds** (horizontal RMSE,
-  vertical RMSE, maximum single-point residual) with the Field EWG.
+- [ ] Confirm the provisional positional-accuracy thresholds (caution at 5 cm
+  RMSE, fail at 10 cm RMSE) during the APEx flights.
+- [ ] Develop the **Spectral QC** accuracy-reporting procedure and an
+  acceptable spectral accuracy baseline using the APEx flights.
+- [ ] Develop the **LiDAR QC** sampling and accuracy-reporting procedures and
+  an acceptable LiDAR accuracy baseline using the APEx flights.
 - [ ] Document the GCP-conversion process for each supported GCP type
   (Aeropoint, Trimble, …).
 

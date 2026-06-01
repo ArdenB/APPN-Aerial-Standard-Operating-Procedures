@@ -106,6 +106,10 @@ STATUS_FILE = REPO_ROOT / "Protocols" / "STATUS.md"
 # Wiki page name for the published tracker.
 STATUS_WIKI_PAGE = "Status"
 
+# The protocols changelog, also published verbatim to the wiki.
+CHANGELOG_FILE = REPO_ROOT / "Protocols" / "CHANGELOG.md"
+CHANGELOG_WIKI_PAGE = "Changelog"
+
 
 def page_status(page: dict[str, Any]) -> list[str]:
     """Return validated, ordered list of completed stage IDs for a page."""
@@ -128,6 +132,18 @@ def status_summary(page: dict[str, Any]) -> str:
         marker = "✅" if sid in completed else "⬜"
         parts.append(f"{marker} {label}")
     return " · ".join(parts)
+
+
+def page_last_revised(page: dict[str, Any], manifest: dict[str, Any]) -> str:
+    """Return the revision in which this page last changed.
+
+    Reads the page's optional ``last_revised`` field and falls back to the
+    manifest-wide ``revision`` when it is missing.
+    """
+    value = page.get("last_revised")
+    if value is None:
+        return str(manifest["revision"])
+    return str(value)
 
 
 # Shields.io colours keyed off the most-advanced completed stage. The label
@@ -322,6 +338,8 @@ def make_banner(page: dict[str, Any], manifest: dict[str, Any], date: str) -> st
         f"> **Locked revision {revision}** — published {date}. "
         f"Edit the working draft in the {link}.",
         ">",
+        f"> **This document last changed in revision {page_last_revised(page, manifest)}.**",
+        ">",
         f"> **Field EWG review status:** {status_summary(page)} "
         f"&nbsp;·&nbsp; [Full tracker]({STATUS_WIKI_PAGE})",
     ]
@@ -394,7 +412,8 @@ def render_sidebar(manifest: dict[str, Any], date: str) -> str:
         by_cat.setdefault(page["category"], []).append(page)
 
     lines = ["## APPN Aerial SOP", "", "- [Home](Home)",
-             f"- [Document status]({STATUS_WIKI_PAGE})", ""]
+             f"- [Document status]({STATUS_WIKI_PAGE})",
+             f"- [Changelog]({CHANGELOG_WIKI_PAGE})", ""]
     # Preserve manifest category order; append any unknown categories at the end.
     ordered = [c for c in cats] + [c for c in by_cat if c not in cats]
     for cat_id in ordered:
@@ -457,6 +476,8 @@ def render_home(manifest: dict[str, Any], date: str) -> str:
     lines.append("")
     lines.append(f"- 📋 **[Document review status]({STATUS_WIKI_PAGE})** — "
                  "Field EWG progress tracker for every protocol.")
+    lines.append(f"- 📝 **[Changelog]({CHANGELOG_WIKI_PAGE})** — "
+                 "notable changes in each revision of the suite.")
     lines.append("")
     ordered = [c for c in cats] + [c for c in by_cat if c not in cats]
     for cat_id in ordered:
@@ -477,7 +498,10 @@ def write_navigation(manifest: dict[str, Any], wiki_root: Path, date: str,
     home = render_home(manifest, date)
     status_md = render_status(manifest, date, for_wiki=True)
     has_footer = FOOTER_FILE.is_file()
+    has_changelog = CHANGELOG_FILE.is_file()
     nav_files = f"Home.md, _Sidebar.md, {STATUS_WIKI_PAGE}.md"
+    if has_changelog:
+        nav_files += f", {CHANGELOG_WIKI_PAGE}.md"
     if has_footer:
         nav_files += ", _Footer.md"
     print(f"  nav:  {nav_files}")
@@ -487,6 +511,10 @@ def write_navigation(manifest: dict[str, Any], wiki_root: Path, date: str,
     (wiki_root / "_Sidebar.md").write_text(sidebar, encoding="utf-8")
     (wiki_root / "Home.md").write_text(home, encoding="utf-8")
     (wiki_root / f"{STATUS_WIKI_PAGE}.md").write_text(status_md, encoding="utf-8")
+    if has_changelog:
+        changelog = CHANGELOG_FILE.read_text(encoding="utf-8")
+        (wiki_root / f"{CHANGELOG_WIKI_PAGE}.md").write_text(
+            changelog, encoding="utf-8")
     if has_footer:
         shutil.copyfile(FOOTER_FILE, wiki_root / "_Footer.md")
     # Also refresh the in-repo tracker (without the wiki banner/links).
@@ -551,11 +579,11 @@ def render_status(manifest: dict[str, Any], date: str, *, for_wiki: bool) -> str
     ]
 
     # Header row.
-    headers = ["Document", "Category"]
+    headers = ["Document", "Category", "Last revised"]
     if for_wiki:
         headers.append("Status")
     headers += [label for _, label in REVIEW_STAGES] + ["Notes"]
-    aligns = ["---", "---"]
+    aligns = ["---", "---", ":---:"]
     if for_wiki:
         aligns.append(":---:")
     aligns += [":---:" for _ in REVIEW_STAGES] + ["---"]
@@ -580,7 +608,7 @@ def render_status(manifest: dict[str, Any], date: str, *, for_wiki: bool) -> str
                 else:
                     rel = "../" + rel
                 doc_link = f"[{page['title']}]({rel})"
-            row = [doc_link, cat_title]
+            row = [doc_link, cat_title, f"`{page_last_revised(page, manifest)}`"]
             if for_wiki:
                 row.append(status_badge(page))
             for sid, _ in REVIEW_STAGES:

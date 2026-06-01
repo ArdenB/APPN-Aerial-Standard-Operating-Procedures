@@ -73,6 +73,29 @@ integrated nature of field phenomics workflows.
 - The most recent version of each SOP should always be used for standard APPN
   flights
 
+The SOPs are versioned as a **single set**. One version applies to the whole
+protocol suite rather than to individual pages, written `MAJOR.YYx` — for
+example `1.00`, `1.00a`, `1.01`. The current value is stamped on every
+published wiki page and PDF.
+
+- **MAJOR** and **MINOR** are **numbers**. The minor is always written as two
+  digits with a leading zero (`YY`): `00`, `01`, …, `10`.
+- **PATCH** is a **letter** appended directly to the minor with no separator
+  (`a`, `b`, `c`, …). No letter means no patch (e.g. `1.01` is the base of that
+  minor; `1.01a` is its first patch).
+
+| Part | When it changes |
+| ---- | --------------- |
+| **MAJOR** | Once per year, **locked at the start of the season**, establishing the stable, citable baseline field teams follow for that season. Bumping the major resets the minor to `00` and drops any patch letter. |
+| **MINOR** | An in-season change that alters **what you do** or **adds new scope** — finishing a stub, adding a page, resolving a provisional parameter, or correcting a procedure found to be wrong. |
+| **PATCH** | An editorial change that does **not** alter the procedure — spelling, formatting, clarifying wording, or replacing an illustrative figure. Safe to adopt without re-checking already-collected data. |
+
+> [!IMPORTANT]
+> Every **minor** release is announced at a Field EWG meeting so all nodes are
+> aware of the change in scope or procedure, and is documented on this Home
+> page, in the repository README, and in a note at the top of each impacted
+> page. Patch releases do not require an announcement.
+
 ## 🌿 Contribution & Feedback
 
 APPN strongly encourages:
