@@ -241,7 +241,7 @@ OpenDroneMap, or equivalent) — **not** the PhaseOne Image SDK.
 
 ### Processing a HiRes flight in Agisoft Metashape. 
 
-#### NOTE: This is just a placeholder processing workflow so those new to HiRes can get a feel for the data and Agisoft. It is not perfect and its not a one size fits all approach. The APPN uniform approach has not been confirmed as of yet and this. - Richard Harwood 
+#### NOTE: This is just a placeholder processing workflow so those new to HiRes can get a feel for the data and Agisoft. It is not perfect and its not a one size fits all approach. The APPN uniform approach has not been confirmed as of yet. - Richard Harwood 
 
 #### Step 1 — Locate the processed JPEGs
 
