@@ -239,3 +239,152 @@ OpenDroneMap, or equivalent) — **not** the PhaseOne Image SDK.
 - Document required watermark / metadata flag marking the product as
   "display only — not for quantitative use".
 
+### Processing a HiRes flight in Agisoft Metashape. 
+
+#### NOTE: This is just a placeholder processing workflow so those new to HiRes can get a feel for the data and Agisoft. It is not perfect and its not a one size fits all approach. The APPN uniform approach has not been confirmed as of yet and this. - Richard Harwood 
+
+#### Step 1 — Locate the processed JPEGs
+
+![Folder of processed JPEGs](HiRes_Processing_Pipeline_media/1_folder_of_jpgs_processed.png)
+
+Start with a folder of the processed HiRes JPEG frames ready for import.
+
+#### Step 2 — Prepare the AeroPoints / GCP file
+
+![Formatted AeroPoints](HiRes_Processing_Pipeline_media/2_formatted_aeropoints.png)
+
+Format the AeroPoints (ground control points) into the layout Metashape
+expects — label, easting/northing (or lat/lon), and elevation.
+
+#### Step 3 — Load the JPEGs into Agisoft
+
+![JPEGs loaded into Agisoft](HiRes_Processing_Pipeline_media/3_jpges_loaded_agisoft.png)
+
+Drag and drop (or **Add Photos**) the processed JPEGs into the Metashape
+chunk so the images appear in the workspace.
+
+#### Step 4 — Set / convert the coordinate reference system
+
+![Convert CRS](HiRes_Processing_Pipeline_media/4_convert_CRS.png)
+
+Set the camera CRS and convert it to the project's target CRS so the imagery
+and control points share the same coordinate system.
+
+#### Step 5 — Import the AeroPoints
+
+![Load AeroPoints](HiRes_Processing_Pipeline_media/5_load_aerpoints.png)
+
+Import the formatted AeroPoints file as markers/GCPs, mapping the columns to
+the correct coordinate fields.
+
+#### Step 6 — Check the imported AeroPoints
+
+![Check loaded AeroPoints](HiRes_Processing_Pipeline_media/5_load_aerpoints_check.png)
+
+Verify the markers loaded correctly and sit in sensible positions relative to
+the camera locations.
+
+#### Step 7 — Hit "Yes to all"
+
+![Yes to GCP](HiRes_Processing_Pipeline_media/6_yes_to_gcp.png)
+
+
+#### Step 8 — Set up Align photos
+
+![Align photos](HiRes_Processing_Pipeline_media/7_align_photos.png)
+
+Run **Align Photos** to estimate camera positions and build the sparse point
+cloud.
+
+#### Step 9 — Run Alignment 
+
+![Aligned photos](HiRes_Processing_Pipeline_media/8_align_photos.png)
+
+
+#### Step 10 — Load a marker
+
+![Filter photos by marker](HiRes_Processing_Pipeline_media/9_filtrer%20photos%20by%20marker.png)
+
+
+
+Select a marker (GCP) to begin refining its position across the images. Select filter photos by marker to see which images contain the marker.  
+
+#### Step 11 — Inspect the distance from the aeropoint to the centre of the GCP
+![Load marker](HiRes_Processing_Pipeline_media/8_marker_load.png)
+
+
+#### Step 12 — Move the marker
+
+![Marker moved](HiRes_Processing_Pipeline_media/10_marker_moved.png)
+
+Drag the marker to its precise location on the ground control target in the
+image.
+
+#### Step 13 — Repeat across images and markers
+
+![Marker again](HiRes_Processing_Pipeline_media/11_marker_again.png)
+
+Repeat the marker placement on the remaining images so each GCP is accurately
+pinned across all views. Note that you should do ~ 5 images fro a GCP/Marker. Essentially repeat the process until the point is consistently falling in the middle of the GCP for a given marker. 
+
+#### Step 14 — Optimise cameras
+
+![Optimise cameras](HiRes_Processing_Pipeline_media/12_optmise_cameras.png)
+
+Run **Optimise Cameras** 
+
+#### Step 15 — Build point cloud
+
+![Build point cloud](HiRes_Processing_Pipeline_media/13_build_pointcloud.png)
+
+Start **Build Point Cloud** to generate the dense point cloud from the aligned
+imagery.
+
+#### Step 16 — Point cloud settings
+
+![Build point cloud settings](HiRes_Processing_Pipeline_media/14_build_pointcloud_2.png)
+
+Set the quality and depth-filtering options, then run the dense point cloud
+build.
+
+#### Step 17 — Build DEM
+
+![Build DEM](HiRes_Processing_Pipeline_media/15_build_dem.png)
+
+Start **Build DEM** to generate the digital elevation model from the point
+cloud.
+
+#### Step 18 — DEM settings
+
+![Build DEM settings](HiRes_Processing_Pipeline_media/16_build_dem2.png)
+
+Confirm the source data, projection, and resolution, then run the DEM build.
+
+#### Step 19 — Build orthomosaic
+
+![Build orthomosaic](HiRes_Processing_Pipeline_media/17_buiild_ortho.png)
+
+Start **Build Orthomosaic** to generate the orthorectified mosaic from the
+imagery and DEM.
+
+#### Step 20 — Orthomosaic settings
+
+![Build orthomosaic settings](HiRes_Processing_Pipeline_media/18_build_ortho2.png)
+
+Set the surface (DEM), blending mode, and resolution, then run the
+orthomosaic build.
+
+#### Step 21 — View the orthomosaic
+
+![View orthomosaic](HiRes_Processing_Pipeline_media/19_view_ortho.png)
+
+Inspect the finished orthomosaic for coverage, colour balance, and any
+mosaicing artefacts.
+
+#### Step 22 — Export the orthomosaic
+
+![Export orthomosaic](HiRes_Processing_Pipeline_media/20_export_ortho.png)
+
+Export the orthomosaic as a GeoTIFF, confirming the CRS, resolution, and
+output path.
+
