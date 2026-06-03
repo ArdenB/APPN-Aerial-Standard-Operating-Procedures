@@ -1,7 +1,5 @@
 # HiRes Processing Pipeline
 
-**Version 0.1 – DRAFT, May 2026**
-
 > [!NOTE]
 > Portions of this method are still under development, with work continuing
 > over the 2026 winter season. The flight parameters in the
