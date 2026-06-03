@@ -251,7 +251,7 @@ the long axis of the survey area**.
 - **Redundancy.** Both panel sets can be ingested by the GRYFN Processing
   Tool (GPT) during radiometric calibration, providing a backup if
   one panel set is shaded, disturbed, or otherwise unusable. See the
-  [Processing Pipelines](../../Pipelines/ProcessingPipelines/Processing_Pipelines.md#reflectance-target-values)
+  [Processing Pipelines](../../Pipelines/GryfnProcessingPipeline/Gryfn_Processing_Pipeline.md#reflectance-target-values)
   page for how panel reflectance targets are ingested during the ELM
   calibration.
 - **Improved reflectance retrieval** over longer flights where

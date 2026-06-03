@@ -1,4 +1,4 @@
-# APPN Aerial Standard Operating Procedures
+# APPN Feild Standard Operating Procedures and Pipelines
 
 > [!IMPORTANT]
 > **This repository location is temporary.** It is currently hosted under a
@@ -108,7 +108,7 @@ the full auto-generated status tracker.
 | [CALViS Fieldbook](Protocols/Sensors/CALVIS/CALViS_FieldBook.md) | `1.00` |
 | [Standard Flight Procedure](Protocols/FlightDesign/StandardFlight/Standard_Flight.md) | `1.00` |
 | [Data Folder Structure](Protocols/DataManagement/DataFolderStructure/DataFolderStructure.md) | `1.00` |
-| [Processing Pipelines](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md) | `1.00` |
+| [Processing Pipelines](Protocols/Pipelines/GryfnProcessingPipeline/Gryfn_Processing_Pipeline.md) | `1.00` |
 
 ### Adopted — with potential APEx revisions
 
@@ -162,7 +162,7 @@ Protocols/
 ├── DataManagement/
 │   └── DataFolderStructure/          Standard storage layout for raw/processed data
 ├── Pipelines/
-│   ├── ProcessingPipelines/          GRYFN standard processing pipeline outputs
+│   ├── GryfnProcessingPipeline/          GRYFN standard processing pipeline outputs
 │   └── StandardDataProducts/         Tabular summary of standard data products
 └── Background/
     ├── QCandReporting/               User-facing QC philosophy & reporting guidance

@@ -7,7 +7,7 @@ formats, and software compatibility. By default, products are delivered in
 available tools**.
 
 For the pipelines that generate these products, see
-[Processing Pipelines](../../Pipelines/ProcessingPipelines/Processing_Pipelines.md).
+[Processing Pipelines](../../Pipelines/GryfnProcessingPipeline/Gryfn_Processing_Pipeline.md).
 
 For additional information about all GOBI and CALVIS products see the [Gryfn Documentation](https://gryfn.gitbook.io/gryfn-software/user-manual/new-job)
 

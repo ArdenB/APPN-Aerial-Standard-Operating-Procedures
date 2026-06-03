@@ -179,8 +179,8 @@ pages:
     status: [drafted, ewg_feedback, modified, approved, adopted]
     last_revised: "1.00"
 
-  - source: Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md
-    wiki_page: Processing-Pipelines
+  - source: Protocols/Pipelines/GryfnProcessingPipeline/Gryfn_Processing_Pipeline.md
+    wiki_page: Gryfn-Processing-Pipelines
     title: "Processing Pipelines"
     category: Pipelines
     status: [drafted, ewg_feedback, modified, approved, adopted]

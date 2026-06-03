@@ -611,11 +611,11 @@ Formal paths use the wiki's placeholder syntax; an example follows each.
 
 5. The bundled `.graw` should be saved in the same `T0_raw` folder.
 6. The `.gpro` should be generated using the APPN GPT Pipeline (see the
-   [Processing Pipelines](../../Pipelines/ProcessingPipelines/Processing_Pipelines.md)
+   [Processing Pipelines](../../Pipelines/GryfnProcessingPipeline/Gryfn_Processing_Pipeline.md)
    document and the
-   [`Calvis_standard_pipeline_v1.0.yaml`](../../Pipelines/ProcessingPipelines/yaml/Calvis_standard_pipeline_v1.0.yaml)
+   [`Calvis_standard_pipeline_v1.0.yaml`](../../Pipelines/GryfnProcessingPipeline/yaml/Calvis_standard_pipeline_v1.0.yaml)
    in the adjacent
-   [`yaml/`](../../Pipelines/ProcessingPipelines/yaml/) folder) and
+   [`yaml/`](../../Pipelines/GryfnProcessingPipeline/yaml/) folder) and
    stored in the adjacent `T1_proc` folder.
 
    Formal path:

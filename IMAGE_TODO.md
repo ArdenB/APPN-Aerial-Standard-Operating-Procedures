@@ -60,9 +60,9 @@ because an image would clearly help).
 - [ ] **Photo** · *Suggested* — Calibration target deployment (multispectral panel pre-/post-flight capture).
 - [ ] **Screenshot** · *Suggested* — In-flight DJI Pilot mission monitoring view.
 
-## Processing Pipelines (overview) — [Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md)
+## Processing Pipelines (overview) — [Protocols/Pipelines/GryfnProcessingPipeline/Gryfn_Processing_Pipeline.md](Protocols/Pipelines/GryfnProcessingPipeline/Gryfn_Processing_Pipeline.md)
 
-- [ ] **Screenshots** · *Explicit* — [GOBI — Standard Processing Pipeline](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md#-gobi--standard-processing-pipeline): Step-by-step GPT screenshots — polygon import → exposure setting → ELM panel selection → pipeline submission — matching the level of detail used in the CALViS section.
+- [ ] **Screenshots** · *Explicit* — [GOBI — Standard Processing Pipeline](Protocols/Pipelines/GryfnProcessingPipeline/Gryfn_Processing_Pipeline.md#-gobi--standard-processing-pipeline): Step-by-step GPT screenshots — polygon import → exposure setting → ELM panel selection → pipeline submission — matching the level of detail used in the CALViS section.
 
 ## HiRes Processing Pipeline — [Protocols/Pipelines/HiResPipeline/HiRes_Processing_Pipeline.md](Protocols/Pipelines/HiResPipeline/HiRes_Processing_Pipeline.md)
 

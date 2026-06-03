@@ -46,12 +46,12 @@ For additional information about all steps in this document, see the
 ## 🌿 CALViS — Standard Processing Pipeline
 
 This section describes the standard CALViS processing workflow using the
-[`Calvis_standard_pipeline_v1.0.yaml`](https://github.com/ArdenB/APPN-Aerial-Standard-Operating-Procedures/blob/main/Protocols/Pipelines/ProcessingPipelines/yaml/Calvis_standard_pipeline_v1.0.yaml)
+[`Calvis_standard_pipeline_v1.0.yaml`](https://github.com/ArdenB/APPN-Aerial-Standard-Operating-Procedures/blob/main/Protocols/Pipelines/GryfnProcessingPipeline/yaml/Calvis_standard_pipeline_v1.0.yaml)
 file in the GRYFN Processing Tool (**GPT, v1.9.2**).
 
 > [!NOTE]
 > The pipeline YAML lives in
-> [`Protocols/Pipelines/ProcessingPipelines/yaml/`](https://github.com/ArdenB/APPN-Aerial-Standard-Operating-Procedures/tree/main/Protocols/Pipelines/ProcessingPipelines/yaml).
+> [`Protocols/Pipelines/GryfnProcessingPipeline/yaml/`](https://github.com/ArdenB/APPN-Aerial-Standard-Operating-Procedures/tree/main/Protocols/Pipelines/GryfnProcessingPipeline/yaml).
 > Download the latest version from the link above before importing it
 > into GPT (see [Step 4](#4-load-the-calvis_standard_pipeline)).
 
@@ -60,7 +60,7 @@ file in the GRYFN Processing Tool (**GPT, v1.9.2**).
 Before processing any data, configure GPT so that it uses the correct
 radiometric calibration files and points to the correct panel target files.
 
-![GPT defaults dialog showing radiometric calibration and reflectance target paths](Processing_Pipelines_media/GPT_defaults.png)
+![GPT defaults dialog showing radiometric calibration and reflectance target paths](Gryfn_Processing_Pipeline_media/GPT_defaults.png)
 
 #### Sensor identification (boresight calibration)
 
@@ -109,7 +109,7 @@ A complete CALViS dataset has four key components — **VNIR, SWIR, LiDAR,
 and GNSS** — and these must be arranged correctly before a working graw
 can be bundled. The raw data folder will look like this:
 
-![Example CALViS RAW folder layout showing VNIR, SWIR, LiDAR and GNSS components](Processing_Pipelines_media/RAW_FOLDER_EG.png)
+![Example CALViS RAW folder layout showing VNIR, SWIR, LiDAR and GNSS components](Gryfn_Processing_Pipeline_media/RAW_FOLDER_EG.png)
 
 > [!NOTE]
 > When you download the VNIR data it has the **LiDAR data nested inside**
@@ -127,21 +127,21 @@ Before each graw, confirm you have:
 - [ ] Radiometric calibration files.
 - [ ] Reflectance target file.
 
-![UOA calibration paths](Processing_Pipelines_media/UOA_cals.png)
+![UOA calibration paths](Gryfn_Processing_Pipeline_media/UOA_cals.png)
 
 #### Bundling steps
 
 1. **Set the system calibration file** to match the sensor you are using.
 
-   ![GPT system calibration selection dialog](Processing_Pipelines_media/Sys_cal_set.png)
+   ![GPT system calibration selection dialog](Gryfn_Processing_Pipeline_media/Sys_cal_set.png)
 
 2. **Choose the raw data path.**
 
-   ![GPT raw data path selection](Processing_Pipelines_media/raw_path.png)
+   ![GPT raw data path selection](Gryfn_Processing_Pipeline_media/raw_path.png)
 
 3. **Click *Next*** to view the optional parameters.
 
-   ![GPT bundling optional parameters dialog](Processing_Pipelines_media/optional.png)
+   ![GPT bundling optional parameters dialog](Gryfn_Processing_Pipeline_media/optional.png)
 
    > [!NOTE]
    > Unless you have a specific reason to set an extent, **leave it
@@ -152,44 +152,44 @@ Before each graw, confirm you have:
 4. **Click *Next***. Give the bundle a logical name and save it under
    `T0_raw`.
 
-   ![Save graw dialog with bundle named and saved under T0_raw](Processing_Pipelines_media/save_graw.png)
+   ![Save graw dialog with bundle named and saved under T0_raw](Gryfn_Processing_Pipeline_media/save_graw.png)
 
 5. **Click *Create bundle***. You should see a progress report while the
    bundle is being created.
 
-   ![Bundle creation progress dialog](Processing_Pipelines_media/bundle_prog.png)
+   ![Bundle creation progress dialog](Gryfn_Processing_Pipeline_media/bundle_prog.png)
 
 ### 4. Load the Calvis_standard_pipeline
 
 Import the standard CALViS pipeline YAML
-([`Calvis_standard_pipeline_v1.0.yaml`](https://github.com/ArdenB/APPN-Aerial-Standard-Operating-Procedures/blob/main/Protocols/Pipelines/ProcessingPipelines/yaml/Calvis_standard_pipeline_v1.0.yaml))
+([`Calvis_standard_pipeline_v1.0.yaml`](https://github.com/ArdenB/APPN-Aerial-Standard-Operating-Procedures/blob/main/Protocols/Pipelines/GryfnProcessingPipeline/yaml/Calvis_standard_pipeline_v1.0.yaml))
 into GPT before running a job for the first time:
 
 1. Open the pipelines manager.
 
-   ![GPT pipelines manager — step 1 of upload](Processing_Pipelines_media/pipe1.png)
+   ![GPT pipelines manager — step 1 of upload](Gryfn_Processing_Pipeline_media/pipe1.png)
 
 2. Import the `Calvis_standard_pipeline` YAML.
 
-   ![GPT pipeline import dialog — step 2 of upload](Processing_Pipelines_media/pipe2.png)
+   ![GPT pipeline import dialog — step 2 of upload](Gryfn_Processing_Pipeline_media/pipe2.png)
 
 3. Confirm the imported pipeline is listed.
 
-   ![GPT pipelines manager showing imported Calvis_standard_pipeline — step 3 of upload](Processing_Pipelines_media/pipe3.png)
+   ![GPT pipelines manager showing imported Calvis_standard_pipeline — step 3 of upload](Gryfn_Processing_Pipeline_media/pipe3.png)
 
 ### 5. Run the pipeline on a graw
 
 1. Select **New Job** and choose **Calvis_std** from the pipelines list.
    Choose your graw, name your gpro, and set the gpro output location.
 
-   ![New job dialog: graw selection and gpro output path](Processing_Pipelines_media/gpro_file_paths.png)
+   ![New job dialog: graw selection and gpro output path](Gryfn_Processing_Pipeline_media/gpro_file_paths.png)
 
    > [!IMPORTANT]
    > The gpro **must** be saved under `T1_proc`.
 
 2. Configure GNSS processing. We currently recommend **PPRTX**.
 
-   ![GNSS processing configuration dialog](Processing_Pipelines_media/GNSS.png)
+   ![GNSS processing configuration dialog](Gryfn_Processing_Pipeline_media/GNSS.png)
 
    > [!CAUTION]
    > Double-check your **Datum**, **Grid**, and **Zone** before
@@ -198,28 +198,28 @@ into GPT before running a job for the first time:
 3. Load the reflectance target files. For this example flight we use the
    UOA panel target files.
 
-   ![Reflectance target file selection — UOA panels](Processing_Pipelines_media/load_targets.png)
+   ![Reflectance target file selection — UOA panels](Gryfn_Processing_Pipeline_media/load_targets.png)
 
 4. **VNIR ELM.** Cycle through the images until you find the four panels,
    then click **Draw target bounds**.
 
-   ![Cycling through VNIR images to locate the four ELM panels](Processing_Pipelines_media/find_elm_vnir.png)
+   ![Cycling through VNIR images to locate the four ELM panels](Gryfn_Processing_Pipeline_media/find_elm_vnir.png)
 
    Choose a target to work on:
 
-   ![Selecting a VNIR ELM target panel](Processing_Pipelines_media/choose_targ_elm.png)
+   ![Selecting a VNIR ELM target panel](Gryfn_Processing_Pipeline_media/choose_targ_elm.png)
 
    Hold right-click and drag a rectangle around the panel:
 
-   ![Drawing a target-bounds rectangle around a VNIR panel](Processing_Pipelines_media/11.png)
+   ![Drawing a target-bounds rectangle around a VNIR panel](Gryfn_Processing_Pipeline_media/11.png)
 
    Repeat for the remaining three panels:
 
-   ![All four VNIR panels with target bounds drawn](Processing_Pipelines_media/vnir_done.png)
+   ![All four VNIR panels with target bounds drawn](Gryfn_Processing_Pipeline_media/vnir_done.png)
 
 5. **SWIR ELM.** The process is the same as VNIR.
 
-   ![SWIR ELM showing water bands (red box) and rogue values (red circle)](Processing_Pipelines_media/swir_eg.png)
+   ![SWIR ELM showing water bands (red box) and rogue values (red circle)](Gryfn_Processing_Pipeline_media/swir_eg.png)
 
    > [!TIP]
    > The SWIR will have water bands (red box in the figure above) and
@@ -250,41 +250,41 @@ To inspect the DSM, DTM, RGB orthomosiac and the VNIR orthomosiac we recommend  
 
 The data outputs are stored in the "products" folder in the gpro 
 
-   ![CALVIS_products](Processing_Pipelines_media/CALVIS_products.png)
+   ![CALVIS_products](Gryfn_Processing_Pipeline_media/CALVIS_products.png)
 
 #### Inspecting the VNIR orthomosiac
 
 Open QGIS 4 and drag and drop the VNIR ".bin" then select "add layers"
 
-   ![CALVIS_products](Processing_Pipelines_media/load_vnir_qgis.png)
+   ![CALVIS_products](Gryfn_Processing_Pipeline_media/load_vnir_qgis.png)
 
 You will notice that the hyperspectral orthomosiac has a poor visualisation , this is because the default bands (wavelengths) visualised in in QGIS are not ideal. We recommend setting the visualisation to Red Green Blue. To do this double click the file in the “Layers” section of QGIS, navigate to symbology and set the Red Green and Blue bands to the appropriate colour. 
 
 
-   ![CALVIS_products](Processing_Pipelines_media/RGB_VNIR.png)
+   ![CALVIS_products](Gryfn_Processing_Pipeline_media/RGB_VNIR.png)
 
 Next, it can be helpful to investigate, and sanity check some reflectance values.  To do this we can use the “Identify Features” button.  Click the button and then click a pixel on the orthomosiac. A good sanity check is to use a GRYFN panel, for example click on the 30% panel and check that the values are hovering around the 30% reflectance. One you click a pixel it defaults to a table, switching it to “graph” can make it easier to quickly interpret.  
 
-   ![CALVIS_products](Processing_Pipelines_media/qgis_31_panel_vnir.png)
+   ![CALVIS_products](Gryfn_Processing_Pipeline_media/qgis_31_panel_vnir.png)
 
 Following this you can click on grass, a crop, whatever is of interest to your flight (below is grass) 
 
-   ![CALVIS_products](Processing_Pipelines_media/qgis_grass.png)
+   ![CALVIS_products](Gryfn_Processing_Pipeline_media/qgis_grass.png)
 
 The steps for the SWIR are the same except  there are no presets for RGB bands. 
 
 
 If your VNIR Orthmosiac looks  odd, it can be good to check your DSM to make sure the LIDAR was working. To investigate your DSM just drag and drop the “.TIF” file into QGIS (note that this is actually a GeoTiff and contains spatial information). Make sure that the min max values make logical sense (e.g. the distance between the ground and the tallest feature)
 
-![alt text](Processing_Pipelines_media/qgis_dsm.png)
+![alt text](Gryfn_Processing_Pipeline_media/qgis_dsm.png)
 
 Lastly, if you want to view your point cloud you can drag and drop the (.las or .laz file) into CloudCompare
 
-![alt text](Processing_Pipelines_media/cloud_compare.png)
+![alt text](Gryfn_Processing_Pipeline_media/cloud_compare.png)
 
-![alt text](Processing_Pipelines_media/cloud_compare_yes_to_all.png)
+![alt text](Gryfn_Processing_Pipeline_media/cloud_compare_yes_to_all.png)
 
-![alt text](Processing_Pipelines_media/cloud_compare_point_cloud.png)
+![alt text](Gryfn_Processing_Pipeline_media/cloud_compare_point_cloud.png)
 
 All these steps apply to the GOBI the only difference being the RGB image (which is a Geotiff and loads just like the DSM)
 
@@ -294,7 +294,7 @@ All these steps apply to the GOBI the only difference being the RGB image (which
 ## 🌱 GOBI — Standard Processing Pipeline
 
 The GOBI standard processing pipeline is defined by
-[`Gobi_standard_pipeline_v1.0.yaml`](https://github.com/ArdenB/APPN-Aerial-Standard-Operating-Procedures/blob/main/Protocols/Pipelines/ProcessingPipelines/yaml/Gobi_standard_pipeline_v1.0.yaml).
+[`Gobi_standard_pipeline_v1.0.yaml`](https://github.com/ArdenB/APPN-Aerial-Standard-Operating-Procedures/blob/main/Protocols/Pipelines/GryfnProcessingPipeline/yaml/Gobi_standard_pipeline_v1.0.yaml).
 
 > [!NOTE]
 > The GOBI workflow closely mirrors the CALViS walkthrough above; only
@@ -309,7 +309,7 @@ Repeated to make sure double checking is done
 Before processing any data, configure GPT so that it uses the correct
 radiometric calibration files and points to the correct panel target files.
 
-![GPT defaults dialog showing radiometric calibration and reflectance target paths](Processing_Pipelines_media/GPT_defaults.png)
+![GPT defaults dialog showing radiometric calibration and reflectance target paths](Gryfn_Processing_Pipeline_media/GPT_defaults.png)
 
 #### Sensor identification (boresight calibration)
 
@@ -357,7 +357,7 @@ A complete CALViS dataset has four key components — **VNIR, RGB, LiDAR,
 and GNSS** — and these must be arranged correctly before a working graw
 can be bundled. The raw data folder will look like this:
 
-![Example CALViS RAW folder layout showing VNIR, SWIR, LiDAR and GNSS components](Processing_Pipelines_media/gobi_raw_files.png)
+![Example CALViS RAW folder layout showing VNIR, SWIR, LiDAR and GNSS components](Gryfn_Processing_Pipeline_media/gobi_raw_files.png)
 
 ### 3. Create the graw bundle
 
@@ -369,7 +369,7 @@ Before each graw, confirm you have:
 - [ ] Radiometric calibration files.
 - [ ] Reflectance target file.
 
-![UOA calibration paths](Processing_Pipelines_media/GOBI_gen_settigs_usyd.png)
+![UOA calibration paths](Gryfn_Processing_Pipeline_media/GOBI_gen_settigs_usyd.png)
 
 ### Note here we switched from UOA to USYD
 
@@ -377,15 +377,15 @@ Before each graw, confirm you have:
 
 1. **Set the system calibration file** to match the sensor you are using.
 
-   ![GPT system calibration selection dialog](Processing_Pipelines_media/GOBI_bore_gpt.png)
+   ![GPT system calibration selection dialog](Gryfn_Processing_Pipeline_media/GOBI_bore_gpt.png)
 
 2. **Choose the raw data path.**
 
-   ![GPT raw data path selection](Processing_Pipelines_media/GOBI_raw_path_graw.png)
+   ![GPT raw data path selection](Gryfn_Processing_Pipeline_media/GOBI_raw_path_graw.png)
 
 3. **Click *Next*** to view the optional parameters.
 
-   ![GPT bundling optional parameters dialog](Processing_Pipelines_media/optional.png)
+   ![GPT bundling optional parameters dialog](Gryfn_Processing_Pipeline_media/optional.png)
 
    > [!NOTE]
    > Unless you have a specific reason to set an extent, **leave it
@@ -396,41 +396,41 @@ Before each graw, confirm you have:
 4. **Click *Next***. Give the bundle a logical name and save it under
    `T0_raw`.   
 
-    ![Save graw dialog with bundle named and saved under T0_raw](Processing_Pipelines_media/name_gobi_bundle.png)
+    ![Save graw dialog with bundle named and saved under T0_raw](Gryfn_Processing_Pipeline_media/name_gobi_bundle.png)
 
 5. **Click *Create bundle***.   
 
 ### 4. Load the GOBI_standard_pipeline
 
 Import the standard GOBI pipeline YAML
-([`Calvis_standard_pipeline_v1.0.yaml`](https://github.com/ArdenB/APPN-Aerial-Standard-Operating-Procedures/blob/main/Protocols/Pipelines/ProcessingPipelines/yaml/Gobi_standard_pipeline_v1.0.yaml))
+([`Calvis_standard_pipeline_v1.0.yaml`](https://github.com/ArdenB/APPN-Aerial-Standard-Operating-Procedures/blob/main/Protocols/Pipelines/GryfnProcessingPipeline/yaml/Gobi_standard_pipeline_v1.0.yaml))
 
 1. Open the pipelines manager.
 
-   ![GPT pipelines manager — step 1 of upload](Processing_Pipelines_media/pipe1.png)
+   ![GPT pipelines manager — step 1 of upload](Gryfn_Processing_Pipeline_media/pipe1.png)
 
 
 2. Import the `Gobi_standard_pipeline` YAML.
 
-   ![GPT pipeline import dialog — step 2 of upload](Processing_Pipelines_media/load_gobi_pipeline.png)   
+   ![GPT pipeline import dialog — step 2 of upload](Gryfn_Processing_Pipeline_media/load_gobi_pipeline.png)   
 
  3. Confirm the imported pipeline is listed.
 
-   ![GPT pipelines manager showing imported Calvis_standard_pipeline — step 3 of upload](Processing_Pipelines_media/GOBI_std_save.png)  
+   ![GPT pipelines manager showing imported Calvis_standard_pipeline — step 3 of upload](Gryfn_Processing_Pipeline_media/GOBI_std_save.png)  
 
 ### 5. Run the pipeline on a graw
 
 1. Select **New Job** and choose **Gobi_std** from the pipelines list.
    Choose your graw, name your gpro, and set the gpro output location.   
 
-    ![New job dialog: graw selection and gpro output path](Processing_Pipelines_media/gobi_gpro_step1_setgraw_and_gpro.png)
+    ![New job dialog: graw selection and gpro output path](Gryfn_Processing_Pipeline_media/gobi_gpro_step1_setgraw_and_gpro.png)
 
    > [!IMPORTANT]
    > The gpro **must** be saved under `T1_proc`.  
 
 2. Configure GNSS processing. 
 
-   ![GNSS processing configuration dialog](Processing_Pipelines_media/GOBI_GNSS_CRS.png)
+   ![GNSS processing configuration dialog](Gryfn_Processing_Pipeline_media/GOBI_GNSS_CRS.png)
 
    > [!CAUTION]
    > Double-check your **Datum**, **Grid**, and **Zone** before
@@ -441,12 +441,12 @@ Import the standard GOBI pipeline YAML
   3. Load the reflectance target files. For this example flight we use the
    UOA panel target files.
 
-   ![Reflectance target file selection — USYD panels](Processing_Pipelines_media/gobi_usyd_targets.png)
+   ![Reflectance target file selection — USYD panels](Gryfn_Processing_Pipeline_media/gobi_usyd_targets.png)
 
    4. **VNIR ELM.** Cycle through the images until you find the four panels,
    then click **Draw target bounds**. (note explained in greater detail in the CALViS steps above)
 
-   ![Selecting a VNIR ELM target panel](Processing_Pipelines_media/GOBI_ELM.png)
+   ![Selecting a VNIR ELM target panel](Gryfn_Processing_Pipeline_media/GOBI_ELM.png)
    
 
 

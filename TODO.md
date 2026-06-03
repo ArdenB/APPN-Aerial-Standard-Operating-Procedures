@@ -24,7 +24,7 @@ separately in [IMAGE_TODO.md](IMAGE_TODO.md).
   - [Standard Flight Procedure](Protocols/FlightDesign/StandardFlight/Standard_Flight.md)
   - [QA Process](Protocols/QA/QAprocess/AerialDataQC.md)
   - [Plot Delineation](Protocols/PlotProtocols/PlotDelineation/Plot_Delineation.md)
-  - [Processing Pipelines](Protocols/Pipelines/ProcessingPipelines/Processing_Pipelines.md)
+  - [Processing Pipelines](Protocols/Pipelines/GryfnProcessingPipeline/Gryfn_Processing_Pipeline.md)
   - [Data Folder Structure](Protocols/DataManagement/DataFolderStructure/DataFolderStructure.md)
     _(already Adopted)_
 
