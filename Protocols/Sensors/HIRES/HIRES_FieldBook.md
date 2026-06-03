@@ -188,8 +188,13 @@ across APPN field nodes.
 8. Set image overlap and triggering parameters in the **Advanced Settings**
    of the mapping mission:
    - Front (forward) overlap: **80%**
-   - Side (lateral) overlap: **80%**
+   - Side (lateral) overlap: **70%**
    - Photo mode: **Distance Interval Shot**
+
+> [!IMPORTANT]
+> 80/70 overlap always produces a reasonable motion blur <0.5 GSD. 
+
+
 
 9. Set the course angle to align with the experimental layout:
    - Use **row-aligned** orientation for plot-based trials where crop rows
@@ -224,12 +229,16 @@ settings.
 
 | Standard Mission Type | Scenario                                                                                       | Altitude   | Speed       | Shutter   | Aperture | Overlap (Frontlap/Sidelap) |
 | :-------------------- | :--------------------------------------------------------------------------------------------- | :--------- | :---------- | :-------- | :------- | :------ |
-| **Type 1**            | Plant counting / small structures (flowers, heads, early lesions, emergence counting)          | 12-20 m       | 1.6–2.7 m/s | ≥ 1/4000  | f/8      | 80/80 recommended, but 80/75 minimum   |
-| **Type 2**            | Plot phenotyping (canopy traits, vigour)                                                       | 30–50 m    | 2.4–4.1 m/s | ≥ 1/4000  | f/8      | 80/80 recommended, but 80/75 minimum   |
-| **Type 3**            | Canopy coverage / plot averages                                                                | 50–70 m    | 4.1–5.7 m/s | ≥ 1/4000  | f/8      | 80/80 recommended, but 80/75 minimum   |
-| **Type 4**            | Large-area flat terrain ortho (efficiency mode)                                                | 80–120 m   | 6.5–9.8 m/s | ≥ 1/4000  | f/8      | 80/80 recommended, but 80/75 minimum   |
+| **Type 1**            | Plant counting / small structures (flowers, heads, early lesions, emergence counting)          | 12-20 m       | 0.9–1.6 m/s | ≥ 1/4000  | f/8      | 80/70 |
+| **Type 2**            | Plot phenotyping (canopy traits, vigour)                                                       | 30–50 m    | 2.4–4.1 m/s | ≥ 1/4000  | f/8      | 80/70 |
+| **Type 3**            | Canopy coverage / plot averages                                                                | 50–70 m    | 4.1–5.7 m/s | ≥ 1/4000  | f/8      | 80/70  |
+| **Type 4**            | Large-area flat terrain ortho (efficiency mode)                                                | 80–120 m   | 6.5–9.8 m/s | ≥ 1/4000  | f/8      | 80/70  |
 
 ---
+> [!NOTE]
+> 80/70 overlap is an acceptable setting for orthomosiac workflows and for larger field sites. It may not be enough overlap for other approaches. See the
+> [HiRes Processing Pipeline](../../Pipelines/HiResPipeline/HiRes_Processing_Pipeline.md)
+> for the processing methods these settings feed into.
 
 ## Camera Capture Settings
 
