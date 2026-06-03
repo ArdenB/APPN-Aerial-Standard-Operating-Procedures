@@ -1,7 +1,5 @@
 # Processing Pipelines
 
-**Version 0.1 – DRAFT, May 2026**
-
 > [!IMPORTANT]
 > This page documents the **standardised GRYFN processing pipelines** used
 > within APPN for UAV-based data processing, intended for trained APPN staff

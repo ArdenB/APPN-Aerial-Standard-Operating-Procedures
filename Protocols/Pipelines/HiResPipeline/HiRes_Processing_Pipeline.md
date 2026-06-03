@@ -1,7 +1,7 @@
 # HiRes Processing Pipeline
 
-> [!NOTE]
-> Portions of this method are still under development, with work continuing
+> [!CAUTION]
+> Portions of this method are **still under development**, with work continuing
 > over the 2026 winter season. The flight parameters in the
 > [HiRes Fieldbook](../../Sensors/HIRES/HIRES_FieldBook.md) were chosen to
 > allow the different processing methods to be tested robustly. 
@@ -29,11 +29,6 @@ For a tabular summary of output formats, resolutions and software
 compatibility, see
 [Standard Data Products](../../Background/StandardDataProducts/Standard_Data_Products.md).
 
-
-> [!IMPORTANT]
-> **Document status — work in progress.**
-> This page is a draft and requires further revision before it can be
-> considered final.
 
 ---
 
@@ -75,10 +70,10 @@ be documented in future revisions of this protocol.
 > stitching process introduces some **mosaicing artefacts** and a slight
 > **loss of resolution**.
 >
-> The two **image tiling methods** were developed independently by UWA and UQ.
+> The two **image tiling methods** were developed independently by UWA/DPIRD and UQ.
 > Both apply the same PhaseOne radiometric calibration, lens correction, and
 > geometric model, and ongoing work this season is focused on reconciling them
-> into a single, unified approach.
+> into a **single, unified approach**.
 
 ---
 
@@ -240,7 +235,7 @@ output path.
 ### Method 2 - Image tiling method (in development)
 
 > [!IMPORTANT]
-> The two methods below were developed **independently by UWA/DPRID and UQ** and are
+> The two methods have were developed **independently by UWA/DPRID and UQ** and are
 > based on the PhaseOne iX Capture / Image SDK toolchain. Ongoing work this
 > season is focused on **combining them into a single, unified approach**,
 > which will be documented in future revisions of this protocol. Both are

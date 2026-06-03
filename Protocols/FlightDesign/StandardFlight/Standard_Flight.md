@@ -1,7 +1,5 @@
 # Standard Flight Procedure
 
-**Version 0.1 – DRAFT, April 2026**
-
 > [!IMPORTANT]
 > This protocol outlines the standard operational flight procedure for
 > routine APPN aerial surveys using the GOBI or CALViS payloads. It

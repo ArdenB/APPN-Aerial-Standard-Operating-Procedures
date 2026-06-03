@@ -1,7 +1,5 @@
 # Validation Flight Procedure
 
-**Version 0.1 – DRAFT, April 2026**
-
 > [!IMPORTANT]
 > This protocol outlines the **validation flight procedures** used to
 > periodically check that APPN aerial payloads (GOBI, CALViS) remain
