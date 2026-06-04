@@ -1,3 +1,6 @@
+> [!CAUTION]
+> **This repository is deprecated.** It has been superseded by the official APPN repository: **[APPN-Field-Protocols-and-Pipelines](https://github.com/aus-plant-phenomics-network/APPN-Field-Protocols-and-Pipelines)**. All changes must be made there — this repository is no longer maintained and its content may be out of date.
+
 # Ground-Based Phenotyping and Environmental Platforms
 
 In addition to UAV-based phenotyping platforms, APPN field operations make use
